@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/cart.png">
+
+    {% block title %}
+      <title>Vendas</title>
+    {% endblock title %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+
+    <style type="text/css">
+      /* Move down content because we have a fixed navbar that is 50px tall */
+      body {
+        padding-top: 50px;
+        padding-bottom: 40px;
+        color: #5a5a5a;
+      }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5shiv.js"></script>
+      <script src="/static/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">Vendas</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'home' %}">Início</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-tags"></span> Produtos</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Vendas</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Admin <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Cadastro de Produtos</li>
+                <li><a href="#">Produto</a></li>
+                <li><a href="#">Categoria</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Cadastro de Pessoas</li>
+                <li><a href="#">Cliente</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Fornecedor</a></li>
+                <li><a href="#">Funcionário</a></li>
+              </ul>
+            </li>
+            <li><a href="#"><span class="glyphicon glyphicon-flag"></span> Estoque</a></li>
+          </ul>
+          <!-- <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form> -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Config</a></li>
+            <li><a href="{% url 'sobre' %}"><span class="glyphicon glyphicon-exclamation-sign"></span> Sobre</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ajuda</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+  <br>
+  <br>
+
+  <div class="container">
+
+    {% block content %}
+      
+    {% endblock content %}
+  
+      <hr>
+
+<!-- FOOTER -->
+      <footer>
+        <p class="pull-right">
+          <a href="#">Voltar ao topo</a>
+        </p>
+        <p>rg3915 &copy; 2014 &middot; all rights reserved. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/br/80x15.png" /></a> <a href="http://www.djangoproject.com/" id="django" target="_blank"><img src="http://nedbatchelder.com/pix/django-icon-256.png" border="0" alt="A Django site." title="A Django site." height="20px" /></a> <a href="https://github.com/rg3915/django" target="_blank"><img src="http://mokrzu.github.io/iconmonstr-github-6-icon.png" height="25px"></a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+  </body>
+</html>

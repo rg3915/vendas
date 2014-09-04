@@ -38,7 +38,7 @@ Para converter o **pdf** em **jpg** use o [Imagemagick][11].
 
 # Notas
 
-Para gerar **vendas.png** use a biblioteca [django-extensions][] junto com
+Para gerar **vendas.png** use a biblioteca [django-extensions][1] junto com
 
 
 	$ ./manage.py graph_models -a -g -o vendas.png
@@ -52,6 +52,7 @@ ou
 Leia [django-notes][8].
 
 [0]: https://www.djangoproject.com/
+[1]: http://django-extensions.readthedocs.org/en/latest/
 [2]: https://docs.djangoproject.com/en/dev/ref/class-based-views/
 [3]: https://docs.djangoproject.com/en/dev/ref/class-based-views/base/#templateview
 [4]: https://docs.djangoproject.com/en/dev/ref/class-based-views/generic-display/#listview
