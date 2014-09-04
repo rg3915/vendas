@@ -1,0 +1,50 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz-uml}
+\usepackage[pdfpagelayout=SinglePage]{hyperref}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\umlclass[x=0,y=0]{Cliente}{
+		- id \\
+		- cpf \\
+		- nome \\
+		- sobrenome \\
+		- email \\
+		- fone \\
+	}{}
+	\umlclass[x=5,y=0,fill=green!20]{Venda}{
+		- id \\
+		- datavenda \\
+		+ cliente\_id \\
+	}{}
+	\umlclass[x=5,y=-5,fill=green!20]{detVenda}{
+		- id \\
+		+ venda\_id \\
+		+ produto\_id \\
+		- quantidade \\
+		- precovenda \\
+	}{}
+	\umlclass[x=10,y=-5]{Produto}{
+		- id \\
+		- importado \\
+		- foradelinha \\
+		+ categoria\_id \\
+		- produto \\
+		- preco \\
+		- imagem \\
+	}{}
+	\umlclass[x=15,y=-5]{Categoria}{
+		- id \\
+		- categoria \\
+	}{}
+
+	\umlassoc{Cliente}{Venda}
+	\umlassoc[geometry=-|-]{Venda}{detVenda}
+	\umlassoc[geometry=-|-]{detVenda}{Produto}
+	\umlassoc[geometry=-|-]{Produto}{Categoria}
+\end{tikzpicture}
+
+\end{document}
