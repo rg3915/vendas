@@ -1,4 +1,4 @@
-Django
+Django==1.7
 Pillow==2.5.3
 Unipath==1.0
 argparse==1.2.1
