@@ -13,8 +13,10 @@ build/
 develop-eggs/
 dist/
 eggs/
+include/
 lib/
 lib64/
+local/
 parts/
 sdist/
 var/
@@ -52,3 +54,4 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+*.sqlite3
