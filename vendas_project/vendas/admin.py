@@ -20,7 +20,7 @@ class DetVendaInline(admin.TabularInline):
 
 
 class VendaAdmin(admin.ModelAdmin):
-    list_display = ('cliente', '__unicode__')
+    list_display = ('cliente', '__unicode__', 'total')
     inlines = [DetVendaInline]
 
 

@@ -61,9 +61,17 @@ class Venda(models.Model):
     def __unicode__(self):
         return unicode(self.datavenda)
 
+    def total(self):
+        total = 0
+
+        for det_venda in self.det_vendas.all():
+            total += det_venda.valor_total
+
+        return total
+
 
 class DetVenda(models.Model):
-    venda = models.ForeignKey(Venda)
+    venda = models.ForeignKey(Venda, related_name='det_vendas')
     produto = models.ForeignKey(Produto)
     quantidade = models.IntegerField()
     precovenda = models.DecimalField(
@@ -73,5 +81,6 @@ class DetVenda(models.Model):
         return unicode(self.venda)
 
     def _get_valor_total(self):
-        return self.precovenda * self.quantidade
+        if self.quantidade:
+            return self.precovenda * self.quantidade
     valor_total = property(_get_valor_total)
