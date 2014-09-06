@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 from django.db import models
 from datetime import date
 
@@ -57,6 +57,8 @@ class Venda(models.Model):
     datavenda = models.DateTimeField(
         'Data da venda', auto_now_add=True, auto_now=False)
     modificado_em = models.DateTimeField(auto_now_add=False, auto_now=True)
+    preco = models.DecimalField(
+        'Preço', default='12.75', max_digits=8, decimal_places=2)
 
     def __unicode__(self):
         return unicode(self.datavenda)
