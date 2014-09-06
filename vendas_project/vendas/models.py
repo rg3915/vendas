@@ -51,12 +51,16 @@ class Produto(models.Model):
     def __unicode__(self):
         return self.produto
 
+    def get_preco(self):
+        return self.preco
+
 
 class Venda(models.Model):
     cliente = models.ForeignKey(Cliente)
     datavenda = models.DateTimeField(
         'Data da venda', auto_now_add=True, auto_now=False)
     modificado_em = models.DateTimeField(auto_now_add=False, auto_now=True)
+    # teste
     preco = models.DecimalField(
         'Preço', default='12.75', max_digits=8, decimal_places=2)
 
@@ -78,7 +82,7 @@ class DetVenda(models.Model):
     produto = models.ForeignKey(Produto)
     quantidade = models.IntegerField()
     precovenda = models.DecimalField(
-        'Preço de venda', default='produto.preco', max_digits=8, decimal_places=2)
+        'Preço de venda', default=0, max_digits=8, decimal_places=2)
 
     def __unicode__(self):
         return unicode(self.venda)
