@@ -61,13 +61,14 @@ class Venda(models.Model):
     def __unicode__(self):
         return unicode(self.datavenda)
 
-    def total(self):
-        total = 0
+    def _get_total(self):
+        soma = 0
 
         for det_venda in self.det_vendas.all():
-            total += det_venda.valor_total
+            soma += det_venda.subtotal
 
-        return total
+        return soma
+    total = property(_get_total)
 
 
 class DetVenda(models.Model):
@@ -80,7 +81,7 @@ class DetVenda(models.Model):
     def __unicode__(self):
         return unicode(self.venda)
 
-    def _get_valor_total(self):
+    def _get_subtotal(self):
         if self.quantidade:
             return self.precovenda * self.quantidade
-    valor_total = property(_get_valor_total)
+    subtotal = property(_get_subtotal)

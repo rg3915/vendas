@@ -13,14 +13,15 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 
 class DetVendaInline(admin.TabularInline):
-    list_display = ['produto', 'quantidade', 'precovenda', 'valor_total']
-    readonly_fields = ['valor_total']
+    list_display = ['produto', 'quantidade', 'precovenda', 'subtotal']
+    readonly_fields = ['subtotal']
     model = DetVenda
     extra = 0
 
 
 class VendaAdmin(admin.ModelAdmin):
     list_display = ('cliente', '__unicode__', 'total')
+    readonly_fields = ['total']
     inlines = [DetVendaInline]
 
 
