@@ -3,6 +3,6 @@ Screenshot
 
 Veja como ficou o subtotal e total no admin.
 
-![vendas]]s(vendas.png)
+![vendas](vendas.png)
 
-![detvendas](detvendas)
+![detvendas](detvendas.png)
