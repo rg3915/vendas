@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Lista de Categorias</h1>
+
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Categoria</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for category in page_obj %}
+					<tr>
+						<td>{{ category.categoria }}</td>
+					</tr>
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	    <hr>
+
+<!-- pagination -->
+{% include "_pagination.html" %}
+
+{% endblock content %}

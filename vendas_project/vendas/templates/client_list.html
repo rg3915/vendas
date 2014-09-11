@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Lista de Clientes</h1>
+
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th>Email</th>
+						<th>Fone</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for client in page_obj %}
+					<tr>
+						<td>{{ client.nomecompleto }}</td>
+						<td>{{ client.cpf }}</td>
+						<td>{{ client.email }}</td>
+						<td>{{ client.fone }}</td>
+					</tr>
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	    <hr>
+
+<!-- pagination -->
+{% include "_pagination.html" %}
+
+{% endblock content %}

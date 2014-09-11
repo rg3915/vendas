@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Lista de Produtos</h1>
+
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Importado</th>
+						<th>Fora de linha</th>
+						<th>Categoria</th>
+						<th>Produto</th>
+						<th>Preço</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for product in page_obj %}
+					<tr>
+						<td><input type="radio" name="importado" value="{{ product.importado }}"></td>
+						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td>
+						<td>{{ product.categoria }}</td>
+						<td>{{ product.produto }}</td>
+						<td>{{ product.preco }}</td>
+					</tr>
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	    <hr>
+
+<!-- pagination -->
+{% include "_pagination.html" %}
+
+{% endblock content %}
