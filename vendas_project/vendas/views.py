@@ -1,6 +1,7 @@
-# coding: utf-8
-from django.views.generic import TemplateView, ListView
-from .models import Cliente, Categoria, Produto
+# -*- coding: utf-8 -*-
+from django.views.generic import TemplateView, ListView, DetailView
+from django.core.urlresolvers import reverse_lazy
+from .models import Cliente, Categoria, Produto, Venda, DetVenda
 
 
 class Index(TemplateView):
@@ -30,3 +31,20 @@ class ProductList(ListView):
     model = Produto
     context_object = 'product_list'
     paginate_by = 10
+
+
+class SaleList(ListView):
+    template_name = 'sale_list.html'
+    model = Venda
+    context_object = 'sale_list'
+    paginate_by = 10
+
+
+class SaleDetailView(DetailView):
+    model = Venda
+    # template_name = reverse_lazy('sale_detail.html')
+
+    def get_context_data(self, **kwargs):
+        context = super(SaleDetailView, self).get_context_data(**kwargs)
+        context['sale_list'] = Venda.objects.filter(venda=venda)
+        return context

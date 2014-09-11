@@ -7,20 +7,20 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Importado</th>
-						<th>Fora de linha</th>
-						<th>Categoria</th>
+						<!-- <th>Importado</th>
+						<th>Fora de linha</th> -->
 						<th>Produto</th>
+						<th>Categoria</th>
 						<th>Preço</th>
 					</tr>
 				</thead>
 				<tbody>
 				{% for product in page_obj %}
 					<tr>
-						<td><input type="radio" name="importado" value="{{ product.importado }}"></td>
-						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td>
-						<td>{{ product.categoria }}</td>
+						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
+						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
 						<td>{{ product.produto }}</td>
+						<td>{{ product.categoria }}</td>
 						<td>{{ product.preco }}</td>
 					</tr>
 				{% empty %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Lista de Vendas</h1>
+
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Cliente</th>
+						<th>Data da venda</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for sale in page_obj %}
+					<tr>
+						<td><a href="{% url 'sale_detail' venda.pk %}">{{ sale.cliente }}</a></td>
+						<td>{{ sale.datavenda }}</td>
+						<td>{{ sale.total }}</td>
+					</tr>
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	    <hr>
+
+<!-- pagination -->
+{% include "_pagination.html" %}
+
+{% endblock content %}
