@@ -13,17 +13,20 @@ class Cliente(models.Model):
     modificado_em = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     class Meta:
+        ordering = ['nome']
         verbose_name = u'cliente'
         verbose_name_plural = u'clientes'
 
     def __unicode__(self):
         return self.nome + " " + self.sobrenome
+    nomecompleto = property(__unicode__)
 
 
 class Categoria(models.Model):
     categoria = models.CharField('Categoria', max_length=50)
 
     class Meta:
+        ordering = ['categoria']
         verbose_name = u'categoria'
         verbose_name_plural = u'categorias'
 
@@ -39,6 +42,7 @@ class Produto(models.Model):
     preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
 
     class Meta:
+        ordering = ['produto']
         verbose_name = u'produto'
         verbose_name_plural = u'produtos'
 
