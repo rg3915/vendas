@@ -32,17 +32,11 @@ class Categoria(models.Model):
 
 
 class Produto(models.Model):
-
-    def url(self, filename):
-        caminho = "static/produto/%s/%s" % (self.produto, str(filename))
-        return caminho
-
     importado = models.BooleanField('Importado', default=False)
     foradelinha = models.BooleanField('Fora de linha', default=False)
     categoria = models.ForeignKey(Categoria)
     produto = models.CharField('Produto', max_length=50)
     preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
-    imagem = models.ImageField('Imagem', upload_to=url, null=True, blank=True)
 
     class Meta:
         verbose_name = u'produto'
@@ -51,6 +45,7 @@ class Produto(models.Model):
     def __unicode__(self):
         return self.produto
 
+    @property
     def get_preco(self):
         return self.preco
 
@@ -60,9 +55,6 @@ class Venda(models.Model):
     datavenda = models.DateTimeField(
         'Data da venda', auto_now_add=True, auto_now=False)
     modificado_em = models.DateTimeField(auto_now_add=False, auto_now=True)
-    # teste
-    preco = models.DecimalField(
-        'Preço', default='12.75', max_digits=8, decimal_places=2)
 
     def __unicode__(self):
         return unicode(self.datavenda)

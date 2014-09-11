@@ -1,0 +1,7 @@
+template: https://github.com/adroaldof/djangofw/blob/master/templates/polls/form.html#L45
+model: https://github.com/adroaldof/djangofw/blob/master/polls/models.py
+form: https://github.com/adroaldof/djangofw/blob/master/polls/forms.py#L19
+view: https://github.com/adroaldof/djangofw/blob/master/polls/views.py#L50
+
+https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ManyToManyField.through
+http://stackoverflow.com/questions/1816444/adding-custom-js-to-a-django-admin-field
