@@ -14,8 +14,6 @@ urlpatterns = patterns(
     url(r'^category/$', CategoryList.as_view(), name='category_list'),
     url(r'^product/$', ProductList.as_view(), name='product_list'),
     url(r'^sale/$', SaleList.as_view(), name='sale_list'),
-    # url(r'^sale/(?P<pk>\d+)/$', SaleDetailView.as_view(), name='sale_detail'),
-    url(r'^sale/(?P<pk>[\w-]+)/$',
-        SaleDetailView.as_view(), name='sale_detail'),
+    url(r'^sale/(?P<pk>\d+)/$', SaleDetailView.as_view(), name='sale_detail'),
     url(r'^about/$', About.as_view(), name='about'),
 )

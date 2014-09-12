@@ -15,7 +15,7 @@
 				<tbody>
 				{% for sale in page_obj %}
 					<tr>
-						<td><a href="{% url 'sale_detail' venda.pk %}">{{ sale.cliente }}</a></td>
+						<td><a href="{% url 'sale_detail' sale.pk %}">{{ sale.cliente }}</a></td>
 						<td>{{ sale.datavenda }}</td>
 						<td>{{ sale.total }}</td>
 					</tr>
