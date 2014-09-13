@@ -41,11 +41,6 @@ class SaleList(ListView):
 
 
 class SaleDetailView(DetailView):
-    context_object_name = 'venda',
+    template_name = u'sale_detail.html'
     model = Venda
-    template_name = reverse_lazy('sale_detail.html')
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(SaleDetailView, self).get_context_data(**kwargs)
-    #     context['sale_list'] = Venda.objects.filter(venda=venda)
-    #     return context
+    context_object_name = 'sale'
