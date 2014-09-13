@@ -41,6 +41,6 @@ class SaleList(ListView):
 
 
 class SaleDetailView(DetailView):
-    template_name = u'sale_detail.html'
+    template_name = 'sale_detail.html'
     model = Venda
     context_object_name = 'sale'
