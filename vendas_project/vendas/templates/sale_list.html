@@ -19,6 +19,7 @@
 						<td>{{ sale.datavenda }}</td>
 						<td>{{ sale.total }}</td>
 					</tr>
+					<p>{{ sale.get_contar }}</p>
 				{% empty %}
 					<p>Sem itens na lista.</p>
 				{% endfor %}

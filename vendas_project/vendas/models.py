@@ -72,6 +72,9 @@ class Venda(models.Model):
         return soma
     total = property(_get_total)
 
+    def get_contar(self):
+        return self.objects.all.count()
+
 
 class DetVenda(models.Model):
     venda = models.ForeignKey(Venda, related_name='det_vendas')
