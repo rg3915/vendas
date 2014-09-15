@@ -5,7 +5,6 @@
 
 		<div>
 			<table class="table">
-				{% for sale in page_obj %}
 				<thead>
 					<tr>
 						<th>Cliente</th>
@@ -14,6 +13,7 @@
 					</tr>
 				</thead>
 				<tbody>
+				{% for sale in page_obj %}
 					<tr>
 						<td><a href="{% url 'sale_detail' sale.pk %}">{{ sale.customer }}</a></td>
 						<td>{{ sale.date_sale }}</td>

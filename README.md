@@ -36,6 +36,12 @@ Para converter o **pdf** em **jpg** use o [Imagemagick][11].
 
 ![tabelas](modelagem/tabelas.jpg)
 
+# Gerando dados randômicos
+
+Para gerar dados randômicos entre na pasta ``vendas_project/dados`` e digite
+
+	$ python manager_db.py
+
 # Notas
 
 Para gerar **vendas.png** use a biblioteca [django-extensions][1] junto com

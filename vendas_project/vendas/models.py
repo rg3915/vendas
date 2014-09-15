@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from datetime import date
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -8,11 +7,11 @@ class Customer(models.Model):
     cpf = models.CharField(_('CPF'), max_length=11)
     firstname = models.CharField(_('Nome'), max_length=50)
     lastname = models.CharField(_('Sobrenome'), max_length=50)
-    email = models.CharField(_('e-mail'), max_length=50)
+    email = models.CharField(_('e-mail'), max_length=50, unique=True)
     phone = models.CharField(_('Fone'), max_length=50)
     created_at = models.DateTimeField(
         _('Criado em'), auto_now_add=True, auto_now=False)
-    updated_at = models.DateTimeField(
+    modified_at = models.DateTimeField(
         _('Modificado em'), auto_now_add=False, auto_now=True)
 
     class Meta:
@@ -26,7 +25,7 @@ class Customer(models.Model):
 
 
 class Category(models.Model):
-    category = models.CharField('Categoria', max_length=50)
+    category = models.CharField(_('Categoria'), max_length=50, unique=True)
 
     class Meta:
         ordering = ['category']
@@ -41,7 +40,7 @@ class Product(models.Model):
     imported = models.BooleanField(_('Importado'), default=False)
     outofline = models.BooleanField(_('Fora de linha'), default=False)
     category = models.ForeignKey(Category)
-    product = models.CharField(_('Produto'), max_length=50)
+    product = models.CharField(_('Produto'), max_length=50, unique=True)
     price = models.DecimalField(_('Preço'), max_digits=8, decimal_places=2)
 
     class Meta:
@@ -60,8 +59,9 @@ class Product(models.Model):
 class Sale(models.Model):
     customer = models.ForeignKey(Customer)
     date_sale = models.DateTimeField(
-        'Data da venda', auto_now_add=True, auto_now=False)
-    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+        _('Data da venda'), auto_now_add=True, auto_now=False)
+    modified_at = models.DateTimeField(
+        _('Modificado em'), auto_now_add=False, auto_now=True)
 
     def __unicode__(self):
         return unicode(self.date_sale)

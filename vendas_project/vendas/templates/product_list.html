@@ -5,7 +5,6 @@
 
 		<div>
 			<table class="table">
-				{% for product in page_obj %}
 				<thead>
 					<tr>
 						<!-- <th>Importado</th>
@@ -16,6 +15,7 @@
 					</tr>
 				</thead>
 				<tbody>
+				{% for product in page_obj %}
 					<tr>
 						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->

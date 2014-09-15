@@ -41,4 +41,4 @@ class SaleList(ListView):
 
 class SaleDetailView(DetailView):
     template_name = 'sale_detail.html'
-    # model = Venda
+    model = Sale
