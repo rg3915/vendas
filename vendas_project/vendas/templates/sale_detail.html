@@ -4,8 +4,8 @@
 	<h1>Venda</h1>
 
 	<div>
-		<p><b>Data:</b> {{ sale.datavenda }}</p>
-		<h2><b>Cliente:</b> {{ sale.cliente }}</h2>
+		<p><b>Data:</b> {{ sale.date_sale }}</p>
+		<h2><b>Cliente:</b> {{ sale.customer }}</h2>
 		<h3><b>Total:</b> <span class="label label-info">{{ sale.total }}</span></h3>
 		<p>
 			<a href="{% url 'sale_list' %}"><span class="glyphicon glyphicon-chevron-left">Voltar</span></a>

@@ -5,6 +5,7 @@
 
 		<div>
 			<table class="table">
+				{% for customer in page_obj %}
 				<thead>
 					<tr>
 						<th>Nome</th>
@@ -14,12 +15,11 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for client in page_obj %}
 					<tr>
-						<td>{{ client.nomecompleto }}</td>
-						<td>{{ client.cpf }}</td>
-						<td>{{ client.email }}</td>
-						<td>{{ client.fone }}</td>
+						<td>{{ customer.full_name }}</td>
+						<td>{{ customer.cpf }}</td>
+						<td>{{ customer.email }}</td>
+						<td>{{ customer.phone }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

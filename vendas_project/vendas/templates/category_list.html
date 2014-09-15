@@ -5,15 +5,15 @@
 
 		<div>
 			<table class="table">
+				{% for category in page_obj %}
 				<thead>
 					<tr>
 						<th>Categoria</th>
 					</tr>
 				</thead>
 				<tbody>
-				{% for category in page_obj %}
 					<tr>
-						<td>{{ category.categoria }}</td>
+						<td>{{ category.category }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

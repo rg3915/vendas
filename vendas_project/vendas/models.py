@@ -1,92 +1,95 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import date
+from django.utils.translation import ugettext_lazy as _
 
 
-class Cliente(models.Model):
-    cpf = models.CharField('CPF', max_length=11)
-    nome = models.CharField('Nome', max_length=50)
-    sobrenome = models.CharField('Sobrenome', max_length=50)
-    email = models.CharField('e-mail', max_length=50)
-    fone = models.CharField('Fone', max_length=50)
-    criado_em = models.DateTimeField(auto_now_add=True, auto_now=False)
-    modificado_em = models.DateTimeField(auto_now_add=False, auto_now=True)
+class Customer(models.Model):
+    cpf = models.CharField(_('CPF'), max_length=11)
+    firstname = models.CharField(_('Nome'), max_length=50)
+    lastname = models.CharField(_('Sobrenome'), max_length=50)
+    email = models.CharField(_('e-mail'), max_length=50)
+    phone = models.CharField(_('Fone'), max_length=50)
+    created_at = models.DateTimeField(
+        _('Criado em'), auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField(
+        _('Modificado em'), auto_now_add=False, auto_now=True)
 
     class Meta:
-        ordering = ['nome']
+        ordering = ['firstname']
         verbose_name = u'cliente'
         verbose_name_plural = u'clientes'
 
     def __unicode__(self):
-        return self.nome + " " + self.sobrenome
-    nomecompleto = property(__unicode__)
+        return self.firstname + " " + self.lastname
+    full_name = property(__unicode__)
 
 
-class Categoria(models.Model):
-    categoria = models.CharField('Categoria', max_length=50)
+class Category(models.Model):
+    category = models.CharField('Categoria', max_length=50)
 
     class Meta:
-        ordering = ['categoria']
+        ordering = ['category']
         verbose_name = u'categoria'
         verbose_name_plural = u'categorias'
 
     def __unicode__(self):
-        return self.categoria
+        return self.category
 
 
-class Produto(models.Model):
-    importado = models.BooleanField('Importado', default=False)
-    foradelinha = models.BooleanField('Fora de linha', default=False)
-    categoria = models.ForeignKey(Categoria)
-    produto = models.CharField('Produto', max_length=50)
-    preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
+class Product(models.Model):
+    imported = models.BooleanField(_('Importado'), default=False)
+    outofline = models.BooleanField(_('Fora de linha'), default=False)
+    category = models.ForeignKey(Category)
+    product = models.CharField(_('Produto'), max_length=50)
+    price = models.DecimalField(_('Preço'), max_digits=8, decimal_places=2)
 
     class Meta:
-        ordering = ['produto']
+        ordering = ['product']
         verbose_name = u'produto'
         verbose_name_plural = u'produtos'
 
     def __unicode__(self):
-        return self.produto
+        return self.product
 
     @property
-    def get_preco(self):
-        return self.preco
+    def get_price(self):
+        return self.price
 
 
-class Venda(models.Model):
-    cliente = models.ForeignKey(Cliente)
-    datavenda = models.DateTimeField(
+class Sale(models.Model):
+    customer = models.ForeignKey(Customer)
+    date_sale = models.DateTimeField(
         'Data da venda', auto_now_add=True, auto_now=False)
-    modificado_em = models.DateTimeField(auto_now_add=False, auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __unicode__(self):
-        return unicode(self.datavenda)
+        return unicode(self.date_sale)
 
     def _get_total(self):
-        soma = 0
+        s = 0
 
-        for det_venda in self.det_vendas.all():
-            soma += det_venda.subtotal
+        for sale_det in self.sales_det.all():
+            s += sale_det.subtotal
 
-        return soma
+        return s
     total = property(_get_total)
 
-    def get_contar(self):
-        return self.objects.all.count()
+    # def get_contar(self):
+    #     return self.objects.all.count()
 
 
-class DetVenda(models.Model):
-    venda = models.ForeignKey(Venda, related_name='det_vendas')
-    produto = models.ForeignKey(Produto)
-    quantidade = models.IntegerField()
-    precovenda = models.DecimalField(
-        'Preço de venda', default=0, max_digits=8, decimal_places=2)
+class SaleDetail(models.Model):
+    sale = models.ForeignKey(Sale, related_name='sales_det')
+    product = models.ForeignKey(Product)
+    quantity = models.IntegerField(_('quantidade'))
+    price_sale = models.DecimalField(
+        _('Preço de venda'), default=0, max_digits=8, decimal_places=2)
 
     def __unicode__(self):
-        return unicode(self.venda)
+        return unicode(self.sale)
 
     def _get_subtotal(self):
-        if self.quantidade:
-            return self.precovenda * self.quantidade
+        if self.quantity:
+            return self.price_sale * self.quantity
     subtotal = property(_get_subtotal)

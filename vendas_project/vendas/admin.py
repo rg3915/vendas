@@ -2,23 +2,23 @@
 from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.db.models import Sum
-from .models import Cliente, Categoria, Produto, Venda, DetVenda
+from .models import Customer, Category, Product, Sale, SaleDetail
 
 
-class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'email', 'fone', 'criado_em')
-    date_hierarchy = 'criado_em'
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'email', 'phone', 'created_at')
+    date_hierarchy = 'created_at'
 
 
-class ProdutoAdmin(admin.ModelAdmin):
-    ordering = ['produto']
-    list_display = ('produto', 'categoria', 'preco')
+class ProductAdmin(admin.ModelAdmin):
+    ordering = ['product']
+    list_display = ('product', 'category', 'price')
 
 
-class DetVendaInline(admin.TabularInline):
-    list_display = ['produto', 'quantidade', 'precovenda', 'subtotal']
+class SaleDetailInline(admin.TabularInline):
+    list_display = ['product', 'quantity', 'price_sale', 'subtotal']
     readonly_fields = ['subtotal']
-    model = DetVenda
+    model = SaleDetail
     extra = 0
 
 
@@ -41,16 +41,16 @@ class DetVendaInline(admin.TabularInline):
 #         self.result_list._result_cache.append(total)
 
 
-class VendaAdmin(admin.ModelAdmin):
-    list_display = ('cliente', '__unicode__', 'total')
+class SaleAdmin(admin.ModelAdmin):
+    list_display = ('customer', '__unicode__', 'total')
     readonly_fields = ['total']
-    inlines = [DetVendaInline]
+    inlines = [SaleDetailInline]
 
     # def get_changelist(self, request, **kwargs):
     #     return TotalChangeList
 
 
-admin.site.register(Cliente, ClienteAdmin)
-admin.site.register(Categoria)
-admin.site.register(Produto, ProdutoAdmin)
-admin.site.register(Venda, VendaAdmin)
+admin.site.register(Customer, CustomerAdmin)
+admin.site.register(Category)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Sale, SaleAdmin)

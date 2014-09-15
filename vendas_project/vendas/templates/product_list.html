@@ -5,6 +5,7 @@
 
 		<div>
 			<table class="table">
+				{% for product in page_obj %}
 				<thead>
 					<tr>
 						<!-- <th>Importado</th>
@@ -15,13 +16,12 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for product in page_obj %}
 					<tr>
 						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
-						<td>{{ product.produto }}</td>
-						<td>{{ product.categoria }}</td>
-						<td>{{ product.preco }}</td>
+						<td>{{ product.product }}</td>
+						<td>{{ product.category }}</td>
+						<td>{{ product.price }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
