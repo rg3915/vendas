@@ -116,7 +116,7 @@ class VendasDb(object):
             imported = rstr.rstr('01', 1)
             outofline = rstr.rstr('01', 1)
             category = random.randint(1, 23)
-            product = 'PKU' + str(i)
+            product = 'SKU' + str(i)
             product_list.append(
                 (imported, outofline, category, product, self.generate_price()))
         try:

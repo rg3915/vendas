@@ -13,21 +13,22 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for sale in page_obj %}
+				{% for sale in object_list %}
 					<tr>
 						<td><a href="{% url 'sale_detail' sale.pk %}">{{ sale.customer }}</a></td>
 						<td>{{ sale.date_sale }}</td>
 						<td>{{ sale.total }}</td>
 					</tr>
-					<!-- <p>{{ sale.get_contar }}</p> -->
 				{% empty %}
 					<p>Sem itens na lista.</p>
 				{% endfor %}
 				</tbody>
 			</table>
 		</div>
-
 	    <hr>
+		<div>
+			<h3><b>Total:</b> {{ count }} vendas</h3>
+		</div>
 
 <!-- pagination -->
 {% include "_pagination.html" %}

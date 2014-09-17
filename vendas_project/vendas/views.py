@@ -38,6 +38,11 @@ class SaleList(ListView):
     context_object = 'sale_list'
     paginate_by = 10
 
+    def get_context_data(self, **kwargs):
+        context = super(SaleList, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
+
 
 class SaleDetailView(DetailView):
     template_name = 'sale_detail.html'

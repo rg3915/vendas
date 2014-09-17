@@ -75,9 +75,6 @@ class Sale(models.Model):
         return s
     total = property(_get_total)
 
-    # def get_contar(self):
-    #     return self.objects.all.count()
-
 
 class SaleDetail(models.Model):
     sale = models.ForeignKey(Sale, related_name='sales_det')
