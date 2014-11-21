@@ -19,7 +19,6 @@ import random
 import datetime
 import names    # gera nomes randomicos, only python <= 3.3
 import rstr     # gera strings randomicas
-import string
 
 qcustomers = 30
 qproducts = 40
@@ -87,8 +86,7 @@ class VendasDb(object):
 
         customer_list = []
         for _ in range(repeat):
-            d = datetime.datetime.now().isoformat()
-            d = string.replace(d, "T", " ")
+            d = datetime.datetime.now().isoformat(" ")
             fname = names.get_first_name()
             lname = names.get_last_name()
             email = fname[0].lower() + '.' + lname.lower() + '@example.com'
@@ -135,8 +133,7 @@ class VendasDb(object):
 
         sale_list = []
         for _ in range(repeat):
-            d = datetime.datetime.now().isoformat()
-            d = string.replace(d, "T", " ")
+            d = datetime.datetime.now().isoformat(" ")
             customer = random.randint(1, qcustomers)
             sale_list.append((customer, d, d))
         try:
