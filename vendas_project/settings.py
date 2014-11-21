@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_extensions',
     'vendas_project.vendas',
+    'simplesearch',
 )
 
 MIDDLEWARE_CLASSES = (
