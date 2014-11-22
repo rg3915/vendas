@@ -19,28 +19,43 @@ class CustomerList(ListView):
     template_name = 'customer_list.html'
     model = Customer
     context_object = 'customer_list'
-    paginate_by = 10
+    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomerList, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
 
 
 class CategoryList(ListView):
     template_name = 'category_list.html'
     model = Category
     context_object = 'category_list'
-    paginate_by = 10
+    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryList, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
 
 
 class ProductList(ListView):
     template_name = 'product_list.html'
     model = Product
     context_object = 'product_list'
-    paginate_by = 10
+    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductList, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
 
 
 class SaleList(ListView):
     template_name = 'sale_list.html'
     model = Sale
     context_object = 'sale_list'
-    paginate_by = 10
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super(SaleList, self).get_context_data(**kwargs)
