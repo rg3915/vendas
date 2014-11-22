@@ -2,6 +2,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.formats import number_format
+import locale
+
+locale.setlocale(locale.LC_ALL, '')
 
 
 class Customer(models.Model):
@@ -57,7 +60,9 @@ class Product(models.Model):
         return self.price
 
     def price_formated(self):
-        return u"R$ %s" % number_format(self.price, 2)
+        if self.price != None:
+            return locale.currency(self.price, grouping=True)
+        return ''
 
     price_formated = property(price_formated)
 
@@ -78,7 +83,9 @@ class Sale(models.Model):
         for sale_det in self.sales_det.all():
             s += sale_det.subtotal
 
-        return u"R$ %s" % number_format(s, 2)
+        if s != None:
+            return locale.currency(s, grouping=True)
+        return ''
     total = property(_get_total)
 
 
