@@ -9,7 +9,7 @@
 					<tr>
 						<th>Cliente</th>
 						<th>Data da venda</th>
-						<th>Total</th>
+						<th class="text-right">Total</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -17,7 +17,7 @@
 					<tr>
 						<td><a href="{% url 'sale_detail' sale.pk %}">{{ sale.customer }}</a></td>
 						<td>{{ sale.date_sale }}</td>
-						<td>{{ sale.total }}</td>
+						<td class="text-right">{{ sale.total }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
