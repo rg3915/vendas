@@ -4,6 +4,13 @@
 	<h1>Produtos localizados</h1>
 
 		<div>
+			<form action="" method="get">
+				{{ filter.form.as_p }}
+				<input type="submit" />
+			</form>
+		</div>
+
+		<div>
 			<table class="table">
 				<thead>
 					<tr>
@@ -15,7 +22,10 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for product in object_list %}
+				<!-- {% for product in object_list %} -->
+				{% for obj in filter %}
+					{{ obj.product }} - ${{ obj.price }}<br />
+				{% endfor %}
 					<tr>
 						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
