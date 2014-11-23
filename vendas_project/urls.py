@@ -16,5 +16,6 @@ urlpatterns = patterns(
     url(r'^sale/$', SaleList.as_view(), name='sale_list'),
     url(r'^sale/(?P<pk>\d+)/$', SaleDetailView.as_view(), name='sale_detail'),
     url(r'^about/$', About.as_view(), name='about'),
-    url(r'^search/$', 'product_list', name='search'),
+    # url(r'^search/$', 'product_list', name='search'),
+    url(r'^search/$', PessoaList.as_view(), name='search'),
 )

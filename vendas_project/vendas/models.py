@@ -74,6 +74,10 @@ class Sale(models.Model):
     modified_at = models.DateTimeField(
         _('Modificado em'), auto_now_add=False, auto_now=True)
 
+    class Meta:
+        verbose_name = u'venda'
+        verbose_name_plural = u'vendas'
+
     def __unicode__(self):
         return unicode(self.date_sale)
 

@@ -12,7 +12,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     ordering = ['product']
-    list_display = ('product', 'category', 'price')
+    list_display = ('product', 'category', 'price_formated')
 
 
 class SaleDetailInline(admin.TabularInline):
