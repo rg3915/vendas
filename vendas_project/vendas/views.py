@@ -70,3 +70,19 @@ class SaleDetailView(DetailView):
 def product_list(request):
     filter = ProductFilter(request.GET, queryset=Product.objects.all())
     return render_to_response('search.html', {'filter': filter})
+
+
+class PessoaList(ListView):
+    context_object_name = 'lista'
+    template_name = 'customer_list.html'
+    model = Customer
+    paginate_by = 8
+
+    def get_queryset(self):
+        q = self.request.GET.get('consultar')
+
+        if q == None:
+            res = Customer.objects.all()
+        else:
+            res = Customer.objects.all().filter(firstname.__icontains=q)
+        return res
