@@ -20,10 +20,10 @@ import datetime
 import names    # gera nomes randomicos, only python <= 3.3
 import rstr     # gera strings randomicas
 
-qcustomers = 30
-qproducts = 40
-qsales = 100
-qsaledetails = 700
+qcustomers = 50
+qproducts = 100
+qsales = 200
+qsaledetails = 1000
 
 
 class Connect(object):
@@ -176,9 +176,9 @@ class VendasDb(object):
 if __name__ == '__main__':
     v = VendasDb()
     v.insert_for_file()
-    v.insert_random_customer(31)
-    v.insert_random_product(41)
-    v.insert_random_sale(101)
-    v.insert_random_saledetail(701)
+    v.insert_random_customer(60)
+    v.insert_random_product(120)
+    v.insert_random_sale(224)
+    v.insert_random_saledetail(900)
     v.close_connection()
     # repare que o valor do parâmetro pode ser mudado
