@@ -1,6 +1,8 @@
 Vendas
 ======
 
+Veja o [live demo][13].
+
 # Objetivo
 
 Desenvolver uma aplicação que realize a venda de produtos.
@@ -57,6 +59,8 @@ ou
 
 Leia [django-notes][8].
 
+Veja o [live demo][13].
+
 [0]: https://www.djangoproject.com/
 [1]: http://django-extensions.readthedocs.org/en/latest/
 [2]: https://docs.djangoproject.com/en/dev/ref/class-based-views/
@@ -68,3 +72,4 @@ Leia [django-notes][8].
 [10]: https://bitbucket.org/pavel_calado/tikz-er2/wiki/Home
 [11]: http://grandeportal.blogspot.com.br/2012/06/editando-imagens-no-imagemagick.html
 [12]: http://perso.ensta-paristech.fr/~kielbasi/tikzuml/index.php?lang=en
+[13]: http://rg-vendas.herokuapp.com/
