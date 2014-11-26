@@ -1,0 +1,4 @@
+String INSERT INTO vendas_sale (customer_id, date_sale, modified_at) VALUES (12,'2014-11-16 12:08:36.140707+00','2014-11-26 04:24:02.432630+00');
+KeyStrPress Return KeyStrRelease Return
+String INSERT INTO vendas_sale (customer_id, date_sale, modified_at) VALUES (32,'2014-12-16 20:51:01.670754+00','2014-11-26 04:24:02.432658+00');
+KeyStrPress Return KeyStrRelease Return

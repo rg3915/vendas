@@ -1,0 +1,2 @@
+String INSERT INTO "vendas_customer" (cpf, firstname, lastname, email, phone, created_at, modified_at) VALUES ('10000000000', 'Joao', 'Augusto', 'j.augusto@example.com', '(15) 2525-0000','2014-11-26 03:08:55.452326+00','2014-11-26 03:08:55.452326+00');
+KeyStrPress Return KeyStrRelease Return

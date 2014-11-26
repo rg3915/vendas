@@ -1,0 +1,4 @@
+String INSERT INTO vendas_product (imported, outofline, category_id, product, price) VALUES ('t','t',6,'SKU03',804.37);
+KeyStrPress Return KeyStrRelease Return
+String INSERT INTO vendas_product (imported, outofline, category_id, product, price) VALUES ('f','t',21,'SKU04',73.59);
+KeyStrPress Return KeyStrRelease Return
