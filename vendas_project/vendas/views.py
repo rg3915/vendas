@@ -81,6 +81,7 @@ class ProductSearch(ListView):
     template_name = 'search.html'
     model = Product
     context_object_name = 'lista'
+    paginate_by = 8
 
     def get_queryset(self):
         pObj = Product.objects.all()
