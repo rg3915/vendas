@@ -2,7 +2,6 @@
 
 {% block content %}
 	<h1>Lista de Vendas</h1>
-
 		<div>
 			<table class="table">
 				<thead>
@@ -14,8 +13,9 @@
 				</thead>
 				<tbody>
 				{% for sale in object_list %}
+
 					<tr>
-						<td><a href="{% url 'sale_detail' sale.pk %}">{{ sale.customer }}</a></td>
+						<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
 						<td>{{ sale.date_sale }}</td>
 						<td class="text-right">{{ sale.total }}</td>
 					</tr>

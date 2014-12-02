@@ -16,13 +16,13 @@
 					<tr>
 						<!-- <th>Importado</th>
 						<th>Fora de linha</th> -->
-						<th>Produto</th>
-						<th>Categoria</th>
+						<th><a href="/search/?=order=product">Produto</a></th>
+						<th><a href="/search/?=order=product">Categoria</th>
 						<th class="text-right">Preço</th>
 					</tr>
 				</thead>
 				<tbody>
-				{% for product in object_list %}
+				{% for product in lista %}
 					<tr>
 						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->

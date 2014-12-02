@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
 from vendas.views import *
 from vendas.models import *
@@ -16,6 +16,5 @@ urlpatterns = patterns(
     url(r'^sale/$', SaleList.as_view(), name='sale_list'),
     url(r'^sale/(?P<pk>\d+)/$', SaleDetailView.as_view(), name='sale_detail'),
     url(r'^about/$', About.as_view(), name='about'),
-    url(r'^search/$', 'search', name='search'),
-    # url(r'^search/$', PessoaList.as_view(), name='search'),
+    url(r'^search/$', ProductSearch.as_view(), name='search'),
 )

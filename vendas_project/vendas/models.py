@@ -81,6 +81,9 @@ class Sale(models.Model):
     def __unicode__(self):
         return unicode(self.date_sale)
 
+    def get_detalhe(self):
+        return u"/sale/%i" % self.id
+
     def _get_total(self):
         s = 0
 
@@ -107,3 +110,6 @@ class SaleDetail(models.Model):
         if self.quantity:
             return self.price_sale * self.quantity
     subtotal = property(_get_subtotal)
+
+    def getID(self):
+        return u"07%d" % self.id

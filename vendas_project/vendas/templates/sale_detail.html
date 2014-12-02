@@ -2,11 +2,37 @@
 
 {% block content %}
 	<h1>Venda</h1>
-
+	
 	<div>
-		<p><b>Data:</b> {{ sale.date_sale }}</p>
-		<h2><b>Cliente:</b> {{ sale.customer }}</h2>
-		<h3><b>Total:</b> <span class="label label-info">{{ sale.total }}</span></h3>
+		<p><b>Data:</b> {{ Sale.date_sale }}</p>
+		<h2><b>Cliente:</b> {{ Sale.customer }}</h2>
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>Produto</th>
+						<th>Quantidade</th>
+						<th class="text-right">Preço</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for item in Itens %}
+
+					<tr>
+						<td>{{ item.getID }} </td>
+						<td>{{ item.product }}</a></td>
+						<td>{{ item.quantity }}</td>
+						<td class="text-right">{{ item.price_sale }}</td>
+					</tr>
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<h3><b>Total:</b> <span class="label label-info">{{ Sale.total }}</span></h3>
 		<p>
 			<a href="{% url 'sale_list' %}"><span class="glyphicon glyphicon-chevron-left">Voltar</span></a>
 		</p>

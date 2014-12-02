@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 from django.views.generic import TemplateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
 from .models import Customer, Category, Product, Sale, SaleDetail
 from .forms import ProductFilter
@@ -45,6 +45,7 @@ class ProductList(ListView):
     paginate_by = 8
 
     def get_context_data(self, **kwargs):
+
         context = super(ProductList, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
@@ -62,33 +63,34 @@ class SaleList(ListView):
         return context
 
 
-class SaleDetailView(DetailView):
+class SaleDetailView(TemplateView):
     template_name = 'sale_detail.html'
     model = Sale
 
-
-def search(request):
-    if request.method == 'GET':
-        search_query = request.GET.get('search_box', None)
-    return render(request, 'search.html')
-
-
-# def product_list(request):
-#     filter = ProductFilter(request.GET, queryset=Product.objects.all())
-#     return render_to_response('search.html', {'filter': filter})
+    def get_context_data(self, **kwargs):
+        Objvenda = Sale.objects.get(pk=self.kwargs['pk'])
+        ItensVenda = SaleDetail.objects.all().filter(sale=Objvenda)
+        context = super(SaleDetailView, self).get_context_data(**kwargs)
+        context['count'] = ItensVenda.count()
+        context['Sale'] = Objvenda
+        context['Itens'] = ItensVenda
+        return context
 
 
-# class PessoaList(ListView):
-#     context_object_name = 'lista'
-#     template_name = 'customer_list.html'
-#     model = Customer
-#     paginate_by = 8
+class ProductSearch(ListView):
+    template_name = 'search.html'
+    model = Product
+    context_object_name = 'lista'
 
-#     def get_queryset(self):
-#         q = self.request.GET.get('consultar')
+    def get_queryset(self):
+        pObj = Product.objects.all()
+        var_get_search = self.request.GET.get('search_box')
+        var_get_order_by = self.request.GET.get('order')
 
-#         if q == None:
-#             res = Customer.objects.all()
-#         else:
-#             res = Customer.objects.all().filter(firstname.__icontains=q)
-#         return res
+        if var_get_search is not None:
+            pObj = pObj.filter(product__icontains=var_get_search)
+
+        if var_get_order_by is not None:
+            pObj = pObj.order_by(var_get_order_by)
+
+        return pObj
