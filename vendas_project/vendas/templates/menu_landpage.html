@@ -1,0 +1,71 @@
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light">Vendas</span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services"><span class="glyphicon glyphicon-send"></span> Serviços</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="{% url 'product_list' %}"><span class="glyphicon glyphicon-tags"></span> Produtos</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="{% url 'sale_list' %}"><span class="glyphicon glyphicon-shopping-cart"></span> Vendas</a>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Admin <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Cadastro de Produtos</li>
+                            <li><a class="page-scroll" href="{% url 'product_list' %}">Produto</a></li>
+                            <li><a href="{% url 'category_list' %}">Categoria</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Pessoas</li>
+                            <li><a href="{% url 'customer_list' %}">Cliente</a></li>
+                            <!-- <li><a href="#">Contato</a></li>
+                            <li><a href="#">Fornecedor</a></li>
+                            <li><a href="#">Funcionário</a></li> -->
+                        </ul>
+                    </li>
+                    <!-- <li>
+                        <a class="page-scroll" href="#about">Estoque</a>
+                    </li> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li>
+                        <a class="page-scroll" href="#about">Config</a>
+                    </li> -->
+                    <li>
+                        <a class="page-scroll" href="{% url 'search' %}"><span class="glyphicon glyphicon-search"></span> Buscar</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about"><span class="glyphicon glyphicon-exclamation-sign"></span> Sobre</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#download"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact"><span class="glyphicon glyphicon-comment"></span> Contato</a>
+                    </li>
+                    <!-- <li>
+                        <a class="page-scroll" href="#contact">Ajuda</a>
+                    </li> -->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>

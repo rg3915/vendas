@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
 from .models import Customer, Category, Product, Sale, SaleDetail
 from .forms import ProductFilter
@@ -70,7 +70,8 @@ class SaleDetailView(DetailView):
 def search(request):
     if request.method == 'GET':
         search_query = request.GET.get('search_box', None)
-    return render_to_response('search.html')
+    return render(request, 'search.html')
+
 
 # def product_list(request):
 #     filter = ProductFilter(request.GET, queryset=Product.objects.all())

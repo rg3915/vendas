@@ -10,7 +10,6 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'home' %}">Início</a></li>
             <li><a href="{% url 'product_list' %}"><span class="glyphicon glyphicon-tags"></span> Produtos</a></li>
             <li><a href="{% url 'sale_list' %}"><span class="glyphicon glyphicon-shopping-cart"></span> Vendas</a></li>
             <li class="dropdown">
@@ -27,7 +26,7 @@
                 <li><a href="#">Funcionário</a></li> -->
               </ul>
             </li>
-            <li><a href="#"><span class="glyphicon glyphicon-flag"></span> Estoque</a></li>
+            <!-- <li><a href="#"><span class="glyphicon glyphicon-flag"></span> Estoque</a></li> -->
           </ul>
           <!-- <form class="navbar-form navbar-right">
             <div class="form-group">
@@ -39,9 +38,10 @@
             <button type="submit" class="btn btn-success">Sign in</button>
           </form> -->
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Config</a></li>
+            <li><a href="{% url 'search' %}"><span class="glyphicon glyphicon-search"></span> Buscar</a></li>
+            <!-- <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Config</a></li> -->
             <li><a href="{% url 'about' %}"><span class="glyphicon glyphicon-exclamation-sign"></span> Sobre</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ajuda</a></li>
+            <!-- <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ajuda</a></li> -->
           </ul>
         </div><!--/.navbar-collapse -->
       </div>

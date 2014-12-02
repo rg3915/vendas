@@ -5,8 +5,8 @@
 
 		<div>
 			<form action="." method="get">
-				<input id="search_box" type="text" name="search_box" placeholder="Search..." />
-				<button id="search_submit" type="submit">Submit</button>
+				<input id="search_box" type="text" name="search_box" placeholder="Localizar..." />
+				<button id="search_submit" type="submit"><span class="glyphicon glyphicon-search"></span></button>
 			</form>
 		</div>
 
@@ -18,20 +18,17 @@
 						<th>Fora de linha</th> -->
 						<th>Produto</th>
 						<th>Categoria</th>
-						<th>Preço</th>
+						<th class="text-right">Preço</th>
 					</tr>
 				</thead>
 				<tbody>
-				<!-- {% for product in object_list %} -->
-				{% for obj in filter %}
-					{{ obj.product }} - ${{ obj.price }}<br />
-				{% endfor %}
+				{% for product in object_list %}
 					<tr>
 						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
 						<td>{{ product.product }}</td>
 						<td>{{ product.category }}</td>
-						<td>{{ product.price }}</td>
+						<td class="text-right">{{ product.price_formated }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
@@ -41,6 +38,10 @@
 		</div>
 
 	    <hr>
+		<div>
+			<h3><b>Total:</b> {{ count }} produtos</h3>
+		</div>
+
 
 <!-- pagination -->
 {% include "_pagination.html" %}
