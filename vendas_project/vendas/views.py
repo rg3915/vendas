@@ -77,21 +77,26 @@ class SaleDetailView(TemplateView):
         return context
 
 
-class ProductSearch(ListView):
+class CustomerSearch(ListView):
     template_name = 'search.html'
-    model = Product
+    model = Customer
     context_object_name = 'lista'
     paginate_by = 8
 
+    def get_context_data(self, **kwargs):
+        context = super(CustomerSearch, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
+
     def get_queryset(self):
-        pObj = Product.objects.all()
+        cObj = Customer.objects.all()
         var_get_search = self.request.GET.get('search_box')
         var_get_order_by = self.request.GET.get('order')
 
         if var_get_search is not None:
-            pObj = pObj.filter(product__icontains=var_get_search)
+            cObj = cObj.filter(firstname__icontains=var_get_search)
 
         if var_get_order_by is not None:
-            pObj = pObj.order_by(var_get_order_by)
+            cObj = cObj.order_by(var_get_order_by)
 
-        return pObj
+        return cObj

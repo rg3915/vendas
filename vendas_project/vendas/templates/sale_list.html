@@ -27,7 +27,13 @@
 		</div>
 	    <hr>
 		<div>
-			<h3><b>Total:</b> {{ count }} vendas</h3>
+			<h3><b>Total:</b> {{ count }}
+				{% if count <= 1 %}
+					venda
+				{% else %}
+					vendas
+				{% endif %}
+			</h3>
 		</div>
 
 <!-- pagination -->

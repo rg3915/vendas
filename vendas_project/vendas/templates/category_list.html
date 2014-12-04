@@ -24,7 +24,13 @@
 
 	    <hr>
 		<div>
-			<h3><b>Total:</b> {{ count }} categorias</h3>
+			<h3><b>Total:</b> {{ count }}
+				{% if count <= 1 %}
+					categoria
+				{% else %}
+					categorias
+				{% endif %}
+			</h3>
 		</div>
 
 <!-- pagination -->

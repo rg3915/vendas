@@ -32,7 +32,13 @@
 
 	    <hr>
 		<div>
-			<h3><b>Total:</b> {{ count }} produtos</h3>
+			<h3><b>Total:</b> {{ count }}
+				{% if count <= 1 %}
+					produto
+				{% else %}
+					produtos
+				{% endif %}
+			</h3>
 		</div>
 
 

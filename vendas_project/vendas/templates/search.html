@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Produtos localizados</h1>
-
 		<div>
 			<form action="." method="get">
 				<input id="search_box" type="text" name="search_box" placeholder="Localizar..." />
@@ -14,21 +12,19 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<!-- <th>Importado</th>
-						<th>Fora de linha</th> -->
-						<th><a href="/search/?=order=product">Produto</a></th>
-						<th><a href="/search/?=order=category">Categoria</th>
-						<th class="text-right">Preço</th>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th>Email</th>
+						<th>Fone</th>
 					</tr>
 				</thead>
 				<tbody>
-				{% for product in lista %}
+				{% for customer in object_list %}
 					<tr>
-						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
-						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
-						<td>{{ product.product }}</td>
-						<td>{{ product.category }}</td>
-						<td class="text-right">{{ product.price_formated }}</td>
+						<td>{{ customer.full_name }}</td>
+						<td>{{ customer.cpf }}</td>
+						<td>{{ customer.email }}</td>
+						<td>{{ customer.phone }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
@@ -39,7 +35,13 @@
 
 	    <hr>
 		<div>
-			<h3><b>Total:</b> {{ count }} produtos</h3>
+			<h3><b>Total:</b> {{ count }}
+				{% if count <= 1 %}
+					cliente
+				{% else %}
+					clientes
+				{% endif %}
+			</h3>
 		</div>
 
 
