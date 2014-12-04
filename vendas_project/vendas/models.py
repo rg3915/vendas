@@ -103,6 +103,13 @@ class SaleDetail(models.Model):
     price_sale = models.DecimalField(
         _('Preço de venda'), default=0, max_digits=8, decimal_places=2)
 
+    def price_sale_formated(self):
+        if self.price_sale != None:
+            return locale.currency(self.price_sale, grouping=True)
+        return ''
+
+    price_sale_formated = property(price_sale_formated)
+
     def __unicode__(self):
         return unicode(self.sale)
 
@@ -110,6 +117,13 @@ class SaleDetail(models.Model):
         if self.quantity:
             return self.price_sale * self.quantity
     subtotal = property(_get_subtotal)
+
+    def subtotal_formated(self):
+        if self._get_subtotal != None:
+            return locale.currency(self._get_subtotal(), grouping=True)
+        return ''
+
+    subtotal_formated = property(subtotal_formated)
 
     def getID(self):
         return u"07%d" % self.id

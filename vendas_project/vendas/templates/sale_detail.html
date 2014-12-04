@@ -14,6 +14,7 @@
 						<th>Produto</th>
 						<th>Quantidade</th>
 						<th class="text-right">Preço</th>
+						<th class="text-right">Subtotal</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,7 +24,8 @@
 						<td>{{ item.getID }} </td>
 						<td>{{ item.product }}</a></td>
 						<td>{{ item.quantity }}</td>
-						<td class="text-right">{{ item.price_sale }}</td>
+						<td class="text-right">{{ item.price_sale_formated }}</td>
+						<td class="text-right">{{ item.subtotal_formated }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
@@ -32,7 +34,7 @@
 			</table>
 		</div>
 
-		<h3><b>Total:</b> <span class="label label-info">{{ Sale.total }}</span></h3>
+		<h3 class="text-right"><b>Total:</b> <span class="label label-info">{{ Sale.total }}</span></h3>
 		<p>
 			<a href="{% url 'sale_list' %}"><span class="glyphicon glyphicon-chevron-left">Voltar</span></a>
 		</p>
