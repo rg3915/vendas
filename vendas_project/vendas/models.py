@@ -84,6 +84,10 @@ class Sale(models.Model):
     def get_detalhe(self):
         return u"/sale/%i" % self.id
 
+    def _get_itens(self):
+        return self.sales_det.count()
+    contar = property(_get_itens)
+
     def _get_total(self):
         s = 0
 

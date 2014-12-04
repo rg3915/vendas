@@ -8,6 +8,7 @@
 					<tr>
 						<th>Cliente</th>
 						<th>Data da venda</th>
+						<th>Itens</th>
 						<th class="text-right">Total</th>
 					</tr>
 				</thead>
@@ -17,6 +18,7 @@
 					<tr>
 						<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
 						<td>{{ sale.date_sale }}</td>
+						<td>{{ sale.contar }}</td>
 						<td class="text-right">{{ sale.total }}</td>
 					</tr>
 				{% empty %}
@@ -25,7 +27,6 @@
 				</tbody>
 			</table>
 		</div>
-	    <hr>
 		<div>
 			<h3><b>Total:</b> {{ count }}
 				{% if count <= 1 %}
