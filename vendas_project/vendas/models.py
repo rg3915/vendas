@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from django.utils.formats import number_format
 import locale
@@ -89,7 +90,8 @@ class Sale(models.Model):
     contar = property(_get_itens)
 
     def _get_total(self):
-        s = float(self.sales_det.aggregate(subtotal_sum=Sum('subtotal')).get('subtotal_sum') or 0)
+        s = float(self.sales_det.aggregate(
+            subtotal_sum=models.Sum('subtotal')).get('subtotal_sum') or 0)
         return locale.currency(s, grouping=True)
     total = property(_get_total)
 
