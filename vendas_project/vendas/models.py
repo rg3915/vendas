@@ -89,14 +89,8 @@ class Sale(models.Model):
     contar = property(_get_itens)
 
     def _get_total(self):
-        s = 0
-
-        for sale_det in self.sales_det.all():
-            s += sale_det.subtotal
-
-        if s != None:
-            return locale.currency(s, grouping=True)
-        return ''
+        s = float(self.sales_det.aggregate(subtotal_sum=Sum('subtotal')).get('subtotal_sum') or 0)
+        return locale.currency(s, grouping=True)
     total = property(_get_total)
 
 
