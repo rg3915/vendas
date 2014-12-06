@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import CreateView, TemplateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from .models import Customer, Category, Product, Sale, SaleDetail
-from .forms import ProductFilter
 
 
 class Index(TemplateView):
@@ -49,6 +48,12 @@ class ProductList(ListView):
         context = super(ProductList, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
+
+
+class SaleCreate(CreateView):
+    template_name = 'sale_form.html'
+    model = Sale
+    success_url = reverse_lazy('sale_list')
 
 
 class SaleList(ListView):
