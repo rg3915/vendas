@@ -90,21 +90,10 @@ class Sale(models.Model):
     contar = property(_get_itens)
 
     def _get_total(self):
-        s = 0
-
-        for sale_det in self.sales_det.all():
-            s += sale_det.subtotal
-
-        if s != None:
-            return locale.currency(s, grouping=True)
-        return ''
+        s = float(self.sales_det.aggregate(
+            subtotal_sum=models.Sum('subtotal')).get('subtotal_sum') or 0)
+        return locale.currency(s, grouping=True)
     total = property(_get_total)
-
-    # def _get_total(self):
-    #     s = float(self.sales_det.aggregate(
-    #         subtotal_sum=models.Sum('subtotal')).get('subtotal_sum') or 0)
-    #     return locale.currency(s, grouping=True)
-    # total = property(_get_total)
 
 
 class SaleDetail(models.Model):
@@ -113,6 +102,11 @@ class SaleDetail(models.Model):
     quantity = models.IntegerField(_('quantidade'))
     price_sale = models.DecimalField(
         _('Preço de venda'), default=0, max_digits=8, decimal_places=2)
+    subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    
+    def save(self, *args, **kwargs):
+        self.subtotal = float(self.quantity or 0) * float(self.price_sale or 0.00)
+        super(SaleDetail, self).save(*args, **kwargs)
 
     def price_sale_formated(self):
         if self.price_sale != None:
