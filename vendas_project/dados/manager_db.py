@@ -156,12 +156,14 @@ class VendasDb(object):
             sale = random.randint(1, qsales)
             product = random.randint(1, qproducts)
             quantity = random.randint(1, 100)
+            price = self.generate_price()
+            subtotal = quantity * float(price)
             saledetail_list.append(
-                (sale, product, quantity, self.generate_price()))
+                (sale, product, quantity, price, subtotal))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_saledetail (sale_id, product_id, quantity, price_sale)
-            VALUES (?,?,?,?)
+            INSERT INTO vendas_saledetail (sale_id, product_id, quantity, price_sale, subtotal)
+            VALUES (?,?,?,?,?)
             """, saledetail_list)
             self.db.commit_db()
             print("Inserindo %s registros na tabela vendas_saledetail." %
