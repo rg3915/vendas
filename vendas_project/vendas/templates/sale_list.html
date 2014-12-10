@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 	<h1>Lista de Vendas</h1>
@@ -20,13 +21,16 @@
 				</thead>
 				<tbody>
 				{% for sale in object_list %}
-
-					<tr>
-						<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
-						<td>{{ sale.date_sale }}</td>
-						<td>{{ sale.contar }}</td>
-						<td class="text-right">{{ sale.total }}</td>
-					</tr>
+					{% if sale.get_itens == 1 %}
+						<tr class="danger">
+					{% else %}
+						<tr>
+					{% endif %}
+							<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
+							<td>{{ sale.date_sale }}</td>
+							<td>{{ sale.get_itens }}</td>
+							<td class="text-right">{{ sale.get_total|intcomma }}</td>
+						</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
 				{% endfor %}

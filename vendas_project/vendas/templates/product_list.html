@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 	<h1>Lista de Produtos</h1>
@@ -21,7 +22,7 @@
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
 						<td>{{ product.product }}</td>
 						<td>{{ product.category }}</td>
-						<td class="text-right">{{ product.price_formated }}</td>
+						<td class="text-right">{{ product.price|intcomma }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

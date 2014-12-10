@@ -11,6 +11,7 @@
 						<th>CPF</th>
 						<th>Email</th>
 						<th>Fone</th>
+						<th class="text-right">Vendas</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -20,6 +21,7 @@
 						<td>{{ customer.cpf }}</td>
 						<td>{{ customer.email }}</td>
 						<td>{{ customer.phone }}</td>
+						<td class="text-right">{{ customer.get_sales_count }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
