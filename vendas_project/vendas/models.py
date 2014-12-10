@@ -28,6 +28,10 @@ class Customer(models.Model):
         return self.firstname + " " + self.lastname
     full_name = property(__unicode__)
 
+    # vendas por cliente
+    def get_sales_count(self):
+        return self.customer_sale.count()
+
 
 class Category(models.Model):
     category = models.CharField(_('Categoria'), max_length=50, unique=True)
@@ -60,16 +64,14 @@ class Product(models.Model):
     def get_price(self):
         return self.price
 
-    def price_formated(self):
-        if self.price != None:
-            return locale.currency(self.price, grouping=True)
-        return ''
-
-    price_formated = property(price_formated)
+    # def price_formated(self):
+    #     if self.price != None:
+    #         return locale.currency(self.price, grouping=True)
+    #     return ''
 
 
 class Sale(models.Model):
-    customer = models.ForeignKey(Customer)
+    customer = models.ForeignKey(Customer, related_name='customer_sale')
     date_sale = models.DateTimeField(
         _('Data da venda'), auto_now_add=True, auto_now=False)
     modified_at = models.DateTimeField(
@@ -85,15 +87,13 @@ class Sale(models.Model):
     def get_detalhe(self):
         return u"/sale/%i" % self.id
 
-    def _get_itens(self):
+    def get_itens(self):
         return self.sales_det.count()
-    contar = property(_get_itens)
 
-    def _get_total(self):
-        s = float(self.sales_det.aggregate(
-            subtotal_sum=models.Sum('subtotal')).get('subtotal_sum') or 0)
-        return locale.currency(s, grouping=True)
-    total = property(_get_total)
+    def get_total(self):
+        s = self.sales_det.aggregate(
+            subtotal_sum=models.Sum('subtotal')).get('subtotal_sum') or 0
+        return s
 
 
 class SaleDetail(models.Model):
@@ -103,32 +103,22 @@ class SaleDetail(models.Model):
     price_sale = models.DecimalField(
         _('Preço de venda'), default=0, max_digits=8, decimal_places=2)
     subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    
+
     def save(self, *args, **kwargs):
-        self.subtotal = float(self.quantity or 0) * float(self.price_sale or 0.00)
+        self.subtotal = self.quantity or 0 * self.price_sale or 0.00
         super(SaleDetail, self).save(*args, **kwargs)
-
-    def price_sale_formated(self):
-        if self.price_sale != None:
-            return locale.currency(self.price_sale, grouping=True)
-        return ''
-
-    price_sale_formated = property(price_sale_formated)
 
     def __unicode__(self):
         return unicode(self.sale)
 
-    def _get_subtotal(self):
-        if self.quantity:
-            return self.price_sale * self.quantity
-    subtotal = property(_get_subtotal)
-
-    def subtotal_formated(self):
-        if self._get_subtotal != None:
-            return locale.currency(self._get_subtotal(), grouping=True)
-        return ''
-
-    subtotal_formated = property(subtotal_formated)
-
     def getID(self):
         return u"07%d" % self.id
+
+    # def get_subtotal(self):
+    #     if self.quantity:
+    #         return self.price_sale * self.quantity
+
+    # def price_sale_formated(self):
+    #     if self.price_sale != None:
+    #         return locale.currency(self.price_sale, grouping=True)
+    #     return ''
