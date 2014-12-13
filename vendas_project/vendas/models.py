@@ -10,10 +10,10 @@ locale.setlocale(locale.LC_ALL, '')
 
 class Customer(models.Model):
     cpf = models.CharField(_('CPF'), max_length=11)
-    firstname = models.CharField(_('Nome'), max_length=50)
-    lastname = models.CharField(_('Sobrenome'), max_length=50)
-    email = models.CharField(_('e-mail'), max_length=50, unique=True)
-    phone = models.CharField(_('Fone'), max_length=50)
+    firstname = models.CharField(_('Nome'), max_length=20)
+    lastname = models.CharField(_('Sobrenome'), max_length=20)
+    email = models.EmailField(_('e-mail'), unique=True)
+    phone = models.CharField(_('Fone'), max_length=18)
     created_at = models.DateTimeField(
         _('Criado em'), auto_now_add=True, auto_now=False)
     modified_at = models.DateTimeField(
@@ -49,8 +49,8 @@ class Product(models.Model):
     imported = models.BooleanField(_('Importado'), default=False)
     outofline = models.BooleanField(_('Fora de linha'), default=False)
     category = models.ForeignKey(Category)
-    product = models.CharField(_('Produto'), max_length=50, unique=True)
-    price = models.DecimalField(_('Preço'), max_digits=8, decimal_places=2)
+    product = models.CharField(_('Produto'), max_length=30, unique=True)
+    price = models.DecimalField(_('Preço'), max_digits=6, decimal_places=2)
 
     class Meta:
         ordering = ['product']
@@ -82,7 +82,8 @@ class Sale(models.Model):
         verbose_name_plural = u'vendas'
 
     def __unicode__(self):
-        return unicode(self.date_sale)
+        return u"%d" % self.id + u"/%s" % self.date_sale.year
+    codigo = property(__unicode__)
 
     def get_detalhe(self):
         return u"/sale/%i" % self.id
@@ -99,9 +100,9 @@ class Sale(models.Model):
 class SaleDetail(models.Model):
     sale = models.ForeignKey(Sale, related_name='sales_det')
     product = models.ForeignKey(Product)
-    quantity = models.IntegerField(_('quantidade'))
+    quantity = models.PositiveSmallIntegerField(_('quantidade'))
     price_sale = models.DecimalField(
-        _('Preço de venda'), default=0, max_digits=8, decimal_places=2)
+        _('Preço de venda'), max_digits=6, decimal_places=2, default=0)
     subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def save(self, *args, **kwargs):
@@ -117,8 +118,3 @@ class SaleDetail(models.Model):
     # def get_subtotal(self):
     #     if self.quantity:
     #         return self.price_sale * self.quantity
-
-    # def price_sale_formated(self):
-    #     if self.price_sale != None:
-    #         return locale.currency(self.price_sale, grouping=True)
-    #     return ''

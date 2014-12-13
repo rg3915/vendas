@@ -13,6 +13,7 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th>Código</th>
 						<th>Cliente</th>
 						<th>Data da venda</th>
 						<th>Itens</th>
@@ -26,6 +27,7 @@
 					{% else %}
 						<tr>
 					{% endif %}
+							<td>{{ sale.codigo }}</td>
 							<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
 							<td>{{ sale.date_sale }}</td>
 							<td>{{ sale.get_itens }}</td>

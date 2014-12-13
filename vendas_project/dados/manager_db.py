@@ -105,7 +105,7 @@ class VendasDb(object):
             return False
 
     def generate_price(self):
-        return '{0}.{1}'.format(rstr.rstr('1234567890', 2, 4), rstr.rstr('1234567890', 2))
+        return '{0}.{1}'.format(rstr.rstr('1234567890', 2, 3), rstr.rstr('1234567890', 2))
 
     def insert_random_product(self, repeat=qproducts):
 
