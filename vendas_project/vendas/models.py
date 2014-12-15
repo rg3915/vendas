@@ -14,6 +14,7 @@ class Customer(models.Model):
     lastname = models.CharField(_('Sobrenome'), max_length=20)
     email = models.EmailField(_('e-mail'), unique=True)
     phone = models.CharField(_('Fone'), max_length=18)
+    birthday = models.DateTimeField(_('Nascimento'))
     created_at = models.DateTimeField(
         _('Criado em'), auto_now_add=True, auto_now=False)
     modified_at = models.DateTimeField(
@@ -33,24 +34,27 @@ class Customer(models.Model):
         return self.customer_sale.count()
 
 
-class Category(models.Model):
-    category = models.CharField(_('Categoria'), max_length=50, unique=True)
+class Brand(models.Model):
+    brand = models.CharField(_('Marca'), max_length=50, unique=True)
 
     class Meta:
-        ordering = ['category']
-        verbose_name = u'categoria'
-        verbose_name_plural = u'categorias'
+        ordering = ['brand']
+        verbose_name = u'marca'
+        verbose_name_plural = u'marcas'
 
     def __unicode__(self):
-        return self.category
+        return self.brand
 
 
 class Product(models.Model):
     imported = models.BooleanField(_('Importado'), default=False)
     outofline = models.BooleanField(_('Fora de linha'), default=False)
-    category = models.ForeignKey(Category)
+    ncm = models.PositiveIntegerField()
+    brand = models.ForeignKey(Brand)
     product = models.CharField(_('Produto'), max_length=30, unique=True)
     price = models.DecimalField(_('Preço'), max_digits=6, decimal_places=2)
+    stoq = models.IntegerField(_('Estoque atual'))
+    stoq_min = models.PositiveIntegerField(_('Estoque mínimo'), default=0)
 
     class Meta:
         ordering = ['product']
@@ -63,11 +67,6 @@ class Product(models.Model):
     @property
     def get_price(self):
         return self.price
-
-    # def price_formated(self):
-    #     if self.price != None:
-    #         return locale.currency(self.price, grouping=True)
-    #     return ''
 
 
 class Sale(models.Model):
@@ -114,7 +113,3 @@ class SaleDetail(models.Model):
 
     def getID(self):
         return u"07%d" % self.id
-
-    # def get_subtotal(self):
-    #     if self.quantity:
-    #         return self.price_sale * self.quantity

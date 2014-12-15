@@ -2,7 +2,14 @@
 {% load humanize %}
 
 {% block content %}
-	<h1>Lista de Produtos</h1>
+		<div>
+			<form action="." method="get">
+				<input id="search_box" type="text" name="search_box" placeholder="Localizar..." />
+				<button id="search_submit" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+			</form>
+		</div>
+
+	<h1>Lista de Produtos <font size="3">(NCM fictício)</font></h1>
 
 		<div>
 			<table class="table">
@@ -10,8 +17,11 @@
 					<tr>
 						<!-- <th>Importado</th>
 						<th>Fora de linha</th> -->
+						<th>NCM</th>
 						<th>Produto</th>
-						<th>Categoria</th>
+						<th>Marca</th>
+						<th class="text-center">Estoque</th>
+						<th class="text-center">Estoque Min.</th>
 						<th class="text-right">Preço</th>
 					</tr>
 				</thead>
@@ -20,8 +30,11 @@
 					<tr>
 						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
+						<td>{{ product.ncm }}</td>
 						<td>{{ product.product }}</td>
-						<td>{{ product.category }}</td>
+						<td>{{ product.brand }}</td>
+						<td class="text-center">{{ product.stoq }}</td>
+						<td class="text-center">{{ product.stoq_min }}</td>
 						<td class="text-right">{{ product.price|intcomma }}</td>
 					</tr>
 				{% empty %}

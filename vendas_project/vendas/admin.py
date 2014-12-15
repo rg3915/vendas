@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.db.models import Sum
-from .models import Customer, Category, Product, Sale, SaleDetail
+from .models import Customer, Brand, Product, Sale, SaleDetail
 
 
 class CustomerAdmin(admin.ModelAdmin):
@@ -12,7 +12,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     ordering = ['product']
-    list_display = ('product', 'category', 'price')
+    list_display = ('product', 'brand', 'price')
 
 
 class SaleDetailInline(admin.TabularInline):
@@ -28,6 +28,6 @@ class SaleAdmin(admin.ModelAdmin):
     inlines = [SaleDetailInline]
 
 admin.site.register(Customer, CustomerAdmin)
-admin.site.register(Category)
+admin.site.register(Brand)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Sale, SaleAdmin)

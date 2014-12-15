@@ -16,7 +16,7 @@
 						<th>Código</th>
 						<th>Cliente</th>
 						<th>Data da venda</th>
-						<th>Itens</th>
+						<th class="text-center">Itens</th>
 						<th class="text-right">Total</th>
 					</tr>
 				</thead>
@@ -30,7 +30,7 @@
 							<td>{{ sale.codigo }}</td>
 							<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
 							<td>{{ sale.date_sale }}</td>
-							<td>{{ sale.get_itens }}</td>
+							<td class="text-center">{{ sale.get_itens }}</td>
 							<td class="text-right">{{ sale.get_total|intcomma }}</td>
 						</tr>
 				{% empty %}

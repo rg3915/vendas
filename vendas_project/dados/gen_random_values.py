@@ -24,7 +24,7 @@ def gen_phone():
 
 def gen_timestamp():
     # gera um datetime no formato yyyy-mm-dd hh:mm:ss.000000
-    year = random.randint(1980, 2015)
+    year = random.randint(1980, 1996)
     month = random.randint(11, 12)
     day = random.randint(1, 28)
     hour = random.randint(1, 23)
@@ -32,7 +32,7 @@ def gen_timestamp():
     second = random.randint(1, 59)
     microsecond = random.randint(1, 999999)
     date = datetime.datetime(
-        2014, month, day, hour, minute, second, microsecond).isoformat(" ")
+        year, month, day, hour, minute, second, microsecond).isoformat(" ")
     return date
 
 

@@ -6,7 +6,7 @@
     
     Popula as tabelas do banco de dados com valores randômicos.
     Banco de dados: 'db.sqlite3'
-    Tabelas: 'vendas_category',
+    Tabelas: 'vendas_brand',
              'vendas_customer',
              'vendas_product',
              'vendas_sale',
@@ -14,11 +14,13 @@
 """
 
 import os
+import io
 import sqlite3
 import random
 import datetime
 import names    # gera nomes randomicos, only python <= 3.3
 import rstr     # gera strings randomicas
+from gen_random_values import gen_timestamp
 
 qcustomers = 50
 qproducts = 100
@@ -63,12 +65,12 @@ class VendasDb(object):
 
     def insert_for_file(self):
         try:
-            with open('dados.sql', 'rt') as f:
+            with open('brand.sql', 'rt') as f:
                 dados = f.read()
                 self.db.cursor.executescript(dados)
-            print("Registros criados com sucesso na tabela vendas_category.")
+            print("Registros criados com sucesso na tabela vendas_brand.")
         except sqlite3.IntegrityError:
-            print("Aviso: A categoria deve ser única.")
+            print("Aviso: A marca deve ser única.")
             return False
 
     def generate_cpf(self):
@@ -90,12 +92,13 @@ class VendasDb(object):
             fname = names.get_first_name()
             lname = names.get_last_name()
             email = fname[0].lower() + '.' + lname.lower() + '@example.com'
+            birthday = gen_timestamp() + '+00'
             customer_list.append(
-                (self.generate_cpf(), fname, lname, email, self.generate_phone(), d, d))
+                (self.generate_cpf(), fname, lname, email, self.generate_phone(), birthday, d, d))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_customer (cpf, firstname, lastname, email, phone, created_at, modified_at)
-            VALUES (?,?,?,?,?,?,?)
+            INSERT INTO vendas_customer (cpf, firstname, lastname, email, phone, birthday, created_at, modified_at)
+            VALUES (?,?,?,?,?,?,?,?)
             """, customer_list)
             self.db.commit_db()
             print("Inserindo %s registros na tabela vendas_customer." % repeat)
@@ -104,25 +107,33 @@ class VendasDb(object):
             print("Aviso: O email deve ser único.")
             return False
 
+    def generate_ncm(self):
+        return rstr.rstr('1234567890', 8)
+
     def generate_price(self):
         return '{0}.{1}'.format(rstr.rstr('1234567890', 2, 3), rstr.rstr('1234567890', 2))
 
     def insert_random_product(self, repeat=qproducts):
-
         product_list = []
         for i in range(repeat):
             imported = rstr.rstr('01', 1)
             outofline = rstr.rstr('01', 1)
-            category = random.randint(1, 23)
-            product = 'SKU' + str(i)
-            if i < 10:
-                product = 'SKU0' + str(i)
+            ncm = self.generate_ncm()
+            brand = random.randint(1, 20)
+            price = self.generate_price()
+            stoq = random.randint(1, 999)
+            stoq_min = random.randint(1, 20)
+
+            f = io.open('products.txt', 'rt', encoding='utf-8')
+            linelist = f.readlines()
+
+            product = linelist[i].split(',')[0]
             product_list.append(
-                (imported, outofline, category, product, self.generate_price()))
+                (imported, outofline, ncm, brand, product, price, stoq, stoq_min))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_product (imported, outofline, category_id, product, price)
-            VALUES (?,?,?,?,?)
+            INSERT INTO vendas_product (imported, outofline, ncm, brand_id, product, price, stoq, stoq_min)
+            VALUES (?,?,?,?,?,?,?,?)
             """, product_list)
             self.db.commit_db()
             print("Inserindo %s registros na tabela vendas_product." % repeat)
@@ -155,7 +166,7 @@ class VendasDb(object):
         for _ in range(repeat):
             sale = random.randint(1, qsales)
             product = random.randint(1, qproducts)
-            quantity = random.randint(1, 100)
+            quantity = random.randint(1, 50)
             price = self.generate_price()
             subtotal = quantity * float(price)
             saledetail_list.append(
@@ -179,7 +190,7 @@ if __name__ == '__main__':
     v = VendasDb()
     v.insert_for_file()
     v.insert_random_customer(60)
-    v.insert_random_product(120)
+    v.insert_random_product(1656)
     v.insert_random_sale(224)
     v.insert_random_saledetail(900)
     v.close_connection()
