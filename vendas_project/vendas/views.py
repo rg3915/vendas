@@ -2,7 +2,7 @@
 from django.views.generic import CreateView, TemplateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
-from .models import Customer, Category, Product, Sale, SaleDetail
+from .models import Customer, Brand, Product, Sale, SaleDetail
 
 
 class Index(TemplateView):
@@ -25,14 +25,14 @@ class CustomerList(ListView):
         return context
 
 
-class CategoryList(ListView):
-    template_name = 'category_list.html'
-    model = Category
-    context_object = 'category_list'
+class BrandList(ListView):
+    template_name = 'brand_list.html'
+    model = Brand
+    context_object = 'brand_list'
     paginate_by = 8
 
     def get_context_data(self, **kwargs):
-        context = super(CategoryList, self).get_context_data(**kwargs)
+        context = super(BrandList, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
 
@@ -41,13 +41,22 @@ class ProductList(ListView):
     template_name = 'product_list.html'
     model = Product
     context_object = 'product_list'
-    paginate_by = 8
+    paginate_by = 100
 
     def get_context_data(self, **kwargs):
 
         context = super(ProductList, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
+
+    def get_queryset(self):
+        cObj = Product.objects.all()
+        var_get_search = self.request.GET.get('search_box')
+
+        if var_get_search is not None:
+            cObj = cObj.filter(product__icontains=var_get_search)
+
+        return cObj
 
 
 class SaleCreate(CreateView):
