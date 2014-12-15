@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Lista de Marcas</h1>
+
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Marca</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for brand in object_list %}
+					<tr>
+						<td>{{ brand.brand }}</td>
+					</tr>
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				</tbody>
+				{% endfor %}
+			</table>
+		</div>
+
+	    <hr>
+		<div>
+			<h3><b>Total:</b> {{ count }}
+				{% if count <= 1 %}
+					marca
+				{% else %}
+					marcas
+				{% endif %}
+			</h3>
+		</div>
+
+<!-- pagination -->
+{% include "_pagination.html" %}
+
+{% endblock content %}
