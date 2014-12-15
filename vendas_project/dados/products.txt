@@ -30,10 +30,7 @@ alcool alfa-ciano-3-fenoxibenzilico
 alcool benzilico
 alcool cetilico (hexadecan-1-ol)
 alcool estearico (octadecan-1-ol)
-alcool etilico desnaturado c/qq.teor alcoolico l
-alcool etilico n/desnaturado c/vol.teor alcoolico>=80% l
 alcool fenoxibenzilico
-alcool furfurilico e alcool tetraidrofurfurilicotabela de produtos ncm
 alcool isobutilico
 alcool isopropilico (propan-2-ol)
 alcool laurilico (dodecan-1-ol)
@@ -123,7 +120,6 @@ avelas (corylus spp) frescas ou secassem casca
 azeite de olivavirgem
 azeitonas conserv.com agua salgada
 azeitonas conserv.com agua sulfurada/adic.de outs.subst
-azeitonas preparadas/conserv.n/cong.exc.em vinagreetc.tabela de produtos ncm
 azinfos etilico
 bacalhaus (gadidae) secosmesmo salgadosnao defumados
 bacalhaus (gadus) congeladosexc.filesouts.carnesetc.
@@ -184,24 +180,23 @@ cafe soluvelmesmo descafeinado t
 cafe torradonao descafeinado
 cafeina
 cairo (fibras de coco) em bruto
-cairo (fibras de coco) trabalh.n/fiadoestopasdesperds
 cal apagada
 cal hidraulica
 cal sodada e carbonato de calcio hidrofugo
 cal viva
-calcados de borracha/plast.c/parte super.em tirasetc. pr
-calcados de couro naturalc/parte super.em tirasetc. pr
-calcados de couro naturalc/sola madeiras/palmilhaetc pr
-calcados de couro naturalsola courocobrindo tornozelo pr
-calcados de couro reconst.sola exter.de borracha/plast. pr
-calcados de materia textilcom sola exterior de couro pr
-calcados impermeav.de borracha/plast.c/biq.prot.metal pr
-calcados impermeav.de borracha/plast.cobrindo joelho pr
-calcados impermeav.de borracha/plast.cobrindo tornozelo pr
-calcados p/esportesetc.de mat.text.sola borracha/plast pr
-calcados p/esqui e p/surfe de nevede couro natural pr
-calcados p/outs.esportesde borracha ou plastico pr
-calcados p/outs.esportesde couro natural pr
+calcados de borracha/plast.c/parte super.em tirasetc.
+calcados de couro naturalc/parte super.em tirasetc.
+calcados de couro naturalc/sola madeiras/palmilhaetc
+calcados de couro naturalsola courocobrindo tornozelo
+calcados de couro reconst.sola exter.de borracha/plast.
+calcados de materia textilcom sola exterior de couro
+calcados impermeav.de borracha/plast.c/biq.prot.metal
+calcados impermeav.de borracha/plast.cobrindo joelho
+calcados impermeav.de borracha/plast.cobrindo tornozelo
+calcados p/esportesetc.de mat.text.sola borracha/plast
+calcados p/esqui e p/surfe de nevede couro natural
+calcados p/outs.esportesde borracha ou plastico
+calcados p/outs.esportesde couro natural
 calcasetc.de malha de algodaode uso feminino
 calcasetc.de malha de algodaode uso masculino
 calcasetc.de malha de fibras sinteticasuso masculino
@@ -304,7 +299,6 @@ carnes e miudezasde outs.animaisfrescos/refrig/congel
 carocos e amendoas de damascospessegos e ameixas
 carotenoides
 carpas para reproducao
-carregadoras-transportadorasutil.minas substerraneastabela de produtos ncm
 cartas de jogar
 cartoes de memoria p/maqs.automat.proc.dados
 cartoes de memoriautil.2/mais dif.maqs.
@@ -350,7 +344,7 @@ cefaclor e cefalexina monoidratadose cefalotina sodica
 cefadroxil e seus sais
 cefalosporina c
 cefotaxima sodica
-cefoxitina e seus saistabela de produtos ncm
+cefoxitina e seus sais
 ceftriaxona e seus sais
 ceifeiras c/disp.acond.em fileirasrotor de dedos/pente
 ceifeiras-debulhadoras
@@ -394,7 +388,6 @@ chassis ou suportes p/apars.de gravacao/reproducao
 chaves de caixa intercambiav.incl.c/cabosde met.comuns
 chaves de fendamanuaisde metais comuns
 chaves de metais comunsapresentadas isoladamente
-chaves de porcasmanuaisde abert.fixade metais comunstabela de produtos ncm
 chavetas/cavilhasetc.de ferro fundidoferro ou aco
 cheques de viagem
 chicoria torradaouts.sucedaneos torrados do cafeetc.
@@ -437,7 +430,7 @@ cobertores e mantasde algodaonao eletricos
 cobertores e mantasde fibras sinteticasnao eletricos
 cobertores e mantasde la ou pelos finosnao eletricos
 cobertores e mantaseletricos
-coberturas p/encapsulamento (capsulas)tabela de produtos ncm
+coberturas p/encapsulamento (capsulas)
 cobre de cementacao (precipitado de cobre)
 cobre n/refinado e anodos de cobre p/refin.eletrolitica
 cocos frescos
@@ -514,7 +507,7 @@ cubospastilhasetc.de vidrop/mosaicos e decoracoes
 cuecas e ceroulasde algodao
 cuecas e ceroulasde malha de fibras sinteticas/artif.
 cuecas e ceroulasde malha de outs.materias texteis
-cuecas e ceroulasde outs.materias texteistabela de produtos ncm
+cuecas e ceroulasde outs.materias texteis
 damascos frescos
 damascos preparados ou conservados
 damascos secos
@@ -576,8 +569,6 @@ enzimas preparadas a base de celulases
 equipamento de aliment.ininterrupta de energia eletr.
 equipamento digital automat.p/controle de veic.ferrov.
 equipamento processad.fotograf.p/tratam.eletron.imagens
-equipamentos frontais p/escavo-carregadorasetc.cap>4m3
-equipam.terminal/repetidor em linhas metalicastabela de produtos ncm
 ergocornina e outs.derivados e sais
 ergocriptina e outs.derivados e sais
 ergocristina
@@ -611,7 +602,6 @@ espelhos de vidroemoldurados
 espelhos de vidronao emoldurados
 espelhos retrovisores para veiculos
 espinafres frescos ou refrigerados
-espingardas/carabinas p/caca/tiro-ao-alvocano liso>=1
 espironolactona
 espodumenio
 esponjas naturais de origem animal
@@ -624,7 +614,7 @@ estacas nao enraizadas e enxertos
 estacas-pranchas de ferro ou aco
 estampasgravuras e fotografias
 estanato de bario
-estanato de bismutotabela de produtos ncm
+estanato de bismuto
 estanho nao ligadoem forma bruta t
 estatuetas e outs.objetos de ornamentacaode plasticos
 estatuetas e outs.objetosde madeirapara ornamentacao
@@ -674,7 +664,7 @@ facas/laminas cort.de metais comunsp/trab.metais
 facas/laminas cort.de met.comunsp/maqs.agriculturaetc
 falsos tecidos de filamentos de aramidapeso>150g/m2
 falsos tecidos de outs.filamentos sint/artif.p>150g/m2
-farelo de arroztabela de produtos ncm
+farelo de arroz
 farelo de trigo
 farinha de arroz
 farinha de centeio
@@ -738,7 +728,7 @@ figados gordosde patos/gansos/pintadasfrescos/refrig.
 figadosovas e semende peixescongelados
 figadosovas e semende peixessecosdefumadosetc.
 figos frescos
-figos secostabela de produtos ncm
+figos secos
 filatorios intermitentes p/fiacao de materia textil
 files de merluzascongelados
 files de peixessecossalgadosem salmouran/defumados
@@ -769,14 +759,14 @@ folha de serrasretan/dent.de met.comunsp/serr.pedras
 folhagemfolhasramos de plantassecosetc.p/buquesetc
 folhas comprimidas de amianto e elastomerospara juntas
 folhas de vidro estirado/sopradocorado na massaetc.
-folhas para marcar a ferrotabela de produtos ncm
+folhas para marcar a ferro
 fones de ouvido (auscultadores)mesmo c/microfone
 forato
 forcados e forquilhasde metais comuns
 formas e outs.partes de botoes e esbocos de botoes
 formasalargadeiras e esticadoresde madeirap/calcados
 fotomascaras sobre vidro planopositivasetc.
-fotometrostabela de produtos ncm
+fotometros
 fotorresistores montados
 fototiristores montados
 fototiristores nao montados
@@ -809,7 +799,6 @@ galos e galinhasvivospeso super.185gnao super.2.000g
 ganchos e armelas (pitoes)de ferro fundido/ferro/aco
 ganchospara-choquesetc.de veiculos p/vias ferreas
 garrafoes e garrafasde vidrocapacidade>1 litro
-garrafoesgarrafasfrascosartigos semelhs.de plasticostabela de produtos ncm
 gas liquefeito de petroleo (glp)
 gas natural no estado gasoso
 gas naturalliquefeito
@@ -850,7 +839,7 @@ gordura de porcofrescarefrigerada ou congelada
 gordura de porcon/fundidasalgadaem salmourasecaetc
 gorduras de porco (incl.a banha) e gordura de aves
 gorduras e oleosanimaishidrogens.interesterifs.etc.
-gorduras e oleosde mamiferos marinhosrespect.fracoestabela de produtos ncm
+gorduras e oleosde mamiferos marinhosrespect.fracoes
 gorduras e oleosde peixe e respectivas fracoes
 gorduras e oleosvegetaishidrogens.interesterifs.etc.
 grades de discosuso agricolaetc.p/prepar.do solo
@@ -901,7 +890,7 @@ guia-fioslancadeirasetc.p/outs.maqs.de costura
 guias de agulhasde rubipara cabecas de impressao
 guias de agulhasp/cabecas impr.d>=9mohsde outs.ceram.
 guias de valvulaspara motores de explosao
-guias de valvulasp/motores diesel ou semidieseltabela de produtos ncm
+guias de valvulasp/motores diesel ou semidiesel
 guinchos p/elevacao/descida de gaiolas em minasetc.
 guindastes de portico
 guindastes de torre
@@ -977,7 +966,7 @@ juntas e outs.elementosde amiantoc/funcao de vedacao
 juntas metaloplasticas
 juntasgaxetassemelhs.de borracha vulcan.n/endurecida
 juta em bruto
-juta maceradatabela de produtos ncm
+juta macerada
 ketamina e outs.sais
 ketazolam
 ketorolac trometamina
@@ -1047,7 +1036,7 @@ limpadores de para-brisas p/automoveis
 limpa-neves
 linalol
 lincomicinaouts.derivados e sais
-lindano (123456-hexaclorocicloexano)tabela de produtos ncm
+lindano (123456-hexaclorocicloexano)
 lingoteiras de fundicao
 linguados congeladosexc.filesouts.carnesfigadosetc.
 linguados frescosrefrig.exc.filesouts.carnesetc.
@@ -1095,7 +1084,7 @@ luvasetc.de malha de fibras sinteticas pr
 luvasetc.de malha de la ou de pelos finos pr
 luvasetc.de malhaimpregnadasetc.de plastico/borracha pr
 luvasmitemesetc.p/esportesde couro natural/reconstit pr
-luvasmitenes e semelhantes prtabela de produtos ncm
+luvasmitenes e semelhantes pr
 luzes fixas p/automoveis e outs.ciclos
 luzes indicadoras de manobras p/automoveis/outs.ciclos
 macacoes e conjuntosde esquiexceto de malha
@@ -1112,7 +1101,7 @@ malasmaletas e pastasde plastico
 malato acido de cleboprida (malato de cleboprida)
 maleato acido de timolol
 maleato de enalapril
-maleato de metotrimeprazina (maleato de levomepromazinatabela de produtos ncm
+maleato de metotrimeprazina (maleato de levomepromazina
 maleato de pirilamina
 malonilureia (acido barbiturico)seus derivados e sais
 malte nao torradointeiro ou partido
@@ -1140,7 +1129,7 @@ mate simplesmente cancheado
 materiais para suturas cirurgicasde aco inoxidavel
 materiais para suturas cirurgicasde polidiexzanona
 material fixo de vias ferreas/semelhs.e suas partes
-material p/andaimesarmacoesetc.ferro fund/ferro/acotabela de produtos ncm
+material p/andaimesarmacoesetc.ferro fund/ferro/aco
 materias polarizantesem folhas e placas
 materiasdesperdiciosresids.etc.vegetaisp/alim.animal
 materias-primas vegetais para tinturaria ou curtimenta
@@ -1178,7 +1167,7 @@ omeprazol
 ondansetron e seus sais
 o-nitroclorobenzeno e m-nitroclorobenzeno
 oregano frescosecoincl.cort.tritur.pop/medicinaetc.
-ovas de peixesfecundadas para reproducaotabela de produtos ncm
+ovas de peixesfecundadas para reproducao
 ovos de bicho-da-seda
 ovos de galinhapara incubacao dz
 ovos de outs.avespara incubacao dz
@@ -1236,7 +1225,7 @@ refratometros
 refrigeradores combin.c/congeladoresporta ext.separada
 refrigeradores de compressaode uso domestico
 registradores/seletores p/centrais automat.telefon.etc
-regulador de voltagem p/motor explosao/dieseltabela de produtos ncm
+regulador de voltagem p/motor explosao/diesel
 reguladores de crescim.plantasbase hidrazida maleica
 reguladores de crescim.plantasp/uso domissanit.direto
 relogio de bolsosemelh.cx.met.prec.etc.func.eletr.
@@ -1289,7 +1278,7 @@ sacarina e seus sais
 sacos de dormir
 sacos p/embalagemde algodao
 sacos p/embalagemde juta ou out.fibra textil liberiana
-sacos p/embalagemde malha de polietileno/polipropilenotabela de produtos ncm
+sacos p/embalagemde malha de polietileno/polipropileno
 sacos p/embalagemde outs.materias texteis sint/artif.
 safrol
 saias e saias-calcasde algodao
@@ -1362,7 +1351,7 @@ sucos de outs.frutasprods.horticolasnao fermentados
 sucos de pomelos ("grapefruit")nao fermentados
 sucos de tomates
 sucos de tomatesnao fermentados
-sucos e extratosde alcacuztabela de produtos ncm
+sucos e extratosde alcacuz
 sucos e extratosde ginkgo bilobaseco
 sucos e extratosde "ginseng"
 sucos e extratosde lupulo
@@ -1415,7 +1404,7 @@ tapeteetc.de out.materia textiln/aveludadon/confecc.
 tapete/revest.p/pavim.de la ou pelos finostufado
 tapete/revest.p/pavim.de nailon/out.poliamidatufado
 tapete/revest.p/pavim.de outs.materias texteis
-tapiocaseus sucedaneosde feculasem flocosgrumosetctabela de produtos ncm
+tapiocaseus sucedaneosde feculasem flocosgrumosetc
 tarmacadame
 tartarato de metoprolol
 taximetrostotalizadores de caminho percorridoetc.
@@ -1440,7 +1429,7 @@ tecido de algodao>=85%estampadopto.sarjadop>200g/m2
 tecido de algodao>=85%estampadopto.tafetap>200g/m2
 tecido de algodao>=85%fio color.ponto tafetap>200g/m2
 tecido de algodao>=85%fio color.pto.sarjadop>200g/m2
-tecido de algodao>=85%tintoponto de tafetap>200g/m2tabela de produtos ncm
+tecido de algodao>=85%tintoponto de tafetap>200g/m2
 tecido de aramida>=85%cru ou branqueado
 tecido de fibras acrilicasetc.com filamento sint/artif
 tecido de fibras acrilicas/modacrilicas>=85%cru/branq.
@@ -1502,7 +1491,7 @@ terras corantes
 terras corantespeso>=70% de ferro combinadoem fe2o3
 terras descorantes e terras de pisao (terras de "fuer
 tesouras c/motor eletr.uso manual
-tesouras de podarmanipuladas c/1 maode metais comunstabela de produtos ncm
+tesouras de podarmanipuladas c/1 maode metais comuns
 tesouras p/sebesetc.manipul.c/2 maosde metais comuns
 tijolos e outs.pecas ceram.refratar.de grafita
 tijolos e outs.pecas ceram.refratar.n/fundidoszro2>25%
@@ -1531,7 +1520,7 @@ titanato de chumbo
 titanato de magnesio
 titanatos de calcio ou de estroncio
 titanatos de lantanio ou de neodimio
-titanio em forma brutadesperd.resid.e pos de titaniotabela de produtos ncm
+titanio em forma brutadesperd.resid.e pos de titanio
 titulos de acoesobrigacoesetc.convalidados/assinados
 toalhas e guardanaposde papelde mesa
 toca-fitas (leitores de cassetes)de bolso
@@ -1613,7 +1602,7 @@ tubos p/microondasmagnetrons
 tuboscalhas/algerozes e acess.p/canaliz.de ceramica
 tuneis continuos de lavar roupacap>10kg de roupa seca
 tungstato (volframato) de amonio
-tungstato (volframato) de chumbotabela de produtos ncm
+tungstato (volframato) de chumbo
 uisquesvol.teor alcoolico>50%recips.capac>=50 litros l
 ultramar e suas preparacoes
 undecilinato de metila

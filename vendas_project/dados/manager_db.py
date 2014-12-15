@@ -190,7 +190,7 @@ if __name__ == '__main__':
     v = VendasDb()
     v.insert_for_file()
     v.insert_random_customer(60)
-    v.insert_random_product(1656)
+    v.insert_random_product(1645)
     v.insert_random_sale(224)
     v.insert_random_saledetail(900)
     v.close_connection()
