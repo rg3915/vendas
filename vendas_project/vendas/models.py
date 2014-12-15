@@ -51,7 +51,7 @@ class Product(models.Model):
     outofline = models.BooleanField(_('Fora de linha'), default=False)
     ncm = models.PositiveIntegerField()
     brand = models.ForeignKey(Brand)
-    product = models.CharField(_('Produto'), max_length=30, unique=True)
+    product = models.CharField(_('Produto'), max_length=50, unique=True)
     price = models.DecimalField(_('Preço'), max_digits=6, decimal_places=2)
     stoq = models.IntegerField(_('Estoque atual'))
     stoq_min = models.PositiveIntegerField(_('Estoque mínimo'), default=0)
