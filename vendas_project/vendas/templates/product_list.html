@@ -27,7 +27,11 @@
 				</thead>
 				<tbody>
 				{% for product in object_list %}
-					<tr>
+					{% if product.stoq < product.stoq_min %}
+						<tr class="danger">
+					{% else %}
+						<tr>
+					{% endif %}
 						<!-- <td><input type="radio" name="importado" value="{{ product.importado }}"></td>
 						<td><input type="radio" name="foradelinha" value="{{ product.foradelinha }}"></td> -->
 						<td>{{ product.ncm }}</td>

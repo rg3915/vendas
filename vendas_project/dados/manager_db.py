@@ -24,7 +24,7 @@ from gen_random_values import gen_timestamp
 
 qcustomers = 50
 qproducts = 100
-qsales = 200
+qsales = 224
 qsaledetails = 1000
 
 
@@ -191,7 +191,7 @@ if __name__ == '__main__':
     v.insert_for_file()
     v.insert_random_customer(60)
     v.insert_random_product(1645)
-    v.insert_random_sale(224)
-    v.insert_random_saledetail(900)
+    v.insert_random_sale()
+    v.insert_random_saledetail()
     v.close_connection()
     # repare que o valor do parâmetro pode ser mudado
