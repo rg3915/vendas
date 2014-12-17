@@ -25,8 +25,8 @@
 						<td>{{ item.getID }} </td>
 						<td>{{ item.product }}</a></td>
 						<td>{{ item.quantity }}</td>
-						<td class="text-right">{{ item.price_sale|intcomma }}</td>
-						<td class="text-right">{{ item.subtotal|intcomma }}</td>
+						<td class="text-right">R$ {{ item.price_sale|intcomma }}</td>
+						<td class="text-right">R$ {{ item.subtotal|intcomma }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

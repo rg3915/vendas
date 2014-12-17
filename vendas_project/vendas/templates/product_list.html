@@ -3,6 +3,7 @@
 
 {% block content %}
 		<div>
+			<p name="filter_link" class="pull-right"><a href="">Produtos em baixo estoque</a></p>
 			<form action="." method="get">
 				<input id="search_box" type="text" name="search_box" placeholder="Localizar..." />
 				<button id="search_submit" type="submit"><span class="glyphicon glyphicon-search"></span></button>
@@ -39,7 +40,7 @@
 						<td>{{ product.brand }}</td>
 						<td class="text-center">{{ product.stoq }}</td>
 						<td class="text-center">{{ product.stoq_min }}</td>
-						<td class="text-right">{{ product.price|intcomma }}</td>
+						<td class="text-right">R$ {{ product.price|intcomma }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

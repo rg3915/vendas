@@ -31,7 +31,7 @@
 							<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
 							<td>{{ sale.date_sale }}</td>
 							<td class="text-center">{{ sale.get_itens }}</td>
-							<td class="text-right">{{ sale.get_total|intcomma }}</td>
+							<td class="text-right">R$ {{ sale.get_total|intcomma }}</td>
 						</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

@@ -2,6 +2,7 @@
 from django.views.generic import CreateView, TemplateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
+from django.db.models import F
 from .models import Customer, Brand, Product, Sale, SaleDetail
 
 
@@ -57,6 +58,11 @@ class ProductList(ListView):
             cObj = cObj.filter(product__icontains=var_get_search)
 
         return cObj
+
+    # def get_stock_down(self):
+    #     s = Product.objects.filter(stoq__lt=F('stoq_min'))
+    #     var_get_filter = self.request.GET.get('filter_link')
+    #     return s
 
 
 class SaleCreate(CreateView):
