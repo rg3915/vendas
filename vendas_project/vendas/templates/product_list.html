@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load humanize %}
 
 {% block content %}
 		<div>
@@ -40,7 +39,7 @@
 						<td>{{ product.brand }}</td>
 						<td class="text-center">{{ product.stoq }}</td>
 						<td class="text-center">{{ product.stoq_min }}</td>
-						<td class="text-right">R$ {{ product.price|intcomma }}</td>
+						<td class="text-right">{{ product.get_price }}</td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

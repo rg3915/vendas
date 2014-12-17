@@ -3,9 +3,6 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from django.utils.formats import number_format
-import locale
-
-locale.setlocale(locale.LC_ALL, '')
 
 
 class Customer(models.Model):
@@ -64,9 +61,8 @@ class Product(models.Model):
     def __unicode__(self):
         return self.product
 
-    @property
     def get_price(self):
-        return self.price
+        return u"R$ %s" % number_format(self.price, 2)
 
 
 class Sale(models.Model):
@@ -93,7 +89,7 @@ class Sale(models.Model):
     def get_total(self):
         s = self.sales_det.aggregate(
             subtotal_sum=models.Sum('subtotal')).get('subtotal_sum') or 0
-        return s
+        return u"R$ %s" % number_format(s, 2)
 
 
 class SaleDetail(models.Model):
@@ -113,3 +109,9 @@ class SaleDetail(models.Model):
 
     def getID(self):
         return u"07%d" % self.id
+
+    def price_sale_formated(self):
+        return u"R$ %s" % number_format(self.price_sale, 2)
+
+    def subtotal_formated(self):
+        return u"R$ %s" % number_format(self.subtotal, 2)
