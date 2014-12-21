@@ -57,6 +57,9 @@ class ProductList(ListView):
         if var_get_search is not None:
             cObj = cObj.filter(product__icontains=var_get_search)
 
+        if self.request.GET.get('filter_link', False):
+            cObj = cObj.filter(stoq__lt=F('stoq_min'))
+
         return cObj
 
     # def get_stock_down(self):
