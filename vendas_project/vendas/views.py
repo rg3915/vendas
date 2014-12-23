@@ -62,11 +62,6 @@ class ProductList(ListView):
 
         return cObj
 
-    # def get_stock_down(self):
-    #     s = Product.objects.filter(stoq__lt=F('stoq_min'))
-    #     var_get_filter = self.request.GET.get('filter_link')
-    #     return s
-
 
 class SaleCreate(CreateView):
     template_name = 'sale_form.html'
