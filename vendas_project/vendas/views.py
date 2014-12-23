@@ -80,6 +80,12 @@ class SaleList(ListView):
         context['count'] = self.get_queryset().count()
         return context
 
+    def get_queryset(self):
+        s = Sale.objects.all()
+        if self.request.GET.get('filter_sale', False):
+            s = s.filter(customer='filter_sale')
+        return s
+
 
 class SaleDetailView(TemplateView):
     template_name = 'sale_detail.html'

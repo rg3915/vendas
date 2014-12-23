@@ -108,7 +108,7 @@ class SaleDetail(models.Model):
         return unicode(self.sale)
 
     def getID(self):
-        return u"07%d" % self.id
+        return u"%04d" % self.id
 
     def price_sale_formated(self):
         return u"R$ %s" % number_format(self.price_sale, 2)
