@@ -50,11 +50,11 @@ class Product(models.Model):
     imported = models.BooleanField(_('Importado'), default=False)
     outofline = models.BooleanField(_('Fora de linha'), default=False)
     ncm = models.CharField(max_length=8)
-    brand = models.ForeignKey(Brand)
+    brand = models.ForeignKey(Brand, verbose_name=_('marca'))
     product = models.CharField(_('Produto'), max_length=60, unique=True)
-    price = models.DecimalField(_('Preço'), max_digits=6, decimal_places=2)
+    price = models.DecimalField(_(u'Preço'), max_digits=6, decimal_places=2)
     stoq = models.IntegerField(_('Estoque atual'))
-    stoq_min = models.PositiveIntegerField(_('Estoque mínimo'), default=0)
+    stoq_min = models.PositiveIntegerField(_(u'Estoque mínimo'), default=0)
 
     class Meta:
         ordering = ['product']
@@ -69,7 +69,8 @@ class Product(models.Model):
 
 
 class Sale(models.Model):
-    customer = models.ForeignKey(Customer, related_name='customer_sale')
+    customer = models.ForeignKey(
+        Customer, related_name='customer_sale', verbose_name=_('cliente'))
     date_sale = models.DateTimeField(
         _('Data da venda'), auto_now_add=True, auto_now=False)
     modified_at = models.DateTimeField(
@@ -97,10 +98,11 @@ class Sale(models.Model):
 
 class SaleDetail(models.Model):
     sale = models.ForeignKey(Sale, related_name='sales_det')
-    product = models.ForeignKey(Product, related_name='product_det')
+    product = models.ForeignKey(
+        Product, related_name='product_det', verbose_name=_('produto'))
     quantity = models.PositiveSmallIntegerField(_('quantidade'))
     price_sale = models.DecimalField(
-        _('Preço de venda'), max_digits=6, decimal_places=2, default=0)
+        _(u'Preço de venda'), max_digits=6, decimal_places=2, default=0)
     subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def save(self, *args, **kwargs):
