@@ -13,6 +13,7 @@ class CustomerAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     ordering = ['product']
     list_display = ('product', 'brand', 'price')
+    list_filter = ('brand',)
 
 
 class SaleDetailInline(admin.TabularInline):

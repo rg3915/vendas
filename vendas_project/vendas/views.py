@@ -3,6 +3,7 @@ from django.views.generic import CreateView, TemplateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from django.db.models import F
+from django.db.models import Count
 from .models import Customer, Brand, Product, Sale, SaleDetail
 
 
@@ -84,6 +85,12 @@ class SaleList(ListView):
         qs = super(SaleList, self).get_queryset()
         if 'customer' in self.request.GET:
             qs = qs.filter(customer=self.request.GET['customer'])
+        if 'filter_sale_zero' in self.request.GET:
+            qs = Sale.objects.annotate(
+                itens=Count('sales_det')).filter(itens=0)
+        if 'filter_sale_one' in self.request.GET:
+            qs = Sale.objects.annotate(
+                itens=Count('sales_det')).filter(itens=1)
         return qs
 
 
