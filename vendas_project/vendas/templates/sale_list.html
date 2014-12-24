@@ -3,10 +3,15 @@
 {% block content %}
 	<h1>Lista de Vendas</h1>
 
-		<button id="new_sale" type="button" class="btn btn-default">
-			<span class="glyphicon glyphicon-plus"></span>
-			<a href="{% url 'sale_create' %}"> Nova venda</a>
-		</button>
+		<div class="pull-right">
+			<p name="filter_sale_zero"><a href="?filter_sale_zero=1">Vendas sem itens</a></p>			
+			<p name="filter_sale_one"><a href="?filter_sale_one=1">Vendas com um item</a></p>			
+		</div>
+
+			<button id="new_sale" type="button" class="btn btn-default">
+				<span class="glyphicon glyphicon-plus"></span>
+				<a href="{% url 'sale_create' %}"> Nova venda</a>
+			</button>
 
 		<div>
 			<table class="table">
@@ -21,8 +26,10 @@
 				</thead>
 				<tbody>
 				{% for sale in object_list %}
-					{% if sale.get_itens == 1 %}
+					{% if sale.get_itens == 0 %}
 						<tr class="danger">
+					{% elif sale.get_itens == 1 %}
+						<tr class="info">
 					{% else %}
 						<tr>
 					{% endif %}

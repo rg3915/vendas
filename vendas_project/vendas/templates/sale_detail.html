@@ -19,9 +19,8 @@
 				</thead>
 				<tbody>
 				{% for item in Itens %}
-
 					<tr>
-						<td>{{ item.get_ncm }} </td>
+						<td>{{ item.product.ncm }} </td>
 						<td>{{ item.product }}</a></td>
 						<td class="text-center">{{ item.quantity }}</td>
 						<td class="text-right">{{ item.price_sale_formated }}</td>

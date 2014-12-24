@@ -113,9 +113,6 @@ class SaleDetail(models.Model):
     def getID(self):
         return u"%04d" % self.id
 
-    def get_ncm(self):
-        return self.product.ncm
-
     def price_sale_formated(self):
         return u"R$ %s" % number_format(self.price_sale, 2)
 
