@@ -80,7 +80,7 @@ class Sale(models.Model):
         verbose_name_plural = u'vendas'
 
     def __unicode__(self):
-        return u"%d" % self.id + u"/%s" % self.date_sale.year
+        return u"%03d" % self.id + u"/%s" % self.date_sale.strftime('%y')
     codigo = property(__unicode__)
 
     def get_detalhe(self):
