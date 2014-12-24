@@ -26,6 +26,7 @@ class Customer(models.Model):
         return self.firstname + " " + self.lastname
     full_name = property(__unicode__)
 
+    # clica no cliente e retorna as vendas dele
     def get_sale_customer_url(self):
         return u"/sale/?customer=%i" % self.id
 
@@ -87,6 +88,7 @@ class Sale(models.Model):
     def get_detalhe(self):
         return u"/sale/%i" % self.id
 
+    # conta os itens em cada venda
     def get_itens(self):
         return self.sales_det.count()
 

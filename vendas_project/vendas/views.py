@@ -54,10 +54,10 @@ class ProductList(ListView):
     def get_queryset(self):
         cObj = Product.objects.all()
         var_get_search = self.request.GET.get('search_box')
-
+        # buscar por produto
         if var_get_search is not None:
             cObj = cObj.filter(product__icontains=var_get_search)
-
+        # filtra produtos em baixo estoque
         if self.request.GET.get('filter_link', False):
             cObj = cObj.filter(stoq__lt=F('stoq_min'))
 
@@ -83,11 +83,14 @@ class SaleList(ListView):
 
     def get_queryset(self):
         qs = super(SaleList, self).get_queryset()
+        # clica no cliente e retorna as vendas dele
         if 'customer' in self.request.GET:
             qs = qs.filter(customer=self.request.GET['customer'])
+        # filtra vendas com zero item
         if 'filter_sale_zero' in self.request.GET:
             qs = Sale.objects.annotate(
                 itens=Count('sales_det')).filter(itens=0)
+        # filtra vendas com um item
         if 'filter_sale_one' in self.request.GET:
             qs = Sale.objects.annotate(
                 itens=Count('sales_det')).filter(itens=1)
@@ -123,7 +126,7 @@ class CustomerSearch(ListView):
         cObj = Customer.objects.all()
         var_get_search = self.request.GET.get('search_box')
         var_get_order_by = self.request.GET.get('order')
-
+        # buscar por nome
         if var_get_search is not None:
             cObj = cObj.filter(firstname__icontains=var_get_search)
 

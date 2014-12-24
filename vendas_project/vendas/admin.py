@@ -8,12 +8,14 @@ from .models import Customer, Brand, Product, Sale, SaleDetail
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'email', 'phone', 'created_at')
     date_hierarchy = 'created_at'
+    search_fields = ('firstname', 'lastname')
 
 
 class ProductAdmin(admin.ModelAdmin):
     ordering = ['product']
     list_display = ('product', 'brand', 'price')
     list_filter = ('brand',)
+    search_fields = ('product',)
 
 
 class SaleDetailInline(admin.TabularInline):
