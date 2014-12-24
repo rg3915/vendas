@@ -17,14 +17,14 @@ class ProductAdmin(admin.ModelAdmin):
 
 class SaleDetailInline(admin.TabularInline):
     list_display = ['product', 'quantity', 'price_sale', 'subtotal']
-    readonly_fields = ['subtotal']
     model = SaleDetail
     extra = 0
 
 
 class SaleAdmin(admin.ModelAdmin):
-    list_display = ('customer', '__unicode__', 'get_total')
+    list_display = ('__unicode__', 'customer', 'get_itens', 'get_total')
     readonly_fields = ['get_total']
+    list_filter = ('customer',)
     inlines = [SaleDetailInline]
 
 admin.site.register(Customer, CustomerAdmin)
