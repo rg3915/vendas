@@ -108,7 +108,7 @@ class VendasDb(object):
             return False
 
     def generate_ncm(self):
-        return rstr.rstr('1234567890', 8)
+        return rstr.rstr('123456789', 8)
 
     def generate_price(self):
         return '{0}.{1}'.format(rstr.rstr('1234567890', 2, 3), rstr.rstr('1234567890', 2))
@@ -167,7 +167,12 @@ class VendasDb(object):
             sale = random.randint(1, qsales)
             product = random.randint(1, qproducts)
             quantity = random.randint(1, 50)
-            price = self.generate_price()
+
+            # find price of product
+            r = self.db.cursor.execute(
+                'SELECT price FROM vendas_product WHERE id = ?', (product,))
+            price = r.fetchone()[0]
+
             subtotal = quantity * float(price)
             saledetail_list.append(
                 (sale, product, quantity, price, subtotal))

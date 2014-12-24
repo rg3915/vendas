@@ -49,7 +49,7 @@ class Brand(models.Model):
 class Product(models.Model):
     imported = models.BooleanField(_('Importado'), default=False)
     outofline = models.BooleanField(_('Fora de linha'), default=False)
-    ncm = models.PositiveIntegerField()
+    ncm = models.CharField(max_length=8)
     brand = models.ForeignKey(Brand)
     product = models.CharField(_('Produto'), max_length=60, unique=True)
     price = models.DecimalField(_('Preço'), max_digits=6, decimal_places=2)
@@ -97,7 +97,7 @@ class Sale(models.Model):
 
 class SaleDetail(models.Model):
     sale = models.ForeignKey(Sale, related_name='sales_det')
-    product = models.ForeignKey(Product)
+    product = models.ForeignKey(Product, related_name='product_det')
     quantity = models.PositiveSmallIntegerField(_('quantidade'))
     price_sale = models.DecimalField(
         _('Preço de venda'), max_digits=6, decimal_places=2, default=0)
@@ -112,6 +112,9 @@ class SaleDetail(models.Model):
 
     def getID(self):
         return u"%04d" % self.id
+
+    def get_ncm(self):
+        return self.product.ncm
 
     def price_sale_formated(self):
         return u"R$ %s" % number_format(self.price_sale, 2)

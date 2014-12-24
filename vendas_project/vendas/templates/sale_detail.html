@@ -10,9 +10,9 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>id</th>
+						<th>NCM</th>
 						<th>Produto</th>
-						<th>Quantidade</th>
+						<th class="text-center">Quantidade</th>
 						<th class="text-right">Preço de venda</th>
 						<th class="text-right">Subtotal</th>
 					</tr>
@@ -21,9 +21,9 @@
 				{% for item in Itens %}
 
 					<tr>
-						<td>{{ item.getID }} </td>
+						<td>{{ item.get_ncm }} </td>
 						<td>{{ item.product }}</a></td>
-						<td>{{ item.quantity }}</td>
+						<td class="text-center">{{ item.quantity }}</td>
 						<td class="text-right">{{ item.price_sale_formated }}</td>
 						<td class="text-right">{{ item.subtotal_formated }}</td>
 					</tr>
