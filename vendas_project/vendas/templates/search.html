@@ -22,7 +22,7 @@
 				<tbody>
 				{% for customer in object_list %}
 					<tr>
-						<td>{{ customer.full_name }}</td>
+						<td><a href="{{ customer.get_sale_customer_url }}">{{ customer.full_name }}</a></td>
 						<td>{{ customer.cpf }}</td>
 						<td>{{ customer.email }}</td>
 						<td>{{ customer.phone }}</td>

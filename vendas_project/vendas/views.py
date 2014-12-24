@@ -81,10 +81,10 @@ class SaleList(ListView):
         return context
 
     def get_queryset(self):
-        s = Sale.objects.all()
-        if self.request.GET.get('filter_sale', False):
-            s = s.filter(customer='filter_sale')
-        return s
+        qs = super(SaleList, self).get_queryset()
+        if 'customer' in self.request.GET:
+            qs = qs.filter(customer=self.request.GET['customer'])
+        return qs
 
 
 class SaleDetailView(TemplateView):
@@ -122,21 +122,5 @@ class CustomerSearch(ListView):
 
         if var_get_order_by is not None:
             cObj = cObj.order_by(var_get_order_by)
-
-        return cObj
-
-
-class CustomerSale(ListView):
-    template_name = 'sale_list.html'
-    model = Sale
-    context_object_name = 'lista'
-    paginate_by = 8
-
-    def get_queryset(self):
-        cObj = Sale.objects.all()
-        var_get_search = self.request.GET.get('customer_sale')
-
-        if var_get_search is not None:
-            cObj = cObj.filter(customer__icontains=var_get_search)
 
         return cObj
