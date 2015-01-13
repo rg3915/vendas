@@ -31,7 +31,7 @@ class BrandList(ListView):
     template_name = 'brand_list.html'
     model = Brand
     context_object = 'brand_list'
-    paginate_by = 8
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super(BrandList, self).get_context_data(**kwargs)

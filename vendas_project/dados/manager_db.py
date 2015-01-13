@@ -24,8 +24,8 @@ from gen_random_values import gen_timestamp
 
 qcustomers = 50
 qproducts = 100
-qsales = 224
-qsaledetails = 1000
+qsales = 300
+qsaledetails = 1200
 
 
 class Connect(object):

@@ -25,8 +25,10 @@ class SaleDetailInline(admin.TabularInline):
 
 
 class SaleAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'customer', 'get_itens', 'get_total')
+    list_display = (
+        '__unicode__', 'customer', 'date_sale', 'get_itens', 'get_total')
     readonly_fields = ['get_total']
+    date_hierarchy = 'date_sale'
     list_filter = ('customer',)
     inlines = [SaleDetailInline]
 
