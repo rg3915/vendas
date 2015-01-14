@@ -5,7 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.formats import number_format
 
 
-class Customer(models.Model):
+class Person(models.Model):
+
+    """ Person is abstract model """
     cpf = models.CharField(_('CPF'), max_length=11)
     firstname = models.CharField(_('Nome'), max_length=20)
     lastname = models.CharField(_('Sobrenome'), max_length=20)
@@ -18,21 +20,40 @@ class Customer(models.Model):
         _('Modificado em'), auto_now_add=False, auto_now=True)
 
     class Meta:
+        abstract = True
         ordering = ['firstname']
-        verbose_name = u'cliente'
-        verbose_name_plural = u'clientes'
 
     def __unicode__(self):
         return self.firstname + " " + self.lastname
     full_name = property(__unicode__)
 
-    # clica no cliente e retorna as vendas dele
+
+class Customer(Person):
+    pass
+
+    class Meta:
+        verbose_name = u'cliente'
+        verbose_name_plural = u'clientes'
+
+    # clica na pessoa e retorna as vendas dela
     def get_sale_customer_url(self):
         return u"/sale/?customer=%i" % self.id
 
-    # vendas por cliente
+    # vendas por pessoa
     def get_sales_count(self):
         return self.customer_sale.count()
+
+
+class Seller(Person):
+    active = models.BooleanField(_('ativo'), default=True)
+    internal = models.BooleanField(_('interno'), default=True)
+    commissioned = models.BooleanField(_('comissionado'), default=True)
+    commission = models.DecimalField(
+        _(u'comissão'), max_digits=6, decimal_places=2, default=0.01)
+
+    class Meta:
+        verbose_name = u'vendedor'
+        verbose_name_plural = u'vendedores'
 
 
 class Brand(models.Model):
@@ -54,6 +75,7 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, verbose_name=_('marca'))
     product = models.CharField(_('Produto'), max_length=60, unique=True)
     price = models.DecimalField(_(u'Preço'), max_digits=6, decimal_places=2)
+    ipi = models.DecimalField(_(u'IPI'), max_digits=3, decimal_places=2)
     stoq = models.IntegerField(_('Estoque atual'))
     stoq_min = models.PositiveIntegerField(_(u'Estoque mínimo'), default=0)
 
@@ -71,7 +93,9 @@ class Product(models.Model):
 
 class Sale(models.Model):
     customer = models.ForeignKey(
-        Customer, related_name='customer_sale', verbose_name=_('cliente'))
+        'Customer', related_name='customer_sale', verbose_name=_('cliente'))
+    seller = models.ForeignKey(
+        'Seller', related_name='seller_sale', verbose_name=_('vendedor'))
     date_sale = models.DateTimeField(
         _('Data da venda'), auto_now_add=True, auto_now=False)
     modified_at = models.DateTimeField(
@@ -105,6 +129,8 @@ class SaleDetail(models.Model):
     quantity = models.PositiveSmallIntegerField(_('quantidade'))
     price_sale = models.DecimalField(
         _(u'Preço de venda'), max_digits=6, decimal_places=2, default=0)
+    ipi_sale = models.DecimalField(
+        _(u'IPI'), max_digits=3, decimal_places=2, default=0.1)
     subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def save(self, *args, **kwargs):

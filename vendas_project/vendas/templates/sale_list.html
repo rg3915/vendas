@@ -3,15 +3,24 @@
 {% block content %}
 	<h1>Lista de Vendas</h1>
 
-		<div class="pull-right">
-			<p name="filter_sale_zero"><a href="?filter_sale_zero=1">Vendas sem itens</a></p>			
-			<p name="filter_sale_one"><a href="?filter_sale_one=1">Vendas com um item</a></p>			
+    <form class="navbar-form navbar-right" action="." method="get">
+        <!-- add -->
+        <a href="{% url 'sale_create' %}">
+            <button id="new_sale" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span> Adicionar
+            </button>
+        </a>
+        <!-- search form -->
+        <input id="search_box" name="search_box" type="text" placeholder="Localizar..." class="form-control">
+        <button type="submit" class="btn btn-success form-control"><span class="glyphicon glyphicon-search"></span></button>
+		
+		<div class="text-right">
+		<p>
+			<spam name="filter_sale_zero"><a href="?filter_sale_zero=1">Vendas sem itens</a></spam>
+			<spam name="filter_sale_one"><a href="?filter_sale_one=1">Vendas com um item</a></spam>
+		</p>
 		</div>
-
-			<button id="new_sale" type="button" class="btn btn-default">
-				<span class="glyphicon glyphicon-plus"></span>
-				<a href="{% url 'sale_create' %}"> Nova venda</a>
-			</button>
+	</form>
 
 		<div>
 			<table class="table">

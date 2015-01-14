@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from django.db.models import F
 from django.db.models import Count
-from .models import Customer, Brand, Product, Sale, SaleDetail
+from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
 
 
 class Index(TemplateView):
@@ -23,6 +23,18 @@ class CustomerList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CustomerList, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
+
+
+class SellerList(ListView):
+    template_name = 'seller_list.html'
+    model = Seller
+    context_object = 'seller_list'
+    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super(SellerList, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
 
