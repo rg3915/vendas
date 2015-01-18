@@ -18,5 +18,4 @@ urlpatterns = patterns(
     url(r'^sale/(?P<pk>\d+)/$', SaleDetailView.as_view(), name='sale_detail'),
     url(r'^seller/$', SellerList.as_view(), name='seller_list'),
     url(r'^about/$', About.as_view(), name='about'),
-    url(r'^search/$', CustomerSearch.as_view(), name='search'),
 )

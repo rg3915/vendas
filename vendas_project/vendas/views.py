@@ -26,6 +26,14 @@ class CustomerList(ListView):
         context['count'] = self.get_queryset().count()
         return context
 
+    def get_queryset(self):
+        cObj = Customer.objects.all()
+        var_get_search = self.request.GET.get('search_box')
+        # buscar por nome
+        if var_get_search is not None:
+            cObj = cObj.filter(firstname__icontains=var_get_search)
+        return cObj
+
 
 class SellerList(ListView):
     template_name = 'seller_list.html'
@@ -37,6 +45,14 @@ class SellerList(ListView):
         context = super(SellerList, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
+
+    def get_queryset(self):
+        s = Seller.objects.all()
+        var_get_search = self.request.GET.get('search_box')
+        # buscar por nome
+        if var_get_search is not None:
+            s = s.filter(firstname__icontains=var_get_search)
+        return s
 
 
 class BrandList(ListView):
@@ -71,7 +87,7 @@ class ProductList(ListView):
             cObj = cObj.filter(product__icontains=var_get_search)
         # filtra produtos em baixo estoque
         if self.request.GET.get('filter_link', False):
-            cObj = cObj.filter(stoq__lt=F('stoq_min'))
+            cObj = cObj.filter(stock__lt=F('stock_min'))
 
         return cObj
 
@@ -98,6 +114,9 @@ class SaleList(ListView):
         # clica no cliente e retorna as vendas dele
         if 'customer' in self.request.GET:
             qs = qs.filter(customer=self.request.GET['customer'])
+        # clica no vendedor e retorna as vendas dele
+        if 'seller' in self.request.GET:
+            qs = qs.filter(seller=self.request.GET['seller'])
         # filtra vendas com zero item
         if 'filter_sale_zero' in self.request.GET:
             qs = Sale.objects.annotate(
@@ -121,28 +140,3 @@ class SaleDetailView(TemplateView):
         context['Sale'] = Objvenda
         context['Itens'] = ItensVenda
         return context
-
-
-class CustomerSearch(ListView):
-    template_name = 'search.html'
-    model = Customer
-    context_object_name = 'lista'
-    paginate_by = 8
-
-    def get_context_data(self, **kwargs):
-        context = super(CustomerSearch, self).get_context_data(**kwargs)
-        context['count'] = self.get_queryset().count()
-        return context
-
-    def get_queryset(self):
-        cObj = Customer.objects.all()
-        var_get_search = self.request.GET.get('search_box')
-        var_get_order_by = self.request.GET.get('order')
-        # buscar por nome
-        if var_get_search is not None:
-            cObj = cObj.filter(firstname__icontains=var_get_search)
-
-        if var_get_order_by is not None:
-            cObj = cObj.order_by(var_get_order_by)
-
-        return cObj

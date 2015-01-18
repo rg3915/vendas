@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Lista de Vendas</h1>
 
     <form class="navbar-form navbar-right" action="." method="get">
         <!-- add -->
@@ -22,15 +21,18 @@
 		</div>
 	</form>
 
+	<h1>Lista de Vendas</h1>
+
 		<div>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>Código</th>
 						<th>Cliente</th>
-						<th>Data da venda</th>
+						<th class="text-center">Data da venda</th>
 						<th class="text-center">Itens</th>
 						<th class="text-right">Total</th>
+						<th>Vendedor</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,11 +44,12 @@
 					{% else %}
 						<tr>
 					{% endif %}
-							<td>{{ sale.codigo }}</td>
-							<td><a href="{{ sale.get_detalhe }}">{{ sale.customer }}</a></td>
-							<td>{{ sale.date_sale }}</td>
+							<td><a href="{{ sale.get_detalhe }}">{{ sale.codigo }}</a></td>
+							<td>{{ sale.customer }}</td>
+							<td class="text-center">{{ sale.date_sale|date:"d/m/Y" }}</td>
 							<td class="text-center">{{ sale.get_itens }}</td>
 							<td class="text-right">{{ sale.get_total }}</td>
+							<td>{{ sale.seller }}</td>
 						</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

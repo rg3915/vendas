@@ -53,7 +53,14 @@ Para gerar **vendas.png** use a biblioteca [django-extensions][1] junto com
 
 ou
 
-	$ ./manage.py graph_models -e -g -l dot -o vendas.png Vendas
+	$ ./manage.py graph_models -e -g -l dot -o vendas.png vendas
+
+Se der **erro**, instale *pyparsing* novamente desta forma:
+
+	$ pip uninstall pyparsing
+	$ pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsing-1.5.7.tar.gz#md5=9be0fcdcc595199c646ab317c1d9a709
+	$ pip install pydot
+	$ pip freeze > requirements.txt
 
 ![a](modelagem/vendas.png)
 

@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Venda</h1>
+	<h1><b>Venda:</b> {{ Sale.codigo }}</h1>
 	
-	<div>
+	<h2>
+		<b>Cliente:</b> {{ Sale.customer }}
+		<spam class="pull-right"><b>Vendedor:</b> {{ Sale.seller }}</spam>	
+	</h2>
+
 		<p><b>Data:</b> {{ Sale.date_sale }}</p>
-		<h2><b>Cliente:</b> {{ Sale.customer }}</h2>
 		<div>
 			<table class="table">
 				<thead>
@@ -36,6 +39,7 @@
 		<hr>
 
 		<h3 class="text-right"><b>Total:</b> <span class="label label-info">{{ Sale.get_total }}</span></h3>
+		<!-- <p class="text-right">Obs: IPI não calculado.</p> -->
 		<p>
 			<a href="{% url 'sale_list' %}"><span class="glyphicon glyphicon-chevron-left">Voltar</span></a>
 		</p>

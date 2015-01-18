@@ -2,6 +2,7 @@
 import random
 import rstr
 import datetime
+from decimal import Decimal
 
 
 def gen_age():
@@ -14,6 +15,10 @@ def gen_cpf():
     return rstr.rstr('1234567890', 11)
 
 
+def gen_ncm():
+    return rstr.rstr('123456789', 8)
+
+
 def gen_phone():
     # gera um telefone no formato (xx) xxxx-xxxx
     return '({0}) {1}-{2}'.format(
@@ -22,9 +27,9 @@ def gen_phone():
         rstr.rstr('1234567890', 4))
 
 
-def gen_timestamp():
+def gen_timestamp(min_year=1980, max_year=1996):
     # gera um datetime no formato yyyy-mm-dd hh:mm:ss.000000
-    year = random.randint(1980, 1996)
+    year = random.randint(min_year, max_year)
     month = random.randint(11, 12)
     day = random.randint(1, 28)
     hour = random.randint(1, 23)
@@ -36,8 +41,18 @@ def gen_timestamp():
     return date
 
 
-def generate_price():
-    return '{0}.{1}'.format(rstr.rstr('1234567890', 2, 3), rstr.rstr('1234567890', 2))
+def gen_decimal(max_digits, decimal_places):
+    num_as_str = lambda x: ''.join(
+        [str(random.randint(0, 9)) for i in range(x)])
+    return Decimal("%s.%s" % (num_as_str(max_digits - decimal_places),
+                              num_as_str(decimal_places)))
+gen_decimal.required = ['max_digits', 'decimal_places']
+
+
+def gen_ipi():
+    num_as_str = lambda x: ''.join(
+        [str(random.randint(0, 9)) for i in range(x)])
+    return Decimal("0.%s" % (num_as_str(2)))
 
 
 def gen_city():

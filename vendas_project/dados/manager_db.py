@@ -3,7 +3,7 @@
 """
     Este App gerencia um banco de dados sqlite3.
     Pode-se usar o modo interativo com python2.
-    
+
     Popula as tabelas do banco de dados com valores randômicos.
     Banco de dados: 'db.sqlite3'
     Tabelas: 'vendas_brand',
@@ -18,12 +18,14 @@ import io
 import sqlite3
 import random
 import datetime
-import names    # gera nomes randomicos, only python <= 3.3
+import names    # gera nomes randomicos
 import rstr     # gera strings randomicas
-from gen_random_values import gen_timestamp
+from decimal import Decimal
+from gen_random_values import gen_cpf, gen_ncm, gen_phone, gen_decimal, gen_ipi, gen_timestamp
 
-qcustomers = 50
-qproducts = 100
+qcustomers = 60
+qsellers = 20
+qproducts = 1645  # 100
 qsales = 300
 qsaledetails = 1200
 
@@ -73,28 +75,19 @@ class VendasDb(object):
             print("Aviso: A marca deve ser única.")
             return False
 
-    def generate_cpf(self):
-        return rstr.rstr('1234567890', 11)
-
-    def generate_phone(self):
-        return '({0}) {1}-{2}'.format(
-            rstr.rstr('1234567890', 2),
-            rstr.rstr('1234567890', 4),
-            rstr.rstr('1234567890', 4))
-
     def insert_random_customer(self, repeat=qcustomers):
-        ''' Inserir registros com valores randomicos
-        names só funciona no python <= 3.3 '''
+        ''' Inserir registros com valores randomicos '''
 
         customer_list = []
         for _ in range(repeat):
-            d = datetime.datetime.now().isoformat(" ")
+            # d = datetime.datetime.now().isoformat(" ")
+            d = gen_timestamp(2014, 2015) + '+00'
             fname = names.get_first_name()
             lname = names.get_last_name()
             email = fname[0].lower() + '.' + lname.lower() + '@example.com'
             birthday = gen_timestamp() + '+00'
             customer_list.append(
-                (self.generate_cpf(), fname, lname, email, self.generate_phone(), birthday, d, d))
+                (gen_cpf(), fname, lname, email, gen_phone(), birthday, d, d))
         try:
             self.db.cursor.executemany("""
             INSERT INTO vendas_customer (cpf, firstname, lastname, email, phone, birthday, created_at, modified_at)
@@ -107,33 +100,71 @@ class VendasDb(object):
             print("Aviso: O email deve ser único.")
             return False
 
-    def generate_ncm(self):
-        return rstr.rstr('123456789', 8)
+    def insert_random_seller(self, repeat=qsellers):
+        ''' Inserir registros com valores randomicos '''
 
-    def generate_price(self):
-        return '{0}.{1}'.format(rstr.rstr('1234567890', 2, 3), rstr.rstr('1234567890', 2))
+        seller_list = []
+        for _ in range(repeat):
+            d = gen_timestamp(2014, 2015) + '+00'
+            fname = names.get_first_name()
+            lname = names.get_last_name()
+            email = fname[0].lower() + '.' + lname.lower() + '@example.com'
+            birthday = gen_timestamp() + '+00'
+            active = rstr.rstr('01', 1)
+            internal = rstr.rstr('01', 1)
+            commissioned = rstr.rstr('01', 1)
+            commission = 0.01
+            seller_list.append(
+                (gen_cpf(), fname, lname, email, gen_phone(), birthday, active, internal, commissioned, commission, d, d))
+        try:
+            self.db.cursor.executemany("""
+            INSERT INTO vendas_seller (cpf, firstname, lastname, email, phone, birthday, active, internal, commissioned, commission, created_at, modified_at)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+            """, seller_list)
+            self.db.commit_db()
+            print("Inserindo %s registros na tabela vendas_seller." % repeat)
+            print("Registros criados com sucesso.")
+        except sqlite3.IntegrityError:
+            print("Aviso: O email deve ser único.")
+            return False
 
     def insert_random_product(self, repeat=qproducts):
         product_list = []
         for i in range(repeat):
             imported = rstr.rstr('01', 1)
-            outofline = rstr.rstr('01', 1)
-            ncm = self.generate_ncm()
+            # escolha personalizada de produtos fora de linha
+            if i % 26 == 0:
+                if i > 0:
+                    outofline = '1'
+                else:
+                    outofline = '0'
+            else:
+                outofline = '0'
+
+            ncm = gen_ncm()
             brand = random.randint(1, 20)
-            price = self.generate_price()
-            stoq = random.randint(1, 999)
-            stoq_min = random.randint(1, 20)
+            price = float(gen_decimal(4, 2))
+
+            ipi = 0
+
+            if imported == '1':
+                ipi = float(gen_ipi())
+                if ipi > 0.5:
+                    ipi = ipi - 0.5
+
+            stock = random.randint(1, 999)
+            stock_min = random.randint(1, 20)
 
             f = io.open('products.txt', 'rt', encoding='utf-8')
             linelist = f.readlines()
 
             product = linelist[i].split(',')[0]
             product_list.append(
-                (imported, outofline, ncm, brand, product, price, stoq, stoq_min))
+                (imported, outofline, ncm, brand, product, price, ipi, stock, stock_min))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_product (imported, outofline, ncm, brand_id, product, price, stoq, stoq_min)
-            VALUES (?,?,?,?,?,?,?,?)
+            INSERT INTO vendas_product (imported, outofline, ncm, brand_id, product, price, ipi, stock, stock_min)
+            VALUES (?,?,?,?,?,?,?,?,?)
             """, product_list)
             self.db.commit_db()
             print("Inserindo %s registros na tabela vendas_product." % repeat)
@@ -146,13 +177,14 @@ class VendasDb(object):
 
         sale_list = []
         for _ in range(repeat):
-            d = datetime.datetime.now().isoformat(" ")
+            d = gen_timestamp(2014, 2015) + '+00'
             customer = random.randint(1, qcustomers)
-            sale_list.append((customer, d, d))
+            seller = random.randint(1, qsellers)
+            sale_list.append((customer, seller, d, d))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_sale (customer_id, date_sale, modified_at)
-            VALUES (?,?,?)
+            INSERT INTO vendas_sale (customer_id, seller_id, date_sale, modified_at)
+            VALUES (?,?,?,?)
             """, sale_list)
             self.db.commit_db()
             print("Inserindo %s registros na tabela vendas_sale." % repeat)
@@ -168,18 +200,20 @@ class VendasDb(object):
             product = random.randint(1, qproducts)
             quantity = random.randint(1, 50)
 
-            # find price of product
+            # find price and ipi of product
             r = self.db.cursor.execute(
-                'SELECT price FROM vendas_product WHERE id = ?', (product,))
-            price = r.fetchone()[0]
+                'SELECT price, ipi FROM vendas_product WHERE id = ?', (product,))
+            v = r.fetchall()[0]
+            price = v[0]
+            ipi = v[1]
 
             subtotal = quantity * float(price)
             saledetail_list.append(
-                (sale, product, quantity, price, subtotal))
+                (sale, product, quantity, price, ipi, subtotal))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_saledetail (sale_id, product_id, quantity, price_sale, subtotal)
-            VALUES (?,?,?,?,?)
+            INSERT INTO vendas_saledetail (sale_id, product_id, quantity, price_sale, ipi_sale, subtotal)
+            VALUES (?,?,?,?,?,?)
             """, saledetail_list)
             self.db.commit_db()
             print("Inserindo %s registros na tabela vendas_saledetail." %
@@ -194,8 +228,9 @@ class VendasDb(object):
 if __name__ == '__main__':
     v = VendasDb()
     v.insert_for_file()
-    v.insert_random_customer(60)
-    v.insert_random_product(1645)
+    v.insert_random_customer()
+    v.insert_random_seller()
+    v.insert_random_product()  # 100
     v.insert_random_sale()
     v.insert_random_saledetail()
     v.close_connection()

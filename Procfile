@@ -1,1 +1,0 @@
-web: gunicorn vendas_project.wsgi

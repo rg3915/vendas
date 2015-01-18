@@ -16,13 +16,14 @@ class SellerAdmin(admin.ModelAdmin):
                     'phone', 'created_at', 'commissioned', 'active')
     date_hierarchy = 'created_at'
     search_fields = ('firstname', 'lastname')
-    list_filter = ('active', 'internal', 'commissioned')
+    list_filter = ('internal', 'commissioned', 'active')
 
 
 class ProductAdmin(admin.ModelAdmin):
     ordering = ['product']
-    list_display = ('product', 'brand', 'price')
-    list_filter = ('brand',)
+    list_display = (
+        'ncm', 'imported', 'product', 'brand', 'get_price', 'outofline')
+    list_filter = ('outofline', 'brand',)
     search_fields = ('product',)
 
 

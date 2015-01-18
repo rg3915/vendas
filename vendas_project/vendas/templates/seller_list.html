@@ -1,30 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <form class="navbar-form navbar-right" action="." method="get">
+        <!-- search form -->
+        <input id="search_box" name="search_box" type="text" placeholder="Localizar..." class="form-control">
+        <button type="submit" class="btn btn-success form-control"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+
 	<h1>Lista de Vendedores <font size="3">(Nomes fictícios)</font></h1>
 	
 		<div>
 			<table class="table">
 				<thead>
 					<tr>
+						<th class="text-center">Interno</th>
 						<th>Nome</th>
-						<th>Interno</th>
 						<th>CPF</th>
 						<th>Email</th>
 						<th>Fone</th>
-						<th>Nascimento</th>
 						<th class="text-center">Vendas</th>
 					</tr>
 				</thead>
 				<tbody>
 				{% for seller in object_list %}
 					<tr>
-						<td><a href="{{ seller.get_sale_seller_url }}">{{ seller.full_name }}</a></td>
-						<td>{{ seller.internal }}</td>
+						<td class="text-center">
+							{% if seller.internal %}
+								<span class="glyphicon glyphicon-ok-sign" style="color: #44AD41"></span>
+							{% else %}
+								<span class="glyphicon glyphicon-minus-sign" style="color: #DE2121"></span>
+							{% endif %}
+						</td>
+						<td><a href="{{ seller.get_sale_url }}">{{ seller.full_name }}</a></td>
 						<td>{{ seller.cpf }}</td>
 						<td>{{ seller.email }}</td>
 						<td>{{ seller.phone }}</td>
-						<td>{{ seller.birthday }}</td>
 						<td class="text-center">{{ seller.get_sales_count }}</td>
 					</tr>
 				{% empty %}

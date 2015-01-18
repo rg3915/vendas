@@ -49,11 +49,19 @@ class Seller(Person):
     internal = models.BooleanField(_('interno'), default=True)
     commissioned = models.BooleanField(_('comissionado'), default=True)
     commission = models.DecimalField(
-        _(u'comissão'), max_digits=6, decimal_places=2, default=0.01)
+        _(u'comissão'), max_digits=6, decimal_places=2, default=0.01, blank=True)
 
     class Meta:
         verbose_name = u'vendedor'
         verbose_name_plural = u'vendedores'
+
+    # clica na pessoa e retorna as vendas dela
+    def get_sale_url(self):
+        return u"/sale/?seller=%i" % self.id
+
+    # vendas por pessoa
+    def get_sales_count(self):
+        return self.seller_sale.count()
 
 
 class Brand(models.Model):
@@ -71,13 +79,14 @@ class Brand(models.Model):
 class Product(models.Model):
     imported = models.BooleanField(_('Importado'), default=False)
     outofline = models.BooleanField(_('Fora de linha'), default=False)
-    ncm = models.CharField(max_length=8)
+    ncm = models.CharField(_('NCM'), max_length=8)
     brand = models.ForeignKey(Brand, verbose_name=_('marca'))
     product = models.CharField(_('Produto'), max_length=60, unique=True)
     price = models.DecimalField(_(u'Preço'), max_digits=6, decimal_places=2)
-    ipi = models.DecimalField(_(u'IPI'), max_digits=3, decimal_places=2)
-    stoq = models.IntegerField(_('Estoque atual'))
-    stoq_min = models.PositiveIntegerField(_(u'Estoque mínimo'), default=0)
+    ipi = models.DecimalField(
+        _('IPI'), max_digits=3, decimal_places=2, blank=True)
+    stock = models.IntegerField(_('Estoque atual'))
+    stock_min = models.PositiveIntegerField(_(u'Estoque mínimo'), default=0)
 
     class Meta:
         ordering = ['product']
@@ -89,6 +98,9 @@ class Product(models.Model):
 
     def get_price(self):
         return u"R$ %s" % number_format(self.price, 2)
+
+    def get_ipi(self):
+        return u"%s" % number_format(self.ipi * 100, 0)
 
 
 class Sale(models.Model):
@@ -145,6 +157,9 @@ class SaleDetail(models.Model):
 
     def price_sale_formated(self):
         return u"R$ %s" % number_format(self.price_sale, 2)
+
+    def get_ipi(self):
+        return u"%s" % number_format(self.ipi_sale * 100, 0)
 
     def subtotal_formated(self):
         return u"R$ %s" % number_format(self.subtotal, 2)
