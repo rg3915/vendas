@@ -7,3 +7,14 @@ install:
 
 mer:
 	./manage.py graph_models -e -g -l dot -o modelagem/vendas.png vendas
+
+heroku:
+	git push heroku master
+
+herokumigrate:
+	heroku run ./manage.py migrate
+
+herokureset:
+	heroku pg:reset DATABASE
+	heroku run ./manage.py syncdb --noinput
+	heroku run ./manage.py loaddata vendas_project/dados/fixtures_bkp.json	
