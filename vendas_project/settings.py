@@ -70,3 +70,10 @@ USE_THOUSAND_SEPARATOR = True
 # Static files (CSS, JavaScript, Images)
 STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = (
+    BASE_DIR.child('templates_admin'),
+)
+
+print(BASE_DIR)
+print(TEMPLATE_DIRS)
