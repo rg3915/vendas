@@ -96,6 +96,16 @@ class Product(models.Model):
     def __unicode__(self):
         return self.product
 
+    def to_dict_json(self):
+        return {
+            'id': self.id,
+            'outofline': self.outofline,
+            'ncm': self.ncm,
+            'product': self.product,
+            'price': float(self.price),
+            'ipi': float(self.ipi),
+        }
+
     def get_price(self):
         return u"R$ %s" % number_format(self.price, 2)
 

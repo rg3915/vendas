@@ -31,7 +31,7 @@
 
 
 
-  <body>
+  <body ng-app="base">
   
 
     <!-- MENU -->
@@ -75,5 +75,19 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+
+    <script>
+      if(!window.Global){
+        window.Global = [];
+      }
+      Global.angular_dependencies = {% block angulardependencies %}[]{% endblock angulardependencies %};
+    </script>
+
+    <script src="{{ STATIC_URL }}js/app/base.js"></script>
+    <script src="{{ STATIC_URL }}js/app/vendas.js"></script>
+    <script src="{{ STATIC_URL }}js/app/api.js"></script>
+
+
   </body>
 </html>
