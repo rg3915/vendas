@@ -34,7 +34,7 @@ Inicialmente eu quero explorar as bibliotecas do [class based views][2] como [Te
 	./manage.py loaddata fixtures_bkp.json
 	./manage.py runserver
 
-http://localhost:8000/
+[http://localhost:8000/][http://localhost:8000/]
 
 
 # Modelo
