@@ -34,7 +34,7 @@ Inicialmente eu quero explorar as bibliotecas do [class based views][2] como [Te
 	./manage.py loaddata fixtures_bkp.json
 	./manage.py runserver
 
-[http://localhost:8000/][http://localhost:8000/]
+[http://localhost:8000/][14]
 
 
 # Modelo
@@ -97,3 +97,4 @@ Veja o [live demo][13].
 [11]: http://grandeportal.blogspot.com.br/2012/06/editando-imagens-no-imagemagick.html
 [12]: http://perso.ensta-paristech.fr/~kielbasi/tikzuml/index.php?lang=en
 [13]: http://rg-vendas.herokuapp.com/
+[14]: http://localhost:8000/
