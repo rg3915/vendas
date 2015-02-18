@@ -20,6 +20,23 @@ Explorar todos os recursos do [Django][0] junto com todas as possibilidades de r
 
 Inicialmente eu quero explorar as bibliotecas do [class based views][2] como [TemplateView][3], [ListView][4] e [FormView][5].
 
+# Baixando e rodando a app
+
+	$ git clone https://github.com/rg3915/vendas.git
+	virtualenv -p /usr/bin/python3 vendas
+	cd vendas
+	source bin/activate
+	PS1="(`basename \"$VIRTUAL_ENV\"`):/\W$ " # opcional
+	pip install -r requeriments.txt
+	./manage.py makemigrations vendas
+	./manage.py migrate
+	./manage.py createsuperuser
+	./manage.py loaddata fixtures_bkp.json
+	./manage.py runserver
+
+http://localhost:8000/
+
+
 # Modelo
 
 **mer.tex** é a modelagem conceitual (coloquei apenas as entidades). Para fazer este documento eu usei o [LaTeX][9] junto com o pacote [tikz-er2][10].

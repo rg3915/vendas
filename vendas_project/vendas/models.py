@@ -23,9 +23,9 @@ class Person(models.Model):
         abstract = True
         ordering = ['firstname']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.firstname + " " + self.lastname
-    full_name = property(__unicode__)
+    full_name = property(__str__)
 
 
 class Customer(Person):
@@ -35,7 +35,11 @@ class Customer(Person):
         verbose_name = u'cliente'
         verbose_name_plural = u'clientes'
 
-    # clica na pessoa e retorna as vendas dela
+    # clica na pessoa e retorna os detalhes dela
+    def get_customer_url(self):
+        return u"/customers/%i" % self.id
+
+    # clica em vendas e retorna as vendas da pessoa
     def get_sale_customer_url(self):
         return u"/sale/?customer=%i" % self.id
 
@@ -55,13 +59,20 @@ class Seller(Person):
         verbose_name = u'vendedor'
         verbose_name_plural = u'vendedores'
 
-    # clica na pessoa e retorna as vendas dela
-    def get_sale_url(self):
+    # clica no vendedor e retorna os detalhes dele
+    def get_seller_url(self):
+        return u"/sellers/%i" % self.id
+
+    # clica em vendas e retorna as vendas do vendedor
+    def get_sale_seller_url(self):
         return u"/sale/?seller=%i" % self.id
 
     # vendas por pessoa
     def get_sales_count(self):
         return self.seller_sale.count()
+
+    def get_commission(self):
+        return u"%s" % number_format(self.commission * 100, 0)
 
 
 class Brand(models.Model):
@@ -72,7 +83,7 @@ class Brand(models.Model):
         verbose_name = u'marca'
         verbose_name_plural = u'marcas'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.brand
 
 
@@ -93,18 +104,8 @@ class Product(models.Model):
         verbose_name = u'produto'
         verbose_name_plural = u'produtos'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.product
-
-    def to_dict_json(self):
-        return {
-            'id': self.id,
-            'outofline': self.outofline,
-            'ncm': self.ncm,
-            'product': self.product,
-            'price': float(self.price),
-            'ipi': float(self.ipi),
-        }
 
     def get_price(self):
         return u"R$ %s" % number_format(self.price, 2)
@@ -127,9 +128,9 @@ class Sale(models.Model):
         verbose_name = u'venda'
         verbose_name_plural = u'vendas'
 
-    def __unicode__(self):
+    def __str__(self):
         return u"%03d" % self.id + u"/%s" % self.date_sale.strftime('%y')
-    codigo = property(__unicode__)
+    codigo = property(__str__)
 
     def get_detalhe(self):
         return u"/sale/%i" % self.id
@@ -159,8 +160,8 @@ class SaleDetail(models.Model):
         self.subtotal = self.quantity or 0 * self.price_sale or 0.00
         super(SaleDetail, self).save(*args, **kwargs)
 
-    def __unicode__(self):
-        return unicode(self.sale)
+    def __str__(self):
+        return str(self.sale)
 
     def getID(self):
         return u"%04d" % self.id

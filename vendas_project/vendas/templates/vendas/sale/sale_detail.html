@@ -4,8 +4,8 @@
 	<h1><b>Venda:</b> {{ Sale.codigo }}</h1>
 	
 	<h2>
-		<b>Cliente:</b> {{ Sale.customer }}
-		<spam class="pull-right"><b>Vendedor:</b> {{ Sale.seller }}</spam>	
+		<b>Cliente:</b> {{ Sale.customer.full_name }}
+		<spam class="pull-right"><b>Vendedor:</b> {{ Sale.seller.full_name }}</spam>	
 	</h2>
 
 		<p><b>Data:</b> {{ Sale.date_sale }}</p>
@@ -24,7 +24,7 @@
 				{% for item in Itens %}
 					<tr>
 						<td>{{ item.product.ncm }} </td>
-						<td>{{ item.product }}</a></td>
+						<td>{{ item.product.product }}</a></td>
 						<td class="text-center">{{ item.quantity }}</td>
 						<td class="text-right">{{ item.price_sale_formated }}</td>
 						<td class="text-right">{{ item.subtotal_formated }}</td>

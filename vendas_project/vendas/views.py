@@ -16,7 +16,7 @@ class About(TemplateView):
 
 
 class CustomerList(ListView):
-    template_name = 'customer_list.html'
+    template_name = 'vendas/person/customer_list.html'
     model = Customer
     context_object = 'customer_list'
     paginate_by = 8
@@ -35,8 +35,18 @@ class CustomerList(ListView):
         return cObj
 
 
+class CustomerDetail(DetailView):
+    template_name = 'vendas/person/customer_detail.html'
+    model = Customer
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomerDetail, self).get_context_data(**kwargs)
+        customer = Customer.objects.get(pk=self.kwargs['pk'])
+        return context
+
+
 class SellerList(ListView):
-    template_name = 'seller_list.html'
+    template_name = 'vendas/person/seller_list.html'
     model = Seller
     context_object = 'seller_list'
     paginate_by = 8
@@ -55,8 +65,18 @@ class SellerList(ListView):
         return s
 
 
+class SellerDetail(DetailView):
+    template_name = 'vendas/person/seller_detail.html'
+    model = Seller
+
+    def get_context_data(self, **kwargs):
+        context = super(SellerDetail, self).get_context_data(**kwargs)
+        seller = Seller.objects.get(pk=self.kwargs['pk'])
+        return context
+
+
 class BrandList(ListView):
-    template_name = 'brand_list.html'
+    template_name = 'vendas/product/brand_list.html'
     model = Brand
     context_object = 'brand_list'
     paginate_by = 10
@@ -68,7 +88,7 @@ class BrandList(ListView):
 
 
 class ProductList(ListView):
-    template_name = 'product_list.html'
+    template_name = 'vendas/product/product_list.html'
     model = Product
     context_object = 'product_list'
     paginate_by = 100
@@ -99,7 +119,7 @@ class SaleCreate(CreateView):
 
 
 class SaleList(ListView):
-    template_name = 'sale_list.html'
+    template_name = 'vendas/sale/sale_list.html'
     model = Sale
     context_object = 'sale_list'
     paginate_by = 20
@@ -129,7 +149,7 @@ class SaleList(ListView):
 
 
 class SaleDetailView(TemplateView):
-    template_name = 'sale_detail.html'
+    template_name = 'vendas/sale/sale_detail.html'
     model = Sale
 
     def get_context_data(self, **kwargs):

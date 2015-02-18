@@ -4,11 +4,11 @@
 
     <form class="navbar-form navbar-right" action="." method="get">
         <!-- add -->
-        <a href="{% url 'sale_create' %}">
+        <!-- <a href="#">
             <button id="new_sale" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus"></span> Adicionar
             </button>
-        </a>
+        </a> -->
         <!-- search form -->
         <input id="search_box" name="search_box" type="text" placeholder="Localizar..." class="form-control">
         <button type="submit" class="btn btn-success form-control"><span class="glyphicon glyphicon-search"></span></button>
@@ -45,11 +45,12 @@
 						<tr>
 					{% endif %}
 							<td><a href="{{ sale.get_detalhe }}">{{ sale.codigo }}</a></td>
-							<td>{{ sale.customer }}</td>
+							<td>{{ sale.customer.full_name }}</td>
 							<td class="text-center">{{ sale.date_sale|date:"d/m/Y" }}</td>
 							<td class="text-center">{{ sale.get_itens }}</td>
 							<td class="text-right">{{ sale.get_total }}</td>
-							<td>{{ sale.seller }}</td>
+							<td>{{ sale.seller.full_name }}</td>
+
 						</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

@@ -14,7 +14,8 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
 
-    <style type="text/css">
+    {% block css %}
+          <style type="text/css">
       /* Move down content because we have a fixed navbar that is 50px tall */
       body {
         padding-top: 50px;
@@ -22,16 +23,23 @@
         color: #5a5a5a;
       }
     </style>
+    {% endblock css %}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="/static/js/html5shiv.js"></script>
       <script src="/static/js/respond.min.js"></script>
     <![endif]-->
+
+    {% block js %}
+      
+    {% endblock js %}
+
   </head>
 
 
 
-  <body ng-app="base">
+  <!-- <body ng-app="base"> -->
+  <body>
   
 
     <!-- MENU -->

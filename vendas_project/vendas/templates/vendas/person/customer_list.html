@@ -32,12 +32,12 @@
 				<tbody>
 				{% for customer in object_list %}
 					<tr>
-						<td><a href="{{ customer.get_sale_customer_url }}">{{ customer.full_name }}</a></td>
+						<td><a href="{{ customer.get_customer_url }}">{{ customer.full_name }}</a></td>
 						<td>{{ customer.cpf }}</td>
 						<td>{{ customer.email }}</td>
 						<td>{{ customer.phone }}</td>
 						<td class="text-center">{{ customer.birthday|date:"d/m/Y" }}</td>
-						<td class="text-center">{{ customer.get_sales_count }}</td>
+						<td class="text-center"><a href="{{ customer.get_sale_customer_url }}">{{ customer.get_sales_count }}</a></td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>

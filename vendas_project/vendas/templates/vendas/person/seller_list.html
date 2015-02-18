@@ -31,11 +31,11 @@
 								<span class="glyphicon glyphicon-minus-sign" style="color: #DE2121"></span>
 							{% endif %}
 						</td>
-						<td><a href="{{ seller.get_sale_url }}">{{ seller.full_name }}</a></td>
+						<td><a href="{{ seller.get_seller_url }}">{{ seller.full_name }}</a></td>
 						<td>{{ seller.cpf }}</td>
 						<td>{{ seller.email }}</td>
 						<td>{{ seller.phone }}</td>
-						<td class="text-center">{{ seller.get_sales_count }}</td>
+						<td class="text-center"><a href="{{ seller.get_sale_seller_url }}">{{ seller.get_sales_count }}</a></td>
 					</tr>
 				{% empty %}
 					<p>Sem itens na lista.</p>
