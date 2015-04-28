@@ -113,7 +113,7 @@ class ProductList(ListView):
 
 
 class SaleCreate(CreateView):
-    template_name = 'sale_form.html'
+    template_name = 'vendas/sale/sale_form.html'
     model = Sale
     success_url = reverse_lazy('sale_list')
 
