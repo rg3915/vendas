@@ -15,16 +15,19 @@ class About(TemplateView):
     template_name = 'about.html'
 
 
-class CustomerList(ListView):
+class CounterMixin(object):
+
+    def get_context_data(self, **kwargs):
+        context = super(CounterMixin, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
+
+
+class CustomerList(CounterMixin, ListView):
     template_name = 'vendas/person/customer_list.html'
     model = Customer
     context_object = 'customer_list'
     paginate_by = 8
-
-    def get_context_data(self, **kwargs):
-        context = super(CustomerList, self).get_context_data(**kwargs)
-        context['count'] = self.get_queryset().count()
-        return context
 
     def get_queryset(self):
         cObj = Customer.objects.all()
@@ -45,16 +48,11 @@ class CustomerDetail(DetailView):
         return context
 
 
-class SellerList(ListView):
+class SellerList(CounterMixin, ListView):
     template_name = 'vendas/person/seller_list.html'
     model = Seller
     context_object = 'seller_list'
     paginate_by = 8
-
-    def get_context_data(self, **kwargs):
-        context = super(SellerList, self).get_context_data(**kwargs)
-        context['count'] = self.get_queryset().count()
-        return context
 
     def get_queryset(self):
         s = Seller.objects.all()
@@ -75,29 +73,18 @@ class SellerDetail(DetailView):
         return context
 
 
-class BrandList(ListView):
+class BrandList(CounterMixin, ListView):
     template_name = 'vendas/product/brand_list.html'
     model = Brand
     context_object = 'brand_list'
     paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        context = super(BrandList, self).get_context_data(**kwargs)
-        context['count'] = self.get_queryset().count()
-        return context
 
-
-class ProductList(ListView):
+class ProductList(CounterMixin, ListView):
     template_name = 'vendas/product/product_list.html'
     model = Product
     context_object = 'product_list'
     paginate_by = 100
-
-    def get_context_data(self, **kwargs):
-
-        context = super(ProductList, self).get_context_data(**kwargs)
-        context['count'] = self.get_queryset().count()
-        return context
 
     def get_queryset(self):
         cObj = Product.objects.all()
@@ -118,16 +105,11 @@ class SaleCreate(CreateView):
     success_url = reverse_lazy('sale_list')
 
 
-class SaleList(ListView):
+class SaleList(CounterMixin, ListView):
     template_name = 'vendas/sale/sale_list.html'
     model = Sale
     context_object = 'sale_list'
     paginate_by = 20
-
-    def get_context_data(self, **kwargs):
-        context = super(SaleList, self).get_context_data(**kwargs)
-        context['count'] = self.get_queryset().count()
-        return context
 
     def get_queryset(self):
         qs = super(SaleList, self).get_queryset()
