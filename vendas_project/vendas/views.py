@@ -153,10 +153,10 @@ class SaleDetailView(TemplateView):
     model = Sale
 
     def get_context_data(self, **kwargs):
-        Objvenda = Sale.objects.get(pk=self.kwargs['pk'])
-        ItensVenda = SaleDetail.objects.all().filter(sale=Objvenda)
+        s = Sale.objects.get(pk=self.kwargs['pk'])
+        sd = SaleDetail.objects.all().filter(sale=s)
         context = super(SaleDetailView, self).get_context_data(**kwargs)
-        context['count'] = ItensVenda.count()
-        context['Sale'] = Objvenda
-        context['Itens'] = ItensVenda
+        context['count'] = sd.count()
+        context['Sale'] = s
+        context['Itens'] = sd
         return context
