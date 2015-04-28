@@ -77,16 +77,15 @@ class ProductList(CounterMixin, ListView):
     paginate_by = 100
 
     def get_queryset(self):
-        cObj = Product.objects.all()
-        var_get_search = self.request.GET.get('search_box')
+        p = Product.objects.all()
+        q = self.request.GET.get('search_box')
         # buscar por produto
-        if var_get_search is not None:
-            cObj = cObj.filter(product__icontains=var_get_search)
+        if q is not None:
+            p = p.filter(product__icontains=q)
         # filtra produtos em baixo estoque
         if self.request.GET.get('filter_link', False):
-            cObj = cObj.filter(stock__lt=F('stock_min'))
-
-        return cObj
+            p = p.filter(stock__lt=F('stock_min'))
+        return p
 
 
 class SaleCreate(CreateView):
