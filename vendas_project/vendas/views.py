@@ -26,7 +26,6 @@ class CounterMixin(object):
 class CustomerList(CounterMixin, ListView):
     template_name = 'vendas/person/customer_list.html'
     model = Customer
-    context_object = 'customer_list'
     paginate_by = 8
 
     def get_queryset(self):
@@ -51,7 +50,6 @@ class CustomerDetail(DetailView):
 class SellerList(CounterMixin, ListView):
     template_name = 'vendas/person/seller_list.html'
     model = Seller
-    context_object = 'seller_list'
     paginate_by = 8
 
     def get_queryset(self):
@@ -76,14 +74,12 @@ class SellerDetail(DetailView):
 class BrandList(CounterMixin, ListView):
     template_name = 'vendas/product/brand_list.html'
     model = Brand
-    context_object = 'brand_list'
     paginate_by = 10
 
 
 class ProductList(CounterMixin, ListView):
     template_name = 'vendas/product/product_list.html'
     model = Product
-    context_object = 'product_list'
     paginate_by = 100
 
     def get_queryset(self):
@@ -108,7 +104,6 @@ class SaleCreate(CreateView):
 class SaleList(CounterMixin, ListView):
     template_name = 'vendas/sale/sale_list.html'
     model = Sale
-    context_object = 'sale_list'
     paginate_by = 20
 
     def get_queryset(self):
