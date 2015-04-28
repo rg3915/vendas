@@ -23,18 +23,20 @@ class CounterMixin(object):
         return context
 
 
-class CustomerList(CounterMixin, ListView):
+class FirstnameSearchMixin(object):
+
+    def get_queryset(self):
+        queryset = super(FirstnameSearchMixin, self).get_queryset()
+        q = self.request.GET.get('search_box')
+        if q:
+            return queryset.filter(firstname__icontains=q)
+        return queryset
+
+
+class CustomerList(CounterMixin, FirstnameSearchMixin, ListView):
     template_name = 'vendas/person/customer_list.html'
     model = Customer
     paginate_by = 8
-
-    def get_queryset(self):
-        cObj = Customer.objects.all()
-        var_get_search = self.request.GET.get('search_box')
-        # buscar por nome
-        if var_get_search is not None:
-            cObj = cObj.filter(firstname__icontains=var_get_search)
-        return cObj
 
 
 class CustomerDetail(DetailView):
@@ -47,18 +49,10 @@ class CustomerDetail(DetailView):
         return context
 
 
-class SellerList(CounterMixin, ListView):
+class SellerList(CounterMixin, FirstnameSearchMixin, ListView):
     template_name = 'vendas/person/seller_list.html'
     model = Seller
     paginate_by = 8
-
-    def get_queryset(self):
-        s = Seller.objects.all()
-        var_get_search = self.request.GET.get('search_box')
-        # buscar por nome
-        if var_get_search is not None:
-            s = s.filter(firstname__icontains=var_get_search)
-        return s
 
 
 class SellerDetail(DetailView):
