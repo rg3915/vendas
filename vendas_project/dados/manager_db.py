@@ -90,7 +90,7 @@ class VendasDb(object):
                 (gen_cpf(), fname, lname, email, gen_phone(), birthday, d, d))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_customer (cpf, firstname, lastname, email, phone, birthday, created_at, modified_at)
+            INSERT INTO vendas_customer (cpf, firstname, lastname, email, phone, birthday, created, modified)
             VALUES (?,?,?,?,?,?,?,?)
             """, customer_list)
             self.db.commit_db()
@@ -118,7 +118,7 @@ class VendasDb(object):
                 (gen_cpf(), fname, lname, email, gen_phone(), birthday, active, internal, commissioned, commission, d, d))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_seller (cpf, firstname, lastname, email, phone, birthday, active, internal, commissioned, commission, created_at, modified_at)
+            INSERT INTO vendas_seller (cpf, firstname, lastname, email, phone, birthday, active, internal, commissioned, commission, created, modified)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
             """, seller_list)
             self.db.commit_db()
@@ -183,7 +183,7 @@ class VendasDb(object):
             sale_list.append((customer, seller, d, d))
         try:
             self.db.cursor.executemany("""
-            INSERT INTO vendas_sale (customer_id, seller_id, date_sale, modified_at)
+            INSERT INTO vendas_sale (customer_id, seller_id, date_sale, modified)
             VALUES (?,?,?,?)
             """, sale_list)
             self.db.commit_db()
