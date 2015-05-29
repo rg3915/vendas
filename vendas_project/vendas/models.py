@@ -157,7 +157,7 @@ class SaleDetail(models.Model):
     def get_subtotal(self):
         return self.price_sale * self.quantity
 
-    subtotal = property(get_subtotal, default=0)
+    subtotal = property(get_subtotal)
 
     def getID(self):
         return u"%04d" % self.id
