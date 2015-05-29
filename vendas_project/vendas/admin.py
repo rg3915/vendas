@@ -6,15 +6,15 @@ from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'email', 'phone', 'created_at')
-    date_hierarchy = 'created_at'
+    list_display = ('__str__', 'email', 'phone', 'created')
+    date_hierarchy = 'created'
     search_fields = ('firstname', 'lastname')
 
 
 class SellerAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'internal', 'email',
-                    'phone', 'created_at', 'commissioned', 'active')
-    date_hierarchy = 'created_at'
+                    'phone', 'created', 'commissioned', 'active')
+    date_hierarchy = 'created'
     search_fields = ('firstname', 'lastname')
     list_filter = ('internal', 'commissioned', 'active')
 
@@ -35,9 +35,9 @@ class SaleDetailInline(admin.TabularInline):
 
 class SaleAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'customer', 'date_sale', 'get_itens', 'get_total')
+        '__str__', 'customer', 'created', 'get_itens', 'get_total')
     readonly_fields = ['get_total']
-    date_hierarchy = 'date_sale'
+    date_hierarchy = 'created'
     list_filter = ('customer',)
     inlines = [SaleDetailInline]
 
