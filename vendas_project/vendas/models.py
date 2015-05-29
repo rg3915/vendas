@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, F
 from django.utils.translation import ugettext_lazy as _
 from django.utils.formats import number_format
+from django_extensions.db.models import TimeStampedModel
 
 
-class Person(models.Model):
+class Person(TimeStampedModel):
 
     """ Person is abstract model """
     cpf = models.CharField(_('CPF'), max_length=11)
@@ -14,10 +15,6 @@ class Person(models.Model):
     email = models.EmailField(_('e-mail'), unique=True)
     phone = models.CharField(_('Fone'), max_length=18)
     birthday = models.DateTimeField(_('Nascimento'))
-    created_at = models.DateTimeField(
-        _('Criado em'), auto_now_add=True, auto_now=False)
-    modified_at = models.DateTimeField(
-        _('Modificado em'), auto_now_add=False, auto_now=True)
 
     class Meta:
         abstract = True
@@ -114,22 +111,20 @@ class Product(models.Model):
         return u"%s" % number_format(self.ipi * 100, 0)
 
 
-class Sale(models.Model):
+class Sale(TimeStampedModel):
     customer = models.ForeignKey(
         'Customer', related_name='customer_sale', verbose_name=_('cliente'))
     seller = models.ForeignKey(
         'Seller', related_name='seller_sale', verbose_name=_('vendedor'))
-    date_sale = models.DateTimeField(
-        _('Data da venda'), auto_now_add=True, auto_now=False)
-    modified_at = models.DateTimeField(
-        _('Modificado em'), auto_now_add=False, auto_now=True)
+    # date_sale = models.DateTimeField(_('Data da venda'), auto_now_add=True, auto_now=False)
+    # modified_at = models.DateTimeField(_('Modificado em'), auto_now_add=False, auto_now=True)
 
     class Meta:
         verbose_name = u'venda'
         verbose_name_plural = u'vendas'
 
     def __str__(self):
-        return u"%03d" % self.id + u"/%s" % self.date_sale.strftime('%y')
+        return u"%03d" % self.id + u"/%s" % self.created.strftime('%y')
     codigo = property(__str__)
 
     def get_detalhe(self):
@@ -140,9 +135,10 @@ class Sale(models.Model):
         return self.sales_det.count()
 
     def get_total(self):
-        s = self.sales_det.aggregate(
-            subtotal_sum=models.Sum('subtotal')).get('subtotal_sum') or 0
-        return u"R$ %s" % number_format(s, 2)
+        qs = self.sales_det.filter(sale=self.pk).values_list(
+            'price_sale', 'quantity') or 0
+        t = sum(map(lambda q: q[0] * q[1], qs))
+        return u"R$ %s" % number_format(t, 2)
 
 
 class SaleDetail(models.Model):
@@ -154,14 +150,14 @@ class SaleDetail(models.Model):
         _(u'Preço de venda'), max_digits=6, decimal_places=2, default=0)
     ipi_sale = models.DecimalField(
         _(u'IPI'), max_digits=3, decimal_places=2, default=0.1)
-    subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-
-    def save(self, *args, **kwargs):
-        self.subtotal = self.quantity or 0 * self.price_sale or 0.00
-        super(SaleDetail, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.sale)
+
+    def get_subtotal(self):
+        return self.price_sale * self.quantity
+
+    subtotal = property(get_subtotal, default=0)
 
     def getID(self):
         return u"%04d" % self.id
@@ -174,3 +170,12 @@ class SaleDetail(models.Model):
 
     def subtotal_formated(self):
         return u"R$ %s" % number_format(self.subtotal, 2)
+
+'''
+    limbo:
+    subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    
+    def save(self, *args, **kwargs):
+        self.subtotal = self.quantity or 0 * self.price_sale or 0.00
+        super(SaleDetail, self).save(*args, **kwargs)
+'''
