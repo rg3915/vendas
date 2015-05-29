@@ -46,7 +46,7 @@
 					{% endif %}
 							<td><a href="{{ sale.get_detalhe }}">{{ sale.codigo }}</a></td>
 							<td>{{ sale.customer.full_name }}</td>
-							<td class="text-center">{{ sale.date_sale|date:"d/m/Y" }}</td>
+							<td class="text-center">{{ sale.created|date:"d/m/Y" }}</td>
 							<td class="text-center">{{ sale.get_itens }}</td>
 							<td class="text-right">{{ sale.get_total }}</td>
 							<td>{{ sale.seller.full_name }}</td>
