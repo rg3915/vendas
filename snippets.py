@@ -34,6 +34,17 @@ q = SaleDetail.objects.filter(sale=1).values('price_sale', 'quantity')
 qs = q.annotate(
     subtotal=(F('price_sale') * F('quantity')),
     output_field=FloatField())
+# Falhou
+
+''' ------------ '''
+# Django 1.8
+from vendas_project.vendas.models import SaleDetail
+from django.db.models import F, FloatField, ExpressionWrapper
+q = SaleDetail.objects.filter(sale=1).values('price_sale', 'quantity')
+qs = q.annotate(subtotal=ExpressionWrapper(F('price_sale') * F('quantity')), output_field=FloatField())
+qs[0].subtotal
+t = qs.aggregate(total=Sum('subtotal'))
+t.total
 
 '''
 Copiando uma venda
