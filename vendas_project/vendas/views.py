@@ -43,11 +43,6 @@ class CustomerDetail(DetailView):
     template_name = 'vendas/person/customer_detail.html'
     model = Customer
 
-    def get_context_data(self, **kwargs):
-        context = super(CustomerDetail, self).get_context_data(**kwargs)
-        customer = Customer.objects.get(pk=self.kwargs['pk'])
-        return context
-
 
 class SellerList(CounterMixin, FirstnameSearchMixin, ListView):
     template_name = 'vendas/person/seller_list.html'
@@ -118,7 +113,7 @@ class SaleList(CounterMixin, ListView):
         return qs
 
 
-class SaleDetailView(TemplateView):
+class SaleDetailView(DetailView):
     template_name = 'vendas/sale/sale_detail.html'
     model = Sale
 
