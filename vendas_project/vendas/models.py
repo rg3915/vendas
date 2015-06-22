@@ -137,7 +137,7 @@ class Sale(TimeStampedModel):
     def get_total(self):
         qs = self.sales_det.filter(sale=self.pk).values_list(
             'price_sale', 'quantity') or 0
-        t = sum(map(lambda q: q[0] * q[1], qs))
+        t = 0 if type(qs) == int else sum(map(lambda q: q[0] * q[1], qs))
         return u"R$ %s" % number_format(t, 2)
 
 
