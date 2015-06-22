@@ -67,7 +67,7 @@ class ProductList(CounterMixin, ListView):
     paginate_by = 100
 
     def get_queryset(self):
-        p = Product.objects
+        p = Product.objects.all()
         q = self.request.GET.get('search_box')
         # buscar por produto
         if q is not None:
