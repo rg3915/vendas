@@ -17,4 +17,4 @@ herokumigrate:
 herokureset:
 	heroku pg:reset DATABASE
 	heroku run ./manage.py syncdb --noinput
-	heroku run ./manage.py loaddata vendas_project/fixtures_bkp.json	
+	heroku run ./manage.py loaddata fixtures_bkp.json
