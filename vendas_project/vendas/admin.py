@@ -29,7 +29,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class SaleDetailInline(admin.TabularInline):
     list_display = ['product', 'quantity', 'price_sale']
-    readonly_fields = ['get_subtotal']
+    # readonly_fields = ['get_subtotal']
     model = SaleDetail
     extra = 0
 
