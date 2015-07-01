@@ -58,7 +58,6 @@ class SellerDetail(DetailView):
 class BrandList(CounterMixin, ListView):
     template_name = 'vendas/product/brand_list.html'
     model = Brand
-    paginate_by = 10
 
 
 class ProductList(CounterMixin, ListView):

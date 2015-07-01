@@ -3,8 +3,9 @@
 {% block content %}
 	<h1>Lista de Marcas</h1>
 
-		<div>
-			<table class="table">
+	<div class="row">
+		<div class="col-sm-6 col-md-6">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Marca</th>
@@ -12,9 +13,11 @@
 				</thead>
 				<tbody>
 				{% for brand in object_list %}
-					<tr>
-						<td>{{ brand.brand }}</td>
-					</tr>
+					{% if brand.id <= 10 %}
+						<tr>
+							<td>{{ brand.brand }}</td>
+						</tr>
+					{% endif %}
 				{% empty %}
 					<p>Sem itens na lista.</p>
 				</tbody>
@@ -22,16 +25,39 @@
 			</table>
 		</div>
 
-	    <hr>
-		<div>
-			<h3><b>Total:</b> {{ count }}
-				{% if count <= 1 %}
-					marca
-				{% else %}
-					marcas
-				{% endif %}
-			</h3>
+		<div class="col-sm-6 col-md-6">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Marca</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for brand in object_list %}
+					{% if brand.id > 10 %}
+						<tr>
+							<td>{{ brand.brand }}</td>
+						</tr>
+					{% endif %}
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				</tbody>
+				{% endfor %}
+			</table>
 		</div>
+	</div>
+
+    <hr>
+
+	<div class="row">
+		<h3><b>Total:</b> {{ count }}
+			{% if count <= 1 %}
+				marca
+			{% else %}
+				marcas
+			{% endif %}
+		</h3>
+	</div>
 
 <!-- pagination -->
 {% include "_pagination.html" %}
