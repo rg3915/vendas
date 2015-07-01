@@ -54,11 +54,6 @@ class SellerDetail(DetailView):
     template_name = 'vendas/person/seller_detail.html'
     model = Seller
 
-    def get_context_data(self, **kwargs):
-        context = super(SellerDetail, self).get_context_data(**kwargs)
-        seller = Seller.objects.get(pk=self.kwargs['pk'])
-        return context
-
 
 class BrandList(CounterMixin, ListView):
     template_name = 'vendas/product/brand_list.html'
@@ -95,6 +90,15 @@ class SaleList(CounterMixin, ListView):
     paginate_by = 20
 
     def get_queryset(self):
+        # filtra vendas com um item
+        if 'filter_sale_one' in self.request.GET:
+            return Sale.objects.annotate(
+                itens=Count('sales_det')).filter(itens=1)
+        # filtra vendas com zero item
+        if 'filter_sale_zero' in self.request.GET:
+            return Sale.objects.annotate(
+                itens=Count('sales_det')).filter(itens=0)
+        # filtros no queryset
         qs = super(SaleList, self).get_queryset()
         # clica no cliente e retorna as vendas dele
         if 'customer' in self.request.GET:
@@ -102,26 +106,17 @@ class SaleList(CounterMixin, ListView):
         # clica no vendedor e retorna as vendas dele
         if 'seller' in self.request.GET:
             qs = qs.filter(seller=self.request.GET['seller'])
-        # filtra vendas com zero item
-        if 'filter_sale_zero' in self.request.GET:
-            qs = Sale.objects.annotate(
-                itens=Count('sales_det')).filter(itens=0)
-        # filtra vendas com um item
-        if 'filter_sale_one' in self.request.GET:
-            qs = Sale.objects.annotate(
-                itens=Count('sales_det')).filter(itens=1)
         return qs
 
 
 class SaleDetailView(DetailView):
     template_name = 'vendas/sale/sale_detail.html'
     model = Sale
+    context_object_name = 'Sale'
 
     def get_context_data(self, **kwargs):
-        s = Sale.objects.get(pk=self.kwargs['pk'])
-        sd = SaleDetail.objects.all().filter(sale=s)
+        sd = SaleDetail.objects.filter(sale=self.object)
         context = super(SaleDetailView, self).get_context_data(**kwargs)
         context['count'] = sd.count()
-        context['Sale'] = s
         context['Itens'] = sd
         return context
