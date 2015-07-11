@@ -137,7 +137,7 @@ class Sale(TimeStampedModel):
     def get_total(self):
         qs = self.sales_det.filter(sale=self.pk).values_list(
             'price_sale', 'quantity') or 0
-        t = 0 if type(qs) == int else sum(map(lambda q: q[0] * q[1], qs))
+        t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0] * q[1], qs))
         return u"R$ %s" % number_format(t, 2)
 
 
@@ -155,7 +155,7 @@ class SaleDetail(models.Model):
         return str(self.sale)
 
     def get_subtotal(self):
-        return self.price_sale * self.quantity
+        return self.price_sale * (self.quantity or 0)
 
     subtotal = property(get_subtotal)
 
