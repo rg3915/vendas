@@ -13,6 +13,8 @@ urlpatterns = patterns(
     url(r'^customers/$', CustomerList.as_view(), name='customer_list'),
     url(r'^customers/(?P<pk>\d+)/$',
         CustomerDetail.as_view(), name='customer_detail'),
+    url(r'^customers/edit/(?P<pk>\d+)/$',
+        CustomerUpdate.as_view(), name='customer_update'),
 
     url(r'^brand/$', BrandList.as_view(), name='brand_list'),
     url(r'^product/$', ProductList.as_view(), name='product_list'),

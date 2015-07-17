@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import CreateView, TemplateView, ListView, DetailView
+from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from django.db.models import F
@@ -42,6 +43,12 @@ class CustomerList(CounterMixin, FirstnameSearchMixin, ListView):
 class CustomerDetail(DetailView):
     template_name = 'vendas/person/customer_detail.html'
     model = Customer
+
+
+class CustomerUpdate(UpdateView):
+    template_name = 'vendas/person/customer_edit.html'
+    model = Customer
+    success_url = reverse_lazy('customer_detail')
 
 
 class SellerList(CounterMixin, FirstnameSearchMixin, ListView):
