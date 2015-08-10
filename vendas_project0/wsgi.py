@@ -1,3 +1,4 @@
+# coding: utf-8
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "vendas_project.settings")
 

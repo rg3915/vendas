@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<div class="container">
+		<h1>Objetivo</h1>
+		<p>Projeto escrito em Django para explorar todos os recursos do framework junto com todas as possibilidades de regras de negócio requisitadas num projeto real.</p>
+		<p>Obs: Todos os nomes e valores são fictícios. Qualquer semelhança é mera coincidência.</p>
+
+		<h1>Requisitos</h1>
+
+		<ul>
+			<li>o sistema vendas gerencia produtos por categoria.</li>
+			<li>cada produto possui: categoria, preço e imagem, além de ser importado ou não, e estar fora de linha ou não.</li>
+			<li>cada cliente possui: CPF, nome, sobrenome, email e telefone.</li>
+			<li>cada cliente pode fazer uma venda e cada venda pode conter vários produtos, cada um com sua quantidade e o valor total da venda.</li>
+			<li>o sistema deve pesquisar os produtos retornando o preço e a quantidade disponível.</li>
+			<li>o sistema deve gerar um relatório com total geral e estatísticas dos produtos mais vendidos.</li>
+		</ul>
+		<p>Inicialmente eu quero explorar as bibliotecas do <a href="https://docs.djangoproject.com/en/dev/ref/class-based-views/">class based views</a> como <a href="https://docs.djangoproject.com/en/dev/ref/class-based-views/base/#templateview">TemplateView</a>, <a href="https://docs.djangoproject.com/en/dev/ref/class-based-views/generic-display/#listview">ListView</a> e <a href="https://docs.djangoproject.com/en/dev/ref/class-based-views/generic-editing/#formview">FormView</a>.</p>
+	</div>
+
+{% endblock %}

@@ -1,10 +1,15 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
-from core.views import *
+from vendas_project.vendas.views import *
+from vendas_project.vendas.models import *
+
 from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns(
-    'core.views',
-    url(r'^$', Home.as_view(), name='home'),
+    'vendas_project.vendas.views',
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', Index.as_view(), name='home'),
     url(r'^customers/$', CustomerList.as_view(), name='customer_list'),
     url(r'^customers/(?P<pk>\d+)/$',
         CustomerDetail.as_view(), name='customer_detail'),
@@ -22,6 +27,10 @@ urlpatterns = patterns(
         SellerDetail.as_view(), name='seller_detail'),
 
     url(r'^about/$', About.as_view(), name='about'),
+)
+urlpatterns += patterns(
+    'vendas_project.vendas.json_views',
+    url(r'^api/list_products$', 'list_products', name='api_list_products'),
+    url(r'^api/cria_pedido$', 'cria_pedido', name='api_cria_pedido'),
 
-    url(r'^admin/', include(admin.site.urls)),
 )

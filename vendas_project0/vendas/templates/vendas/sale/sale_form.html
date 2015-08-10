@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block angulardependencies %}['vendas']{% endblock angulardependencies %}
+
+{% block content %}
+ <div class="container" ng-controller="VendasCtrl">
+  <form class="form-horizontal" method="POST">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+<!-- Agora eh AngularJS -->
+
+	<span ng-show="m.loading">Carregando...</span>
+
+  <select ng-model="m.produto" ng-options="p.product for p in m.produtos"></select>
+
+  <input type="text" ng-model="m.produto.price">
+
+  <button ng-click="m.adiciona_produto()" class="btn btn-primary">Adicionar</button>
+
+<!-- Nao uso mais Django nesta pagina -->
+{% for field in form %}
+  <div class="form-group">
+  <div class="control-label col-sm-2">
+  {{ field.errors }}
+  {{ field.label }}
+  </div>
+  <div class="col-sm-2">
+  {{ field }}
+  </div>
+  </div>
+  {% endfor %}
+  <!-- <div class="form-group">
+	  <div class="col-lg-offset-2 col-sm-10">
+		  <button type="submit" class="btn btn-primary">Salvar</button>
+	  </div>
+  </div> -->
+
+  <ul>
+  	<li ng-repeat="produto in m.selected_products">{[{produto.product}]} - {[{produto.price}]}</li>
+  </ul>
+
+  <button ng-click="m.cria_pedido()" class="col-lg-offset-2 col-sm-10">Salvar</button>
+
+  </form>
+ </div>
+{% endblock content %}

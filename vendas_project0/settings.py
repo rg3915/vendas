@@ -1,12 +1,14 @@
-import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+import dj_database_url
+from unipath import Path
+BASE_DIR = Path(__file__).parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^=k1#h-4rbf6stzgri592*u6b5vfu8%k2*t)!-89r9e8nvz^%2'
+SECRET_KEY = '#&ztwsn!#=!m^&m(+x(y2b9^hr#kq801f2gf1m(bq4945zv1=k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -20,9 +22,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrapform',
-    'widget_tweaks',
-    'core',
+    'django.contrib.humanize',
+    'django_extensions',
+    'vendas_project.vendas',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -33,41 +35,26 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'vendas_project.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
 WSGI_APPLICATION = 'vendas_project.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# Database
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///' + BASE_DIR.child('db.sqlite3'))
+}
+# Internationalization
+# https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -77,12 +64,9 @@ USE_TZ = True
 
 USE_THOUSAND_SEPARATOR = True
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
-LOGIN_URL = '/admin/login'

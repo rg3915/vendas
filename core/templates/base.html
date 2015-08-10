@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static from staticfiles %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{% static "img/cart.png" %}">
+
+    {% block title %}
+      <title>Vendas</title>
+    {% endblock title %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.css.map" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
+    <!-- <link href="{% static "css/thumbnail-gallery.css" %}" rel="stylesheet"> -->
+
+    {% block css %}
+          <style type="text/css">
+      /* Move down content because we have a fixed navbar that is 50px tall */
+      body {
+        padding-top: 50px;
+        padding-bottom: 40px;
+        color: #5a5a5a;
+      }
+    </style>
+    {% endblock css %}
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5shiv.js"></script>
+      <script src="/static/js/respond.min.js"></script>
+    <![endif]-->
+
+    {% block js %}
+      
+    {% endblock js %}
+
+  </head>
+
+
+
+  <!-- <body ng-app="base"> -->
+  <body>
+  
+
+    <!-- MENU -->
+    {% include "menu.html" %}
+
+    <br>
+    <br>
+
+  <div class="container">
+
+
+
+
+    {% block content %}
+      
+    {% endblock content %}
+
+
+  
+
+
+
+    <!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+      <hr>
+        <p class="pull-right"><a href="#"><span class="glyphicon glyphicon-chevron-up">Topo</span></a></p>
+        <p>Régis da Silva &copy; 2015 &middot; all rights reserved. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/br/80x15.png" /></a>
+        All names and values are fictitious.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/angular.js" %}"></script>
+
+    <script>
+      if(!window.Global){
+        window.Global = [];
+      }
+      Global.angular_dependencies = {% block angulardependencies %}[]{% endblock angulardependencies %};
+    </script>
+
+    <script src="{% static "js/app/base.js" %}"></script>
+    <script src="{% static "js/app/vendas.js" %}"></script>
+    <script src="{% static "js/app/api.js" %}"></script>
+
+
+  </body>
+</html>

@@ -1,12 +1,20 @@
 install:
 	pip install -r requirements.txt
-	pip uninstall pyparsing
+
+install2:
 	pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsing-1.5.7.tar.gz#md5=9be0fcdcc595199c646ab317c1d9a709
 	pip install pydot
 	pip freeze > requirements.txt
 
+migrate:
+	./manage.py makemigrations
+	./manage.py migrate
+
+createuser:
+	./manage.py createsuperuser --username='admin' --email=''
+
 mer:
-	./manage.py graph_models -e -g -l dot -o modelagem/vendas.png vendas
+	./manage.py graph_models -e -g -l dot -o modelling/sales.png sales
 
 heroku:
 	git push heroku master
@@ -17,4 +25,15 @@ herokumigrate:
 herokureset:
 	heroku pg:reset DATABASE
 	heroku run ./manage.py syncdb --noinput
-	heroku run ./manage.py loaddata fixtures_bkp.json
+	heroku run ./manage.py loaddata fixtures.json
+
+backup:
+	./manage.py dumpdata --format=json --indent=2 > fixtures.json
+
+load:
+	./manage.py loaddata fixtures.json
+
+run:
+	./manage.py runserver
+
+initial: install migrate createuser
