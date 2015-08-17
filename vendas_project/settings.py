@@ -1,7 +1,7 @@
 import dj_database_url
-import os
+from unipath import Path
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = Path(__file__).parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '^=k1#h-4rbf6stzgri592*u6b5vfu8%k2*t)!-89r9e8nvz^%2'
@@ -57,14 +57,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vendas_project.wsgi.application'
 
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///' + BASE_DIR.child('db.sqlite3'))
 }
-
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -80,10 +76,10 @@ USE_THOUSAND_SEPARATOR = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR.child('media')
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/admin/login'
