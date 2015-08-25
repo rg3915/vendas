@@ -36,4 +36,10 @@ load:
 run:
 	./manage.py runserver
 
+create_brands:
+	./manage.py shell < fixtures/create_brands.py
+
+create_products:
+	./manage.py shell < fixtures/create_products.py
+
 initial: install migrate createuser

@@ -3,6 +3,8 @@ from django.db.models import Sum, F
 from django.utils.translation import ugettext_lazy as _
 from django.utils.formats import number_format
 
+gender_list = [('M', 'masculino'), ('F', 'feminino')]
+
 
 class TimeStampedModel(models.Model):
     created = models.DateTimeField(
@@ -17,6 +19,7 @@ class TimeStampedModel(models.Model):
 class Person(TimeStampedModel):
 
     """ Person is abstract model """
+    gender = models.CharField(_(u'gênero'), max_length=1, choices=gender_list)
     cpf = models.CharField(_('CPF'), max_length=11)
     firstname = models.CharField(_('Nome'), max_length=20)
     lastname = models.CharField(_('Sobrenome'), max_length=20)
