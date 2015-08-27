@@ -20,7 +20,7 @@ for i in range(REPEAT):
     email = firstname[0].lower() + \
         '.' + lastname.lower() + '@example.com'
     phone = gen_phone()
-    birthday = gen_timestamp()
+    birthday = gen_timestamp() + '+00'
     internal = random.choice([True, False])
     Seller.objects.create(
         gender=g,
