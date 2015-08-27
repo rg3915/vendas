@@ -45,6 +45,9 @@ create_products:
 create_customers:
 	./manage.py shell < fixtures/create_customers.py
 
+create_sellers:
+	./manage.py shell < fixtures/create_sellers.py
+
 initial: install migrate createuser
 
 createAll: create_brands create_products create_customers
