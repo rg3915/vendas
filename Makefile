@@ -42,4 +42,9 @@ create_brands:
 create_products:
 	./manage.py shell < fixtures/create_products.py
 
+create_customers:
+	./manage.py shell < fixtures/create_customers.py
+
 initial: install migrate createuser
+
+createAll: create_brands create_products create_customers

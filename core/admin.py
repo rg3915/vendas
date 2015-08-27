@@ -5,7 +5,7 @@ from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'email', 'phone', 'created')
+    list_display = ('__str__', 'cpf', 'email', 'phone', 'birthday', 'created')
     date_hierarchy = 'created'
     search_fields = ('firstname', 'lastname')
 
