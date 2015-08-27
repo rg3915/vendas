@@ -12,7 +12,7 @@ with open('fixtures/products_.csv', 'r') as f:
         product_list.append(dct)
     f.close()
 
-REPEAT = len(product_list)
+REPEAT = len(product_list) - 1600
 
 for i in range(REPEAT):
     imported = random.randint(0, 1)
