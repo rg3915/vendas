@@ -5,14 +5,18 @@ from random import random, randint, choice
 from decimal import Decimal
 
 
-def gen_age():
+def gen_age(min_age=15, max_age=99):
     # gera numeros inteiros entre 15 e 99
-    return randint(15, 99)
+    return randint(min_age, max_age)
 
 
-def gen_cpf():
-    # gera uma string com 11 caracteres numericos
-    return rstr.rstr('1234567890', 11)
+def gen_doc(doc='cpf'):
+    if doc == 'cpf':
+        return rstr.rstr('1234567890', 11)
+    elif doc == 'cnpj':
+        return rstr.rstr('1234567890', 14)
+    elif doc == 'rg':
+        return rstr.rstr('1234567890', 10)
 
 
 def gen_ncm():
@@ -27,7 +31,24 @@ def gen_phone():
         rstr.rstr('1234567890', 4))
 
 
-def gen_timestamp(min_year=1980, max_year=1996):
+def gen_decimal(max_digits=5, decimal_places=2):
+    num_as_str = lambda x: ''.join(
+        [str(randint(0, 9)) for i in range(x)])
+    return Decimal("%s.%s" % (num_as_str(max_digits - decimal_places),
+                              num_as_str(decimal_places)))
+gen_decimal.required = ['max_digits', 'decimal_places']
+
+
+def gen_date(min_year=1915, max_year=1997):
+    # gera um date no formato yyyy-mm-dd
+    year = randint(min_year, max_year)
+    month = randint(1, 12)
+    day = randint(1, 28)
+    d = date(year, month, day).isoformat()
+    return d
+
+
+def gen_timestamp(min_year=1915, max_year=1997):
     # gera um datetime no formato yyyy-mm-dd hh:mm:ss.000000
     min_date = datetime(min_year, 1, 1)
     max_date = datetime(max_year + 1, 1, 1)
@@ -41,14 +62,6 @@ while d[5:10] != '02-29' and i < 100000:
 
 i,d
 '''
-
-
-def gen_decimal(max_digits, decimal_places):
-    num_as_str = lambda x: ''.join(
-        [str(randint(0, 9)) for i in range(x)])
-    return Decimal("%s.%s" % (num_as_str(max_digits - decimal_places),
-                              num_as_str(decimal_places)))
-gen_decimal.required = ['max_digits', 'decimal_places']
 
 
 def gen_ipi():
@@ -80,3 +93,9 @@ def gen_city():
         [u'Porto Alegre', 'RS'],
         [u'Campo Grande', 'MS']]
     return choice(list_city)
+
+
+def gen_city_online():
+    # https://raw.githubusercontent.com/felipefdl/cidades-estados-brasil-json/master/Cidades.json
+    # fazer leitura de json, importar os dados e randomizar numa lista
+    pass
