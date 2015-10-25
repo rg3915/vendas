@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import random
 import rstr
 import datetime
+from random import random, randint, choice
 from decimal import Decimal
 
 
 def gen_age():
     # gera numeros inteiros entre 15 e 99
-    return random.randint(15, 99)
+    return randint(15, 99)
 
 
 def gen_cpf():
@@ -29,21 +29,23 @@ def gen_phone():
 
 def gen_timestamp(min_year=1980, max_year=1996):
     # gera um datetime no formato yyyy-mm-dd hh:mm:ss.000000
-    year = random.randint(min_year, max_year)
-    month = random.randint(11, 12)
-    day = random.randint(1, 28)
-    hour = random.randint(1, 23)
-    minute = random.randint(1, 59)
-    second = random.randint(1, 59)
-    microsecond = random.randint(1, 999999)
-    date = datetime.datetime(
-        year, month, day, hour, minute, second, microsecond).isoformat(" ")
-    return date
+    min_date = datetime(min_year, 1, 1)
+    max_date = datetime(max_year + 1, 1, 1)
+    delta = random() * (max_date - min_date).total_seconds()
+    return (min_date + timedelta(seconds=delta)).isoformat(" ")
+
+''' sorteio que cai dia 29 de fevereiro
+i,d=0,gen_timestamp()
+while d[5:10] != '02-29' and i < 100000:
+    i, d=i+1,gen_timestamp()
+
+i,d
+'''
 
 
 def gen_decimal(max_digits, decimal_places):
     num_as_str = lambda x: ''.join(
-        [str(random.randint(0, 9)) for i in range(x)])
+        [str(randint(0, 9)) for i in range(x)])
     return Decimal("%s.%s" % (num_as_str(max_digits - decimal_places),
                               num_as_str(decimal_places)))
 gen_decimal.required = ['max_digits', 'decimal_places']
@@ -51,7 +53,7 @@ gen_decimal.required = ['max_digits', 'decimal_places']
 
 def gen_ipi():
     num_as_str = lambda x: ''.join(
-        [str(random.randint(0, 9)) for i in range(x)])
+        [str(randint(0, 9)) for i in range(x)])
     return Decimal("0.%s" % (num_as_str(2)))
 
 
@@ -77,4 +79,4 @@ def gen_city():
         [u'Natal', 'RN'],
         [u'Porto Alegre', 'RS'],
         [u'Campo Grande', 'MS']]
-    return random.choice(list_city)
+    return choice(list_city)
