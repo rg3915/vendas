@@ -86,6 +86,7 @@ class ProductList(CounterMixin, ListView):
 class SaleCreate(CreateView):
     template_name = 'core/sale/sale_form.html'
     model = Sale
+    fields = '__all__'
     success_url = reverse_lazy('sale_list')
 
 
