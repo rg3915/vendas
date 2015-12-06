@@ -52,11 +52,11 @@ Para converter o **pdf** em **jpg** use o [Imagemagick][11].
 
 	$ convert -density 300 mer.pdf mer.jpg
 
-![mer](modelagem/mer.jpg)
+![mer](modelling/mer.jpg)
 
 **tabelas.tex** foi feito em [LaTeX][9] junto com o pacote [tikz-uml][12].
 
-![tabelas](modelagem/tabelas.jpg)
+![tabelas](modelling/tables.jpg)
 
 # Gerando dados randômicos
 
@@ -82,7 +82,7 @@ Se der **erro**, instale *pyparsing* novamente desta forma:
 	$ pip install pydot
 	$ pip freeze > requirements.txt
 
-![a](modelagem/vendas.png)
+![a](modelling/sales.png)
 
 Leia [django-notes][8].
 
