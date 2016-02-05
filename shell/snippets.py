@@ -8,6 +8,14 @@ from django.db.models import Sum, F, FloatField
 q = SaleDetail.objects.filter(sale=1).values('price_sale', 'quantity')
 q.aggregate(Sum(F('price_sale') * F('quantity')), output_field=FloatField())
 # falhou
+''' ------------ '''
+# Django 1.8.3
+# http://stackoverflow.com/a/35076326/802542
+from core.models import SaleDetail
+from django.db.models import Sum, F, FloatField
+q = SaleDetail.objects.filter(sale=1).values('price_sale', 'quantity')
+q.aggregate(Sum(F('price_sale') * ('quantity'), output_field=FloatField()))
+# falhou
 
 ''' ------------ '''
 qs = SaleDetail.objects.filter(sale=1).values_list('price_sale', 'quantity')
@@ -41,7 +49,8 @@ qs = q.annotate(
 from vendas_project.vendas.models import SaleDetail
 from django.db.models import F, FloatField, ExpressionWrapper
 q = SaleDetail.objects.filter(sale=1).values('price_sale', 'quantity')
-qs = q.annotate(subtotal=ExpressionWrapper(F('price_sale') * F('quantity')), output_field=FloatField())
+qs = q.annotate(subtotal=ExpressionWrapper(
+    F('price_sale') * F('quantity')), output_field=FloatField())
 qs[0].subtotal
 t = qs.aggregate(total=Sum('subtotal'))
 t.total
