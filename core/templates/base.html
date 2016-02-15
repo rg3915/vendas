@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
     <!-- <link href="{% static "css/thumbnail-gallery.css" %}" rel="stylesheet"> -->
 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/angular.js" %}"></script>
+
     {% block css %}
           <style type="text/css">
       /* Move down content because we have a fixed navbar that is 50px tall */
@@ -84,13 +92,6 @@
 </div> <!-- /container -->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
-    <script src="{% static "js/jquery.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/angular.js" %}"></script>
 
     <script>
       if(!window.Global){
