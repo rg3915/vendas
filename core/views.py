@@ -4,7 +4,9 @@ from django.db.models import Q, F, Count
 from django.views.generic import CreateView, TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
+from django.forms.models import inlineformset_factory
 from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
+from .forms import SaleForm, SaleDetailForm
 
 
 class Home(TemplateView):
@@ -83,11 +85,40 @@ class ProductList(CounterMixin, ListView):
         return p
 
 
-class SaleCreate(CreateView):
-    template_name = 'core/sale/sale_form.html'
-    model = Sale
-    fields = '__all__'
-    success_url = reverse_lazy('sale_list')
+# class SaleCreate(CreateView):
+#     template_name = 'core/sale/sale_form.html'
+#     model = Sale
+#     fields = '__all__'
+#     success_url = reverse_lazy('sale_list')
+
+def sale_create(request):
+    order_forms = SaleForm()
+    item_order_formset = inlineformset_factory(
+        Sale, SaleDetail, form=SaleDetailForm, extra=1, can_delete=False,
+        min_num=1, validate_min=True)
+
+    if request.method == 'POST':
+        forms = SaleForm(request.POST, request.FILES,
+                         instance=order_forms, prefix='main')
+        formset = item_order_formset(
+            request.POST, request.FILES, instance=order_forms, prefix='product')
+
+        if forms.is_valid() and formset.is_valid():
+            forms = forms.save(commit=False)
+            forms.save()
+            formset.save()
+            return HttpResponseRedirect('/sale/')
+
+    else:
+        forms = SaleForm(instance=order_forms, prefix='main')
+        formset = item_order_formset(instance=order_forms, prefix='product')
+
+    context = {
+        'forms': forms,
+        'formset': formset,
+    }
+
+    return render(request, 'sale_form.html', context)
 
 
 class SaleList(CounterMixin, ListView):

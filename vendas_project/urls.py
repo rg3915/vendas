@@ -14,7 +14,7 @@ urlpatterns = patterns(
     url(r'^brand/$', BrandList.as_view(), name='brand_list'),
     url(r'^product/$', ProductList.as_view(), name='product_list'),
 
-    url(r'^sale/add/$', SaleCreate.as_view(), name='sale_add'),
+    url(r'^sale/add/$', sale_create, name='sale_add'),
     url(r'^sale/$', SaleList.as_view(), name='sale_list'),
     url(r'^sale/(?P<pk>\d+)/$', SaleDetailView.as_view(), name='sale_detail'),
     url(r'^sellers/$', SellerList.as_view(), name='seller_list'),

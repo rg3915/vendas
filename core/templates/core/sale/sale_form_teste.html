@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form class="form-horizontal" method="POST">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  {% for field in form %}
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        {{ field.errors }}
+        {{ field.label }}
+      </div>
+      <div class="col-sm-2">
+        {{ field }}
+      </div>
+    </div>
+  {% endfor %}
+
+  <table class="form-inline">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+        <th>IPI</th>
+      </tr>
+    </thead>
+    <tbody id="items">
+      <tr>
+        <td><input type="text" id="id_product" name="product[]" class="form-control"></td>
+        <td><input type="text" id="id_quantity" name="quantity[]" class="form-control"></td>
+        <td><input type="text" id="id_price_sale" name="price_sale[]" class="form-control"></td>
+        <td><input type="text" id="id_ipi_sale" name="ipi_sale[]" class="form-control"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <button id="add" onclick="" type="text" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+  </div>
+
+
+</form>
+
+<!-- JavaScript -->
+<script type="text/javascript">
+  function send_form(){
+    var p = $('input[name="product[]"]');
+    var q = $('input[name="quantity[]"]');
+    var ps = $('input[name="price_sale[]"]');
+    var ipi = $('input[name="ipi_sale[]"]');
+
+    var dados = {
+      'product': [],
+      'quantity': [],
+      'price_sale': [],
+      'ipi_sale': [],
+    };
+
+    for (var i = 0; i < p.length; i++) {
+      dados['product'].push(p[i].value);
+    }
+    for (var i = 0; i < q.length; i++) {
+      dados['quantity'].push(q[i].value);
+    }
+    for (var i = 0; i < ps.length; i++) {
+      dados['price_sale'].push(ps[i].value);
+    }
+    for (var i = 0; i < ipi.length; i++) {
+      dados['ipi_sale'].push(ipi[i].value);
+    }
+
+    var url = '/sale/';
+
+    $.ajax({
+      type: 'post',
+      url: url,
+      dataType: 'json',
+      data: dados,
+      error: function(){
+        alert('Erro na requisição');
+      },
+      success: function(data){
+        console.log(data);
+      }
+    });
+    return false;
+  }
+</script>
+
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('#add').click(function(e){
+      e.preventDefault();
+      $('#items').append('<tr>'+
+                '<td><input type="text" id="id_product" name="product[]" class="form-control"></td>'+
+                '<td><input type="text" id="id_quantity" name="quantity[]" class="form-control"></td>'+
+                '<td><input type="text" id="id_price_sale" name="price_sale[]" class="form-control"></td>'+
+                '<td><input type="text" id="id_ipi_sale" name="ipi_sale[]" class="form-control"></td>'+
+              '</tr>');
+    });
+
+    $('#items').on('click','.rmfield', function(e){
+      e.preventDefault();
+      $(this).parents('tr').remove();
+    });
+  });
+  </script>
+
+{% endblock content %}
