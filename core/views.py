@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 from django.db.models import Q, F, Count
 from django.views.generic import CreateView, TemplateView, ListView, DetailView
@@ -92,7 +93,7 @@ class ProductList(CounterMixin, ListView):
 #     success_url = reverse_lazy('sale_list')
 
 def sale_create(request):
-    order_forms = SaleForm()
+    order_forms = Sale()
     item_order_formset = inlineformset_factory(
         Sale, SaleDetail, form=SaleDetailForm, extra=1, can_delete=False,
         min_num=1, validate_min=True)
@@ -118,7 +119,7 @@ def sale_create(request):
         'formset': formset,
     }
 
-    return render(request, 'sale_form.html', context)
+    return render(request, 'core/sale/sale_form.html', context)
 
 
 class SaleList(CounterMixin, ListView):
