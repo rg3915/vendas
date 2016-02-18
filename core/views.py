@@ -95,7 +95,7 @@ class ProductList(CounterMixin, ListView):
 def sale_create(request):
     order_forms = Sale()
     item_order_formset = inlineformset_factory(
-        Sale, SaleDetail, form=SaleDetailForm, extra=1, can_delete=False,
+        Sale, SaleDetail, form=SaleDetailForm, extra=0, can_delete=False,
         min_num=1, validate_min=True)
 
     if request.method == 'POST':
