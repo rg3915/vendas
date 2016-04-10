@@ -1,7 +1,7 @@
 Vendas
 ======
 
-Python 3.4 and Django 1.7.8
+Python 3.4 and Django 1.8.3
 
 Veja o [live demo][13].
 
@@ -29,7 +29,6 @@ Inicialmente eu quero explorar as bibliotecas do [class based views][2] como [Te
 	cd vendas
 	source bin/activate
 	PS1="(`basename \"$VIRTUAL_ENV\"`):/\W$ " # opcional
-	echo "Django>=1.7,<1.8" > requirements.txt # aditional
 	pip install -r requirements.txt
 	./manage.py makemigrations vendas
 	./manage.py migrate
