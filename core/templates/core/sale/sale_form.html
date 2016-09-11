@@ -3,67 +3,87 @@
 {% load bootstrap %}
 
 {% block title %}
-    <title>Nova Venda</title>
+  <title>Nova Venda</title>
 {% endblock title %}
+
+{# Adding select2 css #}
+{% block css %}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{# Adding select2 js #}
+{% block js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+{% endblock %}
 
 {% block content %}
 
-    <!-- <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h1 class="page-header text-center lead">Nova Venda</h1>
+  <!-- <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+          <h1 class="page-header text-center lead">Nova Venda</h1>
+      </div>
+  </div> -->
+  <div class="row">
+    <div class="col-md-offset-2">
+      <form action="" method="POST">
+        <legend>Venda</legend>
+        <div class="col-sm-6">
+          {% csrf_token %}
+          {{ forms|bootstrap }}
+          {{ formset.management_form|bootstrap }}
         </div>
-    </div> -->
-    <div class="row">
-        <div class="col-md-offset-2">
-            <form class="form-horizontal" action="" method="POST">
-                <legend>Venda</legend>
-                <div class="col-sm-6">
-                    {% csrf_token %}
-                    {{ forms|bootstrap }}
-                    {{ formset.management_form|bootstrap }}
-                </div>
-                <legend class="lead">Produtos</legend>
 
-                <div id="order" class="form-inline form-group">
-                    {% for item_order_form in formset %}
-                        <div id="item-{{ forloop.counter0 }}">
-                            {{ item_order_form|bootstrap }}
-                        </div>
-                    {% endfor %}
-                </div>
+        <legend class="lead">Produtos</legend>
 
-                <a class="btn btn-info" id="add-item"><i class="fa fa-plus"></i> Add Item</a>
+        <div id="order" class="form-inline form-group">
+          {% for item_order_form in formset %}
+            <div id="item-{{ forloop.counter0 }}">
+              {{ item_order_form|bootstrap }}
+            </div>
+          {% endfor %}
+        </div>
 
-                <div class="form-inline buttons">
-                    <a href="{% url 'sale_list' %}" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Cancelar</a>
-                    <button class="btn btn-primary pull-right" value="Save"><i class="fa fa-floppy-o"></i> Salvar</button>
-                </div>
-            </form>
-    </div>    
+        <a class="btn btn-info" id="add-item"><i class="fa fa-plus"></i> Add
+          Item</a>
+
+        <div class="form-inline buttons">
+          <a href="{% url 'sale_list' %}" class="btn btn-danger pull-right"><i class="fa fa-times"></i>
+            Cancelar</a>
+          <button class="btn btn-primary pull-right" value="Save">
+            <i class="fa fa-floppy-o"></i> Salvar
+          </button>
+        </div>
+      </form>
+    </div>
 
     <script>
-        $(document).ready(function(){
-            $("#add-item").click(function(ev) {
-                ev.preventDefault();
-                var count = $('#order').children().length;
-                var tmplMarkup = $("#item-order").html();
-                var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
-                $("div#order").append(compiledTmpl);
+      $(document).ready(function () {
+        $("#add-item").click(function (ev) {
+          ev.preventDefault();
+          var count = $('#order').children().length;
+          var tmplMarkup = $("#item-order").html();
+          var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+          $("div#order").append(compiledTmpl);
 
-                // update form count
-                $('#id_product-TOTAL_FORMS').attr('value', count + 1);
+          // update form count
+          $('#id_product-TOTAL_FORMS').attr('value', count + 1);
 
-                // some animate to scroll to view our new form
-                $('html, body').animate({
-                    scrollTop: $("#add-item").position().top-200
-                }, 800);
-            });
+          // some animate to scroll to view our new form
+          $('html, body').animate({
+            scrollTop: $("#add-item").position().top - 200
+          }, 800);
+          {# Initialize select2 on new select field #}
+          $('#id_product-' + (count) + '-product').select2();
         });
+        {# Initialize select2 on all select tags #}
+        $('select').select2();
+
+      });
     </script>
 
     <script type="text/html" id="item-order">
-        <div id="item-__prefix__" style="margin-top: 10px">
-                {{ formset.empty_form|bootstrap }}
-        </div>
+      <div id="item-__prefix__" style="margin-top: 10px">
+        {{ formset.empty_form|bootstrap }}
+      </div>
     </script>
 {% endblock %}
