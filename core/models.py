@@ -19,7 +19,7 @@ class TimeStampedModel(models.Model):
 class Person(TimeStampedModel):
 
     """ Person is abstract model """
-    # gender = models.CharField(_(u'gênero'), max_length=1, choices=gender_list)
+    gender = models.CharField(_(u'gênero'), max_length=1, choices=gender_list)
     cpf = models.CharField(_('CPF'), max_length=11)
     firstname = models.CharField(_('Nome'), max_length=20)
     lastname = models.CharField(_('Sobrenome'), max_length=20)
