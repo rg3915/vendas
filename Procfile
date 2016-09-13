@@ -1,1 +1,1 @@
-web: gunicorn vendas_project.wsgi
+web: gunicorn vendas.wsgi --log-file -

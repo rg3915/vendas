@@ -1,7 +1,7 @@
 Vendas
 ======
 
-Python 3.4 and Django 1.8.3
+Python 3.5.0 and Django 1.10.1
 
 Veja o [live demo][13].
 

@@ -1,15 +1,15 @@
 from django.contrib import admin
-from django.contrib.admin.views.main import ChangeList
-from django.db.models import Sum
 from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
 
 
+@admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'cpf', 'email', 'phone', 'birthday', 'created')
     date_hierarchy = 'created'
     search_fields = ('firstname', 'lastname')
 
 
+@admin.register(Seller)
 class SellerAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'internal', 'email',
                     'phone', 'created', 'commissioned', 'active')
@@ -18,6 +18,7 @@ class SellerAdmin(admin.ModelAdmin):
     list_filter = ('internal', 'commissioned', 'active')
 
 
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     ordering = ['product']
     list_display = (
@@ -33,6 +34,7 @@ class SaleDetailInline(admin.TabularInline):
     extra = 0
 
 
+@admin.register(Sale)
 class SaleAdmin(admin.ModelAdmin):
     list_display = (
         '__str__', 'customer', 'created', 'get_itens', 'get_total')
@@ -41,8 +43,5 @@ class SaleAdmin(admin.ModelAdmin):
     list_filter = ('customer',)
     inlines = [SaleDetailInline]
 
-admin.site.register(Customer, CustomerAdmin)
-admin.site.register(Seller, SellerAdmin)
+
 admin.site.register(Brand)
-admin.site.register(Product, ProductAdmin)
-admin.site.register(Sale, SaleAdmin)

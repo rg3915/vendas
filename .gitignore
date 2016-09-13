@@ -57,4 +57,5 @@ docs/_build/
 *.sqlite3
 /migrations
 
-.venv
+.venv/
+.env

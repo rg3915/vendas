@@ -1,39 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
-from django.db.models import Q, F, Count
-from django.views.generic import CreateView, TemplateView, ListView, DetailView
+from django.db.models import F, Count
+from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView
-from django.contrib.auth.models import User
 from django.forms.models import inlineformset_factory
 from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
 from .forms import SaleForm, SaleDetailForm
+from .mixins import CounterMixin, FirstnameSearchMixin
 
 
-class Home(TemplateView):
-    template_name = 'index.html'
+home = TemplateView.as_view(template_name='index.html')
 
-
-class About(TemplateView):
-    template_name = 'about.html'
-
-
-class CounterMixin(object):
-
-    def get_context_data(self, **kwargs):
-        context = super(CounterMixin, self).get_context_data(**kwargs)
-        context['count'] = self.get_queryset().count()
-        return context
-
-
-class FirstnameSearchMixin(object):
-
-    def get_queryset(self):
-        queryset = super(FirstnameSearchMixin, self).get_queryset()
-        q = self.request.GET.get('search_box')
-        if q:
-            return queryset.filter(firstname__icontains=q)
-        return queryset
+about = TemplateView.as_view(template_name='about.html')
 
 
 class CustomerList(CounterMixin, FirstnameSearchMixin, ListView):
@@ -85,12 +64,6 @@ class ProductList(CounterMixin, ListView):
             p = p.filter(stock__lt=F('stock_min'))
         return p
 
-
-# class SaleCreate(CreateView):
-#     template_name = 'core/sale/sale_form.html'
-#     model = Sale
-#     fields = '__all__'
-#     success_url = reverse_lazy('sale_list')
 
 def sale_create(request):
     order_forms = Sale()
