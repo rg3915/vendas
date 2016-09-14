@@ -21,21 +21,21 @@
                         <a class="page-scroll" href="#services"><span class="glyphicon glyphicon-send"></span> Serviços</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="{% url 'product_list' %}"><span class="glyphicon glyphicon-tags"></span> Produtos</a>
+                        <a class="page-scroll" href="{% url 'core:product_list' %}"><span class="glyphicon glyphicon-tags"></span> Produtos</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="{% url 'sale_list' %}"><span class="glyphicon glyphicon-shopping-cart"></span> Vendas</a>
+                        <a class="page-scroll" href="{% url 'core:sale_list' %}"><span class="glyphicon glyphicon-shopping-cart"></span> Vendas</a>
                     </li>
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Admin <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Cadastro de Produtos</li>
-                            <li><a class="page-scroll" href="{% url 'product_list' %}">Produto</a></li>
-                            <li><a href="{% url 'brand_list' %}">Marca</a></li>
+                            <li><a class="page-scroll" href="{% url 'core:product_list' %}">Produto</a></li>
+                            <li><a href="{% url 'core:brand_list' %}">Marca</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Cadastro de Pessoas</li>
-                            <li><a href="{% url 'customer_list' %}">Cliente</a></li>
-                            <li><a href="{% url 'seller_list' %}">Vendedor</a></li>
+                            <li><a href="{% url 'core:customer_list' %}">Cliente</a></li>
+                            <li><a href="{% url 'core:seller_list' %}">Vendedor</a></li>
                             <!-- <li><a href="#">Contato</a></li>
                             <li><a href="#">Fornecedor</a></li>
                             <li><a href="#">Funcionário</a></li> -->
