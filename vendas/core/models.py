@@ -43,7 +43,7 @@ class Customer(Person):
 
     # clica na pessoa e retorna os detalhes dela
     def get_customer_url(self):
-        return "/customers/%i" % self.id
+        return "/customer/%i" % self.id
 
     # clica em vendas e retorna as vendas da pessoa
     def get_sale_customer_url(self):
@@ -67,7 +67,7 @@ class Seller(Person):
 
     # clica no vendedor e retorna os detalhes dele
     def get_seller_url(self):
-        return "/sellers/%i" % self.id
+        return "/seller/%i" % self.id
 
     # clica em vendas e retorna as vendas do vendedor
     def get_sale_seller_url(self):
