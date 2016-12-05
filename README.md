@@ -25,12 +25,12 @@ Inicialmente eu quero explorar as bibliotecas do [class based views][2] como [Te
 # Baixando e rodando a app
 
 	$ git clone https://github.com/rg3915/vendas.git
-	virtualenv -p /usr/bin/python3 vendas
+	virtualenv -p /usr/bin/python3 .venv
 	cd vendas
 	source bin/activate
 	PS1="(`basename \"$VIRTUAL_ENV\"`):/\W$ " # opcional
 	pip install -r requirements.txt
-	./manage.py makemigrations vendas
+	./manage.py makemigrations core
 	./manage.py migrate
 	./manage.py createsuperuser
 	./manage.py loaddata fixtures_bkp.json
