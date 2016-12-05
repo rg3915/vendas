@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # thirty apps
     'bootstrapform',
     'widget_tweaks',
+    'django_extensions',
     # my apps
     'vendas.core',
 ]

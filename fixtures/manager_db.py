@@ -21,7 +21,7 @@ import datetime
 import names    # gera nomes randomicos
 import rstr     # gera strings randomicas
 from decimal import Decimal
-from gen_random_values import gen_cpf, gen_ncm, gen_phone, gen_decimal, gen_ipi, gen_timestamp
+from gen_random_values import gen_doc, gen_ncm, gen_phone, gen_decimal, gen_ipi, gen_timestamp
 
 qcustomers = 60
 qsellers = 20
@@ -115,7 +115,7 @@ class VendasDb(object):
             commissioned = rstr.rstr('01', 1)
             commission = 0.01
             seller_list.append(
-                (gen_cpf(), fname, lname, email, gen_phone(), birthday, active, internal, commissioned, commission, d, d))
+                (gen_doc(), fname, lname, email, gen_phone(), birthday, active, internal, commissioned, commission, d, d))
         try:
             self.db.cursor.executemany("""
             INSERT INTO vendas_seller (cpf, firstname, lastname, email, phone, birthday, active, internal, commissioned, commission, created, modified)
