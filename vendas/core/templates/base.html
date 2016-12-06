@@ -19,12 +19,6 @@
   <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
   <!-- <link href="{% static "css/thumbnail-gallery.css" %}" rel="stylesheet"> -->
 
-  {% comment %}
-    Move this from the css block because is a rule needed for all pages that extends base.html
-    The css block should be used to add extra css on child pages
-    It would be better to add this in a separate css file.
-    The same applies on block js.
-  {% endcomment%}
   <style type="text/css">
     /* Move down content because we have a fixed navbar that is 50px tall */
     body {
@@ -72,12 +66,7 @@
 
   {% endblock content %}
 
-
-
-
-
-
-  <!-- FOOTER -->
+4v  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="row clearfix">
@@ -86,7 +75,7 @@
           <p class="pull-right">
             <a href="#"><span class="glyphicon glyphicon-chevron-up">Topo</span></a>
           </p>
-          <p>Régis da Silva &copy; 2015 &middot; all rights reserved.
+          <p>Régis Santos &copy; 2017 &middot; all rights reserved.
             <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/br/80x15.png"/></a>
             All names and values are fictitious.
           </p>
