@@ -26,9 +26,9 @@ Inicialmente eu quero explorar as bibliotecas do [class based views][2] como [Te
 
 ```bash
 $ git clone https://github.com/rg3915/vendas.git
-python -m venv .venv # python3
 cd vendas
-source bin/activate
+python -m venv .venv # python3
+source .venv/bin/activate
 PS1="(`basename \"$VIRTUAL_ENV\"`):/\W$ " # opcional
 pip install -r requirements.txt
 cp contrib/env-sample .env
