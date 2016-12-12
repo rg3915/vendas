@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse_lazy
 from django.utils.formats import number_format
 
 gender_list = [('M', 'masculino'), ('F', 'feminino')]
@@ -133,6 +134,9 @@ class Sale(TimeStampedModel):
     def __str__(self):
         return "%03d" % self.id + "/%s" % self.created.strftime('%y')
     codigo = property(__str__)
+
+    def get_absolute_url(self):
+        return reverse_lazy('core:sale_detail', pk=self.pk)
 
     def get_detalhe(self):
         return "/sale/%i" % self.id
