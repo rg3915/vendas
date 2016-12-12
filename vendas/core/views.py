@@ -79,9 +79,11 @@ def sale_create(request):
 
         if forms.is_valid() and formset.is_valid():
             forms = forms.save(commit=False)
-            forms.save()
+            obj = forms.save()
             formset.save()
-            return HttpResponseRedirect('/sale/')
+            return HttpResponseRedirect(reverse_lazy('core:sale_detail', kwargs={'id': obj.id}))
+            # return HttpResponseRedirect(reverse_lazy('core:sale_detail', kwargs={'id': obj.id}))
+            # return HttpResponseRedirect('/sale/%d/' % obj.pk)
 
     else:
         forms = SaleForm(instance=order_forms, prefix='main')
