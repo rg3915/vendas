@@ -80,8 +80,6 @@ def sale_create(request):
         if forms.is_valid() and formset.is_valid():
             forms = forms.save()
             formset.save()
-            # return HttpResponseRedirect(reverse_lazy('core:sale_detail',
-            # forms.pk))
             return HttpResponseRedirect('/sale/%d/' % forms.pk)
 
     else:
