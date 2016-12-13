@@ -3,6 +3,7 @@
 {% block content %}
 	<h1>Lista de Marcas</h1>
 
+{% if object_list %}
 	<div class="row">
 		<div class="col-sm-6 col-md-6">
 			<table class="table table-striped">
@@ -39,13 +40,14 @@
 							<td>{{ brand.brand }}</td>
 						</tr>
 					{% endif %}
-				{% empty %}
-					<p>Sem itens na lista.</p>
 				</tbody>
 				{% endfor %}
 			</table>
 		</div>
 	</div>
+{% else %}
+  <p class="alert alert-warning">Sem itens na lista.</p>
+{% endif %}
 
     <hr>
 
@@ -59,7 +61,9 @@
 		</h3>
 	</div>
 
-<!-- pagination -->
-{% include "_pagination.html" %}
+{% if object_list %}
+  <!-- pagination -->
+  {% include "_pagination.html" %}
+{% endif %}
 
 {% endblock content %}

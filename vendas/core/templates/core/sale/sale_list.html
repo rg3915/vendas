@@ -23,6 +23,7 @@
 
 	<h1>Lista de Vendas</h1>
 
+{% if object_list %}
 		<div>
 			<table class="table">
 				<thead>
@@ -52,12 +53,14 @@
 							<td>{{ sale.seller.full_name }}</td>
 
 						</tr>
-				{% empty %}
-					<p>Sem itens na lista.</p>
 				{% endfor %}
 				</tbody>
 			</table>
 		</div>
+{% else %}
+  <p class="alert alert-warning">Sem itens na lista.</p>
+{% endif %}
+
 		<div>
 			<h3><b>Total:</b> {{ count }}
 				{% if count <= 1 %}
@@ -68,7 +71,9 @@
 			</h3>
 		</div>
 
-<!-- pagination -->
-{% include "_pagination.html" %}
+{% if object_list %}
+  <!-- pagination -->
+  {% include "_pagination.html" %}
+{% endif %}
 
 {% endblock content %}
