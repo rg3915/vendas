@@ -1,12 +1,12 @@
 import random
 import names
-from core.models import Customer
+from vendas.core.models import Customer
 from fixtures.gen_random_values import *
 from fixtures.gen_names import *
 
 customer_list = []
 
-REPEAT = 60
+REPEAT = 40
 
 for i in range(REPEAT):
     g = random.choice(['M', 'F'])
@@ -16,7 +16,7 @@ for i in range(REPEAT):
         firstname = gen_female_first_name()['first_name']
     lastname = names.get_last_name()
     gender = g
-    cpf = gen_cpf()
+    cpf = gen_doc()
     email = firstname[0].lower() + \
         '.' + lastname.lower() + '@example.com'
     phone = gen_phone()
