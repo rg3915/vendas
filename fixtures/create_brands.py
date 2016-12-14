@@ -1,21 +1,9 @@
 from vendas.core.models import Brand
-Brand.objects.create(brand='air')
-Brand.objects.create(brand='biork')
-Brand.objects.create(brand='free')
-Brand.objects.create(brand='friday')
-Brand.objects.create(brand='guin')
-Brand.objects.create(brand='king')
-Brand.objects.create(brand='light')
-Brand.objects.create(brand='plus')
-Brand.objects.create(brand='queen')
-Brand.objects.create(brand='rain')
-Brand.objects.create(brand='seal')
-Brand.objects.create(brand='sky')
-Brand.objects.create(brand='star')
-Brand.objects.create(brand='sub')
-Brand.objects.create(brand='teck')
-Brand.objects.create(brand='tutu')
-Brand.objects.create(brand='way')
-Brand.objects.create(brand='wpa')
-Brand.objects.create(brand='yant')
-Brand.objects.create(brand='zyka')
+
+
+BRAND_LIST = ('air', 'biork', 'free', 'friday', 'guin', 'king', 'light',
+              'plus', 'queen', 'rain', 'seal', 'sky', 'star', 'sub', 'teck',
+              'tutu', 'way', 'wpa', 'yant', 'zyka',)
+
+obj = [Brand(brand=val) for val in BRAND_LIST]
+Brand.objects.bulk_create(obj)
