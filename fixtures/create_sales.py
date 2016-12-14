@@ -1,6 +1,5 @@
 from random import randint
 from vendas.core.models import Customer, Seller, Sale, SaleDetail, Product
-from fixtures.gen_random_values import *
 
 REPEAT = 120
 qcustomers = Customer.objects.count()
@@ -17,7 +16,6 @@ for i in range(REPEAT):
         seller=seller,
     )
     obj.save()
-    print(obj.pk)
     for j in range(randint(1, 10)):
         sale = Sale.objects.get(pk=obj.pk)
         p = randint(1, qproducts)
@@ -33,5 +31,6 @@ for i in range(REPEAT):
             ipi_sale=ipi_sale,
         )
         sd.save()
+
 
 print('%d Vendas salvo com sucesso.' % REPEAT)
