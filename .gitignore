@@ -55,6 +55,5 @@ coverage.xml
 docs/_build/
 
 *.sqlite3
-vendas/core/migrations/
 .venv/
 .env
