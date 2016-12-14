@@ -1,6 +1,6 @@
-import random
+from random import randint
 import csv
-from core.models import Product, Brand
+from vendas.core.models import Product, Brand
 from fixtures.gen_random_values import *
 
 product_list = []
@@ -15,7 +15,7 @@ with open('fixtures/products_.csv', 'r') as f:
 REPEAT = len(product_list) - 1600
 
 for i in range(REPEAT):
-    imported = random.randint(0, 1)
+    imported = randint(0, 1)
     # escolha personalizada de produtos fora de linha
     if i % 26 == 0:
         if i > 0:
@@ -25,7 +25,7 @@ for i in range(REPEAT):
     else:
         outofline = 0
     ncm = gen_ncm()
-    b = random.randint(1, 20)
+    b = randint(1, 20)
     brand = Brand.objects.get(pk=b)
     product = product_list[i]['product']
     price = float(gen_decimal(4, 2))
@@ -34,8 +34,8 @@ for i in range(REPEAT):
         ipi = float(gen_ipi())
         if ipi > 0.5:
             ipi = ipi - 0.5
-    stock = random.randint(1, 999)
-    stock_min = random.randint(1, 20)
+    stock = randint(1, 999)
+    stock_min = randint(1, 20)
     obj = Product(
         imported=imported,
         outofline=outofline,
@@ -48,5 +48,6 @@ for i in range(REPEAT):
         stock_min=stock_min,
     )
     obj.save()
+
 
 print('%d Produtos salvo com sucesso.' % REPEAT)
