@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import rstr
-import datetime
+from datetime import date, datetime, timedelta
 from random import random, randint, choice
 from decimal import Decimal
 
