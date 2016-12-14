@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, resolve_url
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 from django.db.models import F, Count
@@ -80,7 +80,7 @@ def sale_create(request):
         if forms.is_valid() and formset.is_valid():
             forms = forms.save()
             formset.save()
-            return HttpResponseRedirect('/sale/%d/' % forms.pk)
+            return HttpResponseRedirect(resolve_url('core:sale_detail', forms.pk))
 
     else:
         forms = SaleForm(instance=order_forms, prefix='main')
