@@ -1,4 +1,4 @@
-from core.models import Brand
+from vendas.core.models import Brand
 Brand.objects.create(brand='air')
 Brand.objects.create(brand='biork')
 Brand.objects.create(brand='free')
