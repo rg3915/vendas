@@ -49,17 +49,10 @@
   <p class="alert alert-warning">Sem itens na lista.</p>
 {% endif %}
 
-    <hr>
-
-	<div class="row">
-		<h3><b>Total:</b> {{ count }}
-			{% if count <= 1 %}
-				marca
-			{% else %}
-				marcas
-			{% endif %}
-		</h3>
-	</div>
+<hr>
+<div>
+<h3><b>Total:</b> {{ object_list|length }} marca{{ object_list|length|pluralize }}</h3>
+</div>
 
 {% if object_list %}
   <!-- pagination -->
