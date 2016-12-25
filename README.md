@@ -64,7 +64,23 @@ Para converter o **pdf** em **jpg** use o [Imagemagick][11].
 
 Para gerar dados randômicos entre na pasta ``vendas_project/dados`` e digite
 
-	$ python manager_db.py
+```bash
+$ python manager_db.py
+```
+
+## Nova api para pegar produtos do [Mercado Livre][15]
+
+Entre na pasta `vendas/api/` e digite
+
+```bash
+python vendas/api/get_produtos.py
+```
+
+Depois rode o comando
+
+```bash
+make create_products2
+```
 
 # Notas
 
@@ -103,3 +119,4 @@ Veja o [live demo][13].
 [12]: http://perso.ensta-paristech.fr/~kielbasi/tikzuml/index.php?lang=en
 [13]: http://rg-vendas.herokuapp.com/
 [14]: http://localhost:8000/
+[15]: http://bit.ly/2hjY2KB

@@ -42,6 +42,9 @@ create_brands:
 create_products:
 	./manage.py shell < fixtures/create_products.py
 
+create_products2:
+	./manage.py shell < fixtures/create_products2.py
+
 create_customers:
 	./manage.py shell < fixtures/create_customers.py
 

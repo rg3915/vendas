@@ -99,8 +99,8 @@ class Product(models.Model):
     outofline = models.BooleanField('Fora de linha', default=False)
     ncm = models.CharField('NCM', max_length=8)
     brand = models.ForeignKey(Brand, verbose_name='marca')
-    product = models.CharField('Produto', max_length=60, unique=True)
-    price = models.DecimalField('Preço', max_digits=6, decimal_places=2)
+    product = models.CharField('Produto', max_length=100, unique=True)
+    price = models.DecimalField('Preço', max_digits=7, decimal_places=2)
     ipi = models.DecimalField(
         'IPI', max_digits=3, decimal_places=2, blank=True)
     stock = models.IntegerField('Estoque atual')
