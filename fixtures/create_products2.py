@@ -4,14 +4,18 @@ from django.db import IntegrityError
 from vendas.core.models import Product, Brand
 from fixtures.gen_random_values import *
 
-product_list = []
+# Pegar 5 produtos de cada categoria
 
-''' Lendo os dados de produtos.csv '''
-with open('fixtures/csv/produtos.csv', 'r') as f:
-    r = csv.DictReader(f)
-    for dct in r:
-        product_list.append(dct)
-    f.close()
+product_list = []
+CAT_MAX = 28  # Quant de Categorias. Sujeita a alteração
+
+''' Lendo os dados de produtos*.csv '''
+for i in range(1, CAT_MAX):
+    with open('fixtures/csv/produtos%s.csv' % i, 'r') as f:
+        r = csv.DictReader(f)
+        for dct in r:
+            product_list.append(dct)
+        f.close()
 
 REPEAT = len(product_list)
 items_save_count = 0
