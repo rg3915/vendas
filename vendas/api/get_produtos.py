@@ -8,37 +8,34 @@ with open('fixtures/csv/categorias.csv', 'r') as f:
     categorias = [dct for dct in r]
     f.close()
 
-posfix_filename = 1
+with open('fixtures/csv/produtos.csv', 'w', newline='') as f:
+    fieldnames = ['id',
+                  'title',
+                  'subtitle',
+                  'price',
+                  'currency_id',
+                  'available_quantity',
+                  'sold_quantity',
+                  'buying_mode',
+                  'listing_type_id',
+                  'stop_time',
+                  'condition',
+                  'permalink',
+                  'thumbnail',
+                  'category_id'
+                  ]
 
-# Pegar os produtos de cada categoria
-for categoria in categorias:
-    url = 'https://api.mercadolibre.com/sites/MLA/search?category=%s' % categoria[
-        'id']
-    dados = ws.get_data(url)
-    produtos = json.loads(dados)['results']
+    writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
+    writer.writeheader()
 
-    with open('fixtures/csv/produtos%s.csv' % posfix_filename, 'w', newline='') as f:
-        fieldnames = ['id',
-                      'title',
-                      'subtitle',
-                      'price',
-                      'currency_id',
-                      'available_quantity',
-                      'sold_quantity',
-                      'buying_mode',
-                      'listing_type_id',
-                      'stop_time',
-                      'condition',
-                      'permalink',
-                      'thumbnail',
-                      ]
-        writer = csv.DictWriter(
-            f, fieldnames=fieldnames, extrasaction='ignore')
-        writer.writeheader()
+    # Pegar os produtos de cada categoria
+    for categoria in categorias:
+        url = 'https://api.mercadolibre.com/sites/MLB/search?category=%s' % categoria[
+            'id']
+        dados = ws.get_data(url)
+        produtos = json.loads(dados)['results']
 
         for produto in produtos:
             writer.writerow(produto)
 
-        f.close()
-
-    posfix_filename += 1
+    f.close()
