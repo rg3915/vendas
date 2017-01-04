@@ -8,8 +8,6 @@ with open('fixtures/csv/categorias.csv', 'r') as f:
     categorias = [dct for dct in r]
     f.close()
 
-posfix_filename = 1
-
 # Pegar os produtos de cada categoria
 for categoria in categorias:
     url = 'https://api.mercadolibre.com/sites/MLA/search?category=%s' % categoria[
@@ -17,7 +15,7 @@ for categoria in categorias:
     dados = ws.get_data(url)
     produtos = json.loads(dados)['results']
 
-    with open('fixtures/csv/produtos%s.csv' % posfix_filename, 'w', newline='') as f:
+    with open('fixtures/csv/produtos.csv', 'a', newline='') as f:
         fieldnames = ['id',
                       'title',
                       'subtitle',
@@ -40,5 +38,3 @@ for categoria in categorias:
             writer.writerow(produto)
 
         f.close()
-
-    posfix_filename += 1
