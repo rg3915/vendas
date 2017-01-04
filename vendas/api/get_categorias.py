@@ -4,7 +4,7 @@ import ws
 
 # Listar as categorias
 
-url = 'https://api.mercadolibre.com/sites/MLA/categories'
+url = 'https://api.mercadolibre.com/sites/MLB/categories'
 dados = ws.get_data(url)
 categorias = json.loads(dados)
 

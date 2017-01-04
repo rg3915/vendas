@@ -9,9 +9,9 @@ from fixtures.gen_random_values import *
 product_list = []
 CAT_MAX = 28  # Quant de Categorias. Sujeita a alteração
 
-''' Lendo os dados de produtos*.csv '''
+''' Lendo os dados de produtos.csv '''
 for i in range(1, CAT_MAX):
-    with open('fixtures/csv/produtos%s.csv' % i, 'r') as f:
+    with open('fixtures/csv/produtos.csv', 'r') as f:
         r = csv.DictReader(f)
         for dct in r:
             product_list.append(dct)
