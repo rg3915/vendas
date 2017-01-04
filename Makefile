@@ -59,4 +59,4 @@ create_sales:
 
 initial: install migrate createuser
 
-createAll: create_brands create_products create_customers create_sellers create_sales
+createAll: create_brands create_products2 create_customers create_sellers create_sales
