@@ -36,6 +36,9 @@ load:
 run:
 	./manage.py runserver
 
+get_produtos:
+	python vendas/api/get_produtos.py
+
 create_brands:
 	./manage.py shell < fixtures/create_brands.py
 
