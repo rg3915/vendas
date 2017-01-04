@@ -4,10 +4,9 @@ from django.db import IntegrityError
 from vendas.core.models import Product, Brand
 from fixtures.gen_random_values import *
 
-# Pegar 5 produtos de cada categoria
-
 product_list = []
-CAT_MAX = 28  # Quant de Categorias. Sujeita a alteração
+# Quant de Categorias
+CAT_MAX = sum(1 for line in open('fixtures/csv/categorias.csv'))
 
 ''' Lendo os dados de produtos.csv '''
 for i in range(1, CAT_MAX):
@@ -17,17 +16,27 @@ for i in range(1, CAT_MAX):
             product_list.append(dct)
         f.close()
 
+
 REPEAT = len(product_list)
 items_save_count = 0
 
+
+def is_prime(n):
+    if n >= 2:
+        for i in range(2, n):
+            if not n % i:
+                return False
+    else:
+        return False
+    return True
+
+
 for i in range(REPEAT):
     imported = randint(0, 1)
-    # escolha personalizada de produtos fora de linha
-    if i % 26 == 0:
-        if i > 0:
-            outofline = 1
-        else:
-            outofline = 0
+    # Todos produtos cujo id é primo são produtos fora de linha
+    if is_prime(i):
+        print(i)
+        outofline = 1
     else:
         outofline = 0
     ncm = gen_ncm()
@@ -58,5 +67,6 @@ for i in range(REPEAT):
         items_save_count += 1
     except IntegrityError:
         print('Registro existente.')
+
 
 print('%d Produtos salvo com sucesso.' % items_save_count)
