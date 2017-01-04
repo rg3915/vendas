@@ -62,6 +62,9 @@ class ProductList(CounterMixin, ListView):
         # filtra produtos em baixo estoque
         if self.request.GET.get('filter_link', False):
             p = p.filter(stock__lt=F('stock_min'))
+        # filtra produtos fora de linha
+        if self.request.GET.get('outofline', False):
+            p = p.filter(outofline=1)
         return p
 
 
