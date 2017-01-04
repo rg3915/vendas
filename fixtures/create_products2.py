@@ -35,7 +35,6 @@ for i in range(REPEAT):
     imported = randint(0, 1)
     # Todos produtos cujo id é primo são produtos fora de linha
     if is_prime(i):
-        print(i)
         outofline = 1
     else:
         outofline = 0
