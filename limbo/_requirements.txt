@@ -1,3 +1,0 @@
-pydot>=1.0.2
-pyparsing>=1.5.7
-wsgiref>=0.1.2
