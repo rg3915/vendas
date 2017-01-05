@@ -23,18 +23,20 @@ with open('fixtures/csv/produtos.csv', 'w', newline='') as f:
                   'condition',
                   'permalink',
                   'thumbnail',
+                  'category_id',
                   ]
     writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
     writer.writeheader()
 
     # Pegar os produtos de cada categoria
     for categoria in categorias:
-        url = 'https://api.mercadolibre.com/sites/MLB/search?category=%s' % categoria[
-            'id']
+        url = 'https://api.mercadolibre.com/sites/MLB/search?category=%s' \
+            % categoria['id']
         dados = ws.get_data(url)
         produtos = json.loads(dados)['results']
 
         for produto in produtos:
+            produto['category_id'] = categoria['id']
             writer.writerow(produto)
 
     f.close()
