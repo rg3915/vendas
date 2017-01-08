@@ -1,7 +1,7 @@
 import csv
 from random import randint
 from django.db import IntegrityError
-from vendas.core.models import Product, Brand
+from vendas.core.models import Product, Brand, Category
 from fixtures.gen_random_values import *
 
 product_list = []
@@ -50,6 +50,8 @@ for i in range(REPEAT):
             ipi = ipi - 0.5
     stock = product_list[i]['available_quantity']
     stock_min = randint(1, 20)
+    category_id = product_list[i]['category_id']
+    category = Category.objects.get(pk=category_id)
     obj = Product(
         imported=imported,
         outofline=outofline,
@@ -60,6 +62,7 @@ for i in range(REPEAT):
         ipi=ipi,
         stock=stock,
         stock_min=stock_min,
+        category=category,
     )
     try:
         obj.save()

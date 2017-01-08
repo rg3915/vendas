@@ -73,12 +73,14 @@ $ python manager_db.py
 Entre na pasta `vendas/api/` e digite
 
 ```bash
+python vendas/api/get_categorias.py
 python vendas/api/get_produtos.py
 ```
 
 Depois rode o comando
 
 ```bash
+make create_categories
 make create_products2
 ```
 

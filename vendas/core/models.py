@@ -94,6 +94,18 @@ class Brand(models.Model):
         return self.brand
 
 
+class Category(models.Model):
+    id = models.CharField('Id', max_length=7, primary_key=True)
+    category = models.CharField('Categoria', max_length=50, unique=True)
+
+    class Meta:
+        verbose_name = 'categoria'
+        verbose_name_plural = 'categorias'
+
+    def __str__(self):
+        return self.category
+
+
 class Product(models.Model):
     imported = models.BooleanField('Importado', default=False)
     outofline = models.BooleanField('Fora de linha', default=False)
@@ -105,6 +117,8 @@ class Product(models.Model):
         'IPI', max_digits=3, decimal_places=2, blank=True)
     stock = models.IntegerField('Estoque atual')
     stock_min = models.PositiveIntegerField('Estoque mínimo', default=0)
+    category = models.ForeignKey(Category, verbose_name='categoria',
+                                 null=True, blank=True)
 
     class Meta:
         ordering = ['product']
