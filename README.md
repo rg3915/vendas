@@ -1,7 +1,7 @@
 Vendas
 ======
 
-Python 3.5.0 and Django 1.10.1
+Python 3.7.0 and Django 2.2.6
 
 Veja o [live demo][13].
 
