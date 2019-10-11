@@ -1,6 +1,6 @@
 from django.shortcuts import render, resolve_url
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.db.models import F, Count
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView

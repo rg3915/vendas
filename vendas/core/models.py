@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.formats import number_format
 
 gender_list = [('M', 'masculino'), ('F', 'feminino')]
@@ -110,15 +110,28 @@ class Product(models.Model):
     imported = models.BooleanField('Importado', default=False)
     outofline = models.BooleanField('Fora de linha', default=False)
     ncm = models.CharField('NCM', max_length=8)
-    brand = models.ForeignKey(Brand, verbose_name='marca')
+    brand = models.ForeignKey(
+        Brand,
+        on_delete=models.CASCADE,
+        verbose_name='marca'
+    )
     product = models.CharField('Produto', max_length=100, unique=True)
     price = models.DecimalField('Preço', max_digits=7, decimal_places=2)
     ipi = models.DecimalField(
-        'IPI', max_digits=3, decimal_places=2, blank=True)
+        'IPI',
+        max_digits=3,
+        decimal_places=2,
+        blank=True
+    )
     stock = models.IntegerField('Estoque atual')
     stock_min = models.PositiveIntegerField('Estoque mínimo', default=0)
-    category = models.ForeignKey(Category, verbose_name='categoria',
-                                 null=True, blank=True)
+    category = models.ForeignKey(
+        Category,
+        verbose_name='categoria',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
 
     class Meta:
         ordering = ['product']
@@ -137,9 +150,17 @@ class Product(models.Model):
 
 class Sale(TimeStampedModel):
     customer = models.ForeignKey(
-        'Customer', related_name='customer_sale', verbose_name='cliente')
+        'Customer',
+        related_name='customer_sale',
+        verbose_name='cliente',
+        on_delete=models.CASCADE,
+    )
     seller = models.ForeignKey(
-        'Seller', related_name='seller_sale', verbose_name='vendedor')
+        'Seller',
+        related_name='seller_sale',
+        verbose_name='vendedor',
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         verbose_name = 'venda'
@@ -167,9 +188,17 @@ class Sale(TimeStampedModel):
 
 
 class SaleDetail(models.Model):
-    sale = models.ForeignKey(Sale, related_name='sales_det')
+    sale = models.ForeignKey(
+        Sale,
+        related_name='sales_det',
+        on_delete=models.CASCADE,
+    )
     product = models.ForeignKey(
-        Product, related_name='product_det', verbose_name='produto')
+        Product,
+        related_name='product_det',
+        verbose_name='produto',
+        on_delete=models.CASCADE,
+    )
     quantity = models.PositiveSmallIntegerField('quantidade')
     price_sale = models.DecimalField(
         'Preço de venda', max_digits=6, decimal_places=2, default=0)
